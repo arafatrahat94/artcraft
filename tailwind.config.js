@@ -23,6 +23,7 @@ export default {
       fontFamily: {
         KaushanScript: ["Kaushan Script"],
         Montserrat: ["Montserrat"],
+        VarelaRound: ["Varela Round", "sans-serif"],
       },
     },
   },

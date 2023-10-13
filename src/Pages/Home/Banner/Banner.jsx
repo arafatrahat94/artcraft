@@ -16,7 +16,7 @@ import banenr5 from "../../../assets/sliderImage/banner5.png";
 import { Autoplay, EffectFade } from "swiper/modules";
 const Banner = () => {
   return (
-    <div className="k h-[600px]">
+    <div className="k h-[550px]">
       <div className="grid grid-cols-2  h-full ">
         <div className="ms-14 mt-32">
           <h1 className="text-5xl font-Montserrat font-bold  text-gray-800">

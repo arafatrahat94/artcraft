@@ -1,12 +1,35 @@
 import React from "react";
 
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
+
 const Nav = () => {
+  // scroller
+
+  const scrollToElement = (element) => {
+    scroller.scrollTo(element, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
+  //navoptions
   const NavOptions = (
     <>
       <li className="px-5 text-base cursor-pointer font-Montserrat  font-semibold theme-text">
         Home
       </li>
-      <li className="px-5 text-base cursor-pointer font-Montserrat font-semibold">
+      <li
+        onClick={() => scrollToElement("instructors")}
+        className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
+      >
         Instructors
       </li>
       <li className="px-5 text-base cursor-pointer font-Montserrat font-semibold">
@@ -19,7 +42,7 @@ const Nav = () => {
   );
   return (
     <div>
-      <div className="navbar  h-20 ">
+      <div className="navbar  h-20 mt-1">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -61,17 +84,20 @@ const Nav = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <h1 className="text-4xl ms-3 font-KaushanScript text-center text-black">
+            <span>Creative</span> Art
+          </h1>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal uppercase  px-1">{NavOptions}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end me-2">
           <a className="btn theme-text rounded-2xl px-6  theme-border">
             Contact
           </a>
         </div>
       </div>
+      <div className="theme-color1 opacity-5 mt-1  mx-a h-[2px]"></div>
     </div>
   );
 };
