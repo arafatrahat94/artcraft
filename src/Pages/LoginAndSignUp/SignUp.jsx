@@ -3,12 +3,34 @@ import banenr1 from "../../assets/sliderImage/banner9.png";
 import banenr2 from "../../assets/sliderImage/banner8.png";
 import banenr3 from "../../assets/sliderImage/banner7.png";
 import banenr4 from "../../assets/sliderImage/banner6.png";
+import { useForm } from "react-hook-form";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
 const SignUp = () => {
+  const imgHostingUrl = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_SEC_IMG
+  }`;
+  const formData = new FormData();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    formData.append("image", data.img[0]);
+    fetch(imgHostingUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((idata) => console.log(idata));
+    console.log(data);
+  };
+
   return (
     <div className="relative ">
       <div className="absolute opacity-30  -z-30  w-full flex items-center min-h-screen">
@@ -42,7 +64,10 @@ const SignUp = () => {
       <div className="w-full min-h-screen h-full flex items-center justify-center">
         {" "}
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl ">
-          <form className="card-body theme-color1 bg-opacity-5 rounded-3xl">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body theme-color1 bg-opacity-5 rounded-3xl"
+          >
             <h1 className="text-center font-KaushanScript  text-4xl text-black">
               Sign Up
             </h1>
@@ -53,6 +78,7 @@ const SignUp = () => {
                 </span>
               </label>
               <input
+                {...register("name")}
                 type="text"
                 placeholder="Enter Your Name"
                 className="input rounded-lg h-16 ps-6 input-bordered"
@@ -66,7 +92,8 @@ const SignUp = () => {
                 </span>
               </label>
               <input
-                type="text"
+                type="email"
+                {...register("email")}
                 placeholder="@mail.com"
                 className="input rounded-lg h-16 ps-6 input-bordered"
                 required
@@ -80,6 +107,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
+                {...register("pass")}
                 placeholder="pAssw0rd"
                 className="input rounded-lg h-16 ps-6 input-bordered"
                 required
@@ -93,6 +121,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
+                {...register("pass2")}
                 placeholder="confirm pAssw0rd"
                 className="input rounded-lg h-16 ps-6 input-bordered"
                 required
@@ -106,7 +135,8 @@ const SignUp = () => {
               </label>
               <input
                 type="file"
-                className="file-input border-none text-white shadow-2xl file-input-error	 w-full max-w-xs"
+                {...register("img")}
+                className="file-input border-none font-VarelaRound shadow-2xl  file-input-error	 w-full max-w-xs"
               />
             </div>
 
