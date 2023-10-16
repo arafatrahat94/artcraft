@@ -32,11 +32,17 @@ const Nav = () => {
       >
         Instructors
       </li>
-      <li className="px-5 text-base cursor-pointer font-Montserrat font-semibold">
+      <li
+        onClick={() => scrollToElement("Courses")}
+        className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
+      >
         Classes
       </li>
-      <li className="px-5 font-semibold text-base cursor-pointer font-Montserrat ">
-        Dashboard
+      <li
+        onClick={() => scrollToElement("Category")}
+        className="px-5 font-semibold text-base cursor-pointer font-Montserrat "
+      >
+        Category
       </li>
     </>
   );
@@ -85,16 +91,14 @@ const Nav = () => {
             </ul>
           </div>
           <h1 className="text-4xl ms-3 font-KaushanScript text-center text-black">
-            <span>Creative</span> Art
+            <span>ArtoGram</span>
           </h1>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal uppercase  px-1">{NavOptions}</ul>
         </div>
         <div className="navbar-end me-2">
-          <a className="btn theme-text rounded-2xl px-6  theme-border">
-            Contact
-          </a>
+          <a className="btn theme-text rounded-2xl px-6  theme-border">Login</a>
         </div>
       </div>
       <div className="theme-color1 opacity-5 mt-1  mx-a h-[2px]"></div>

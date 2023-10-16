@@ -1,5 +1,6 @@
 import Banner from "../Banner/Banner";
 import BestCourse from "../BestCourse/BestCourse";
+import Categories from "../Categories/Categories";
 import Join from "../Join/Join";
 import OurBestTeacher from "../OurBestTeacher/OurBestTeacher";
 import Support from "../Supports/Support";
@@ -14,6 +15,7 @@ const Home = () => {
       <OurBestTeacher></OurBestTeacher>
       <Join></Join>
       <BestCourse></BestCourse>
+      <Categories></Categories>
     </div>
   );
 };

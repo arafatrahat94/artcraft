@@ -14,7 +14,15 @@ import banenr4 from "../../../assets/sliderImage/banner6.png";
 import banenr5 from "../../../assets/sliderImage/banner5.png";
 // import required modules
 import { Autoplay, EffectFade } from "swiper/modules";
+import { scroller } from "react-scroll";
 const Banner = () => {
+  const scrollToElement = (element) => {
+    scroller.scrollTo(element, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
   return (
     <div className="k h-[550px]">
       <div className="grid grid-cols-2  h-full ">
@@ -29,7 +37,10 @@ const Banner = () => {
             src={img4}
             alt=""
           />
-          <button className="btn theme-color1 border-none font-Montserrat font-bold normal-case text-xl text-white  h-16 mt-5 w-[220px]">
+          <button
+            onClick={() => scrollToElement("Courses")}
+            className="btn theme-color1 border-none font-Montserrat font-bold normal-case text-xl text-white  h-16 mt-5 w-[220px]"
+          >
             Enroll Now
           </button>
         </div>

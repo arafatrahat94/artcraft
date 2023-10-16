@@ -21,7 +21,10 @@ const WhyChoseUs = () => {
             alt=""
           />
         </div>
-        <div className="relative h-full flex items-center theme-text  flex-col">
+        <div
+          className="relative bg-i
+ h-full flex items-center theme-text  flex-col"
+        >
           <h1 className=" my-5 text-5xl  font-KaushanScript text-center">
             Why Choose Us
           </h1>
@@ -30,7 +33,7 @@ const WhyChoseUs = () => {
             Masterpieces&ldquo;
           </p>
           <div className="grid gap-4 grid-cols-2 mx-5 w-11/12">
-            <div className="p-2 bg-i rounded-2xl h-[165px] shadow">
+            <div className="p-2  rounded-2xl h-[165px] shadow">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">
@@ -43,7 +46,7 @@ const WhyChoseUs = () => {
                 learners to get better taste.
               </p>
             </div>
-            <div className="p-2 bg-i rounded-2xl h-[165px] shadow">
+            <div className="p-2  rounded-2xl h-[165px] shadow">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">
@@ -56,7 +59,7 @@ const WhyChoseUs = () => {
                 learners to get better taste.
               </p>
             </div>
-            <div className="p-2 bg-i rounded-2xl h-[165px] shadow">
+            <div className="p-2  rounded-2xl h-[165px] shadow">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">
@@ -69,7 +72,7 @@ const WhyChoseUs = () => {
                 learners to get better taste.
               </p>
             </div>
-            <div className="p-2 bg-i rounded-2xl h-[165px] shadow">
+            <div className="p-2  rounded-2xl h-[165px] shadow">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">

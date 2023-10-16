@@ -22,7 +22,7 @@ const BestCourse = () => {
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
   return (
-    <div id="instructors" className=" mb-10 w-11/12 mx-auto">
+    <div id="Courses" className=" mb-10 w-11/12 mx-auto">
       {/* best tutor */}
       <div className="theme-color1 h-[700px] bg-opacity-5 theme-border border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
         <h1 className="text-center mt-10 text-5xl font-KaushanScript theme-text">

@@ -4,8 +4,11 @@
 @tailwind base;
 
 @layer components {
+  #file-upload-button {
+    @apply bg-red-500;
+  }
   .theme-color1 {
-    @apply bg-[#ee5b54];
+    @apply bg-red-500;
   }
   .theme-text {
     @apply text-[#ee5b54];
