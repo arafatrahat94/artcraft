@@ -1,0 +1,11 @@
+body.swal2-toast-shown .swal2-container {
+  @apply lg:w-[450px] m-0  w-full border-none  flex justify-center;
+}
+
+div:where(.swal2-container).swal2-top > .swal2-popup {
+  @apply flex lg:h-[70px] h-[65px]  justify-center gap-x-3;
+}
+
+.swal2-title {
+  @apply flex items-center mt-[2px] text-xs lg:text-base;
+}

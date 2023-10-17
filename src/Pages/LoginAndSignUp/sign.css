@@ -1,0 +1,67 @@
+.swal2-popup {
+  @apply bg-white lg:h-[310px] h-[275px] font-VarelaRound   ring ring-red-400;
+}
+.swal2-popup a {
+  @apply bg-white text-red-800 font-semibold font-VarelaRound  lg:text-base text-xs;
+}
+
+.swal2-popup {
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 100%);
+
+  padding: 0 0 1.25em;
+  border: none;
+  border-radius: 3rem;
+  @apply transform duration-300 w-[300px];
+}
+.swal2-icon {
+  position: relative;
+  box-sizing: content-box;
+  justify-content: center;
+  width: 5em;
+  height: 4.5em;
+  border: none;
+  border-radius: 0%;
+
+  font-family: inherit;
+  line-height: 5em;
+  cursor: default;
+  user-select: none;
+  @apply duration-300 transform;
+}
+input#file-upload-button {
+  @apply bg-black py-3;
+}
+.file-upload {
+  @apply min-w-[230px] mx-auto h-[215px];
+  text-align: center;
+  border: 3px dashed #ee5b54;
+
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+
+.file-upload p {
+  font-size: 0.87rem;
+  margin-top: 10px;
+  color: #bbcada;
+}
+.file-upload input {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
