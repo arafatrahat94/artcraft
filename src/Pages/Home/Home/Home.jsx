@@ -8,14 +8,14 @@ import WhyChoseUs from "../WhyChoseUs/WhyChoseUs";
 
 const Home = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <Banner></Banner>
       <Support></Support>
-      <WhyChoseUs></WhyChoseUs>
+      {/* <WhyChoseUs></WhyChoseUs>
       <OurBestTeacher></OurBestTeacher>
       <Join></Join>
       <BestCourse></BestCourse>
-      <Categories></Categories>
+      <Categories></Categories> */}
     </div>
   );
 };

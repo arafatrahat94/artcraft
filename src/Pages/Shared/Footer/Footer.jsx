@@ -3,8 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-base-100 py-16 text-base-content border ">
-        <aside className="w-[350px]">
+      <footer className="footer lg:p-10 p-4 bg-base-100 py-16 text-base-content border ">
+        <aside className="lg:w-[350px] flex flex-col items-center justify-center">
           <h1 className="px-16 font-KaushanScript text-5xl theme-text">
             ArtoGram
           </h1>
