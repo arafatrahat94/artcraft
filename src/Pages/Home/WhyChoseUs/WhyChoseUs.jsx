@@ -23,7 +23,7 @@ const WhyChoseUs = () => {
         </div>
         <div
           className="relative  bg-i
- h-full flex items-center mt-6 theme-text lg:w-1/2 flex-col"
+ h-full flex items-center mt-6 mb-10 theme-text lg:w-1/2 flex-col"
         >
           <h1 className=" my-5 text-3xl lg:text-5xl  font-KaushanScript text-center">
             Why Choose Us

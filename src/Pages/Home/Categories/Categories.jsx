@@ -9,7 +9,7 @@ const Categories = () => {
       </h1>
       <div className="theme-color1 h-[2px] mx-auto opacity-25 lg:mt-7 mt-3 w-5/12"></div>
       <div className="grid gap-x-3 gap-y-3 justify-center items-center grid-cols-3 mt-10 w-10/12 mx-auto">
-        <div className="lg:w-[250px] h-[250px] relative bg-black rounded-[3.5rem]">
+        <div className="lg:w-[250px] hover:ring hover:scale-105 ring-red-500 transform duration-300 h-[250px] relative bg-black rounded-[3.5rem]">
           <img
             className="w-full h-full object-cover rounded-[3.5rem] opacity-40"
             src={water}
@@ -19,7 +19,7 @@ const Categories = () => {
             Water Painting
           </h1>
         </div>
-        <div className="lg:w-[250px] h-[250px] relative bg-black rounded-[3.5rem]">
+        <div className="lg:w-[250px] hover:ring hover:scale-105 ring-red-500 transform duration-300 h-[250px] relative bg-black rounded-[3.5rem]">
           <img
             className="w-full h-full object-cover rounded-[3.5rem] opacity-60"
             src={acrylic}
@@ -29,7 +29,7 @@ const Categories = () => {
             Acrylic Painting
           </h1>
         </div>
-        <div className="lg:w-[250px] h-[250px] relative bg-black rounded-[3.5rem]">
+        <div className="lg:w-[250px] hover:ring hover:scale-105 ring-red-500 transform duration-300 h-[250px] relative bg-black rounded-[3.5rem]">
           <img
             className="w-full h-full object-cover rounded-[3.5rem] opacity-60"
             src={threed}

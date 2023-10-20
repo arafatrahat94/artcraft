@@ -17,6 +17,7 @@ import iconImg from "../../assets/icon/icons8-error-80.png";
 import "./sign.css";
 import useToast from "../../Hooks/useToast";
 import { FaGooglePlusG } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -63,7 +64,7 @@ const SignUp = () => {
                 };
 
                 axios
-                  .post("http://localhost:5000/users", newData)
+                  .post("https://artogram-server.vercel.app/users", newData)
                   .then(function (response) {
                     setSubMitLoading(false);
                     toast.fire({
@@ -113,7 +114,7 @@ const SignUp = () => {
         };
 
         axios
-          .post("http://localhost:5000/users", newData)
+          .post("https://artogram-server.vercel.app/users", newData)
           .then(function (response) {
             console.log(response);
             setSubMitLoading(false);
@@ -302,6 +303,12 @@ const SignUp = () => {
                     <FaGooglePlusG className="text-5xl" />
                     Google
                   </button>
+                  <div className="mt-5 font-VarelaRound text-black">
+                    Already Created Account?{" "}
+                    <Link className="theme-text btn-link" to="/Login">
+                      Sign In
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

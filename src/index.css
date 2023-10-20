@@ -8,13 +8,13 @@
     @apply bg-red-500;
   }
   .theme-color1 {
-    @apply bg-red-500;
+    @apply bg-pink-600;
   }
   .theme-text {
-    @apply text-[#ee5b54];
+    @apply text-pink-600;
   }
   .theme-border {
-    @apply border border-[#ee5b54];
+    @apply border border-pink-600;
   }
 }
 

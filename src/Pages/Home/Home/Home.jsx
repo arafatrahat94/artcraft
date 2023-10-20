@@ -4,6 +4,7 @@ import Categories from "../Categories/Categories";
 import Join from "../Join/Join";
 import OurBestTeacher from "../OurBestTeacher/OurBestTeacher";
 import Support from "../Supports/Support";
+import WhatourCLientSay from "../Whatour/WhatourCLientSay";
 import WhyChoseUs from "../WhyChoseUs/WhyChoseUs";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <Join></Join>
       <BestCourse></BestCourse>
       <Categories></Categories>
+      <WhatourCLientSay></WhatourCLientSay>
     </div>
   );
 };

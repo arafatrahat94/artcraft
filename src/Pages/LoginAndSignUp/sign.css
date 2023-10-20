@@ -35,9 +35,8 @@ input#file-upload-button {
   @apply bg-black py-3;
 }
 .file-upload {
-  @apply min-w-[230px] mx-auto h-[215px];
+  @apply min-w-[230px] border-4 border-dotted border-pink-600 mx-auto h-[215px];
   text-align: center;
-  border: 3px dashed #ee5b54;
 
   border-radius: 3rem;
   display: flex;
@@ -64,4 +63,7 @@ input#file-upload-button {
   right: 0;
   opacity: 0;
   cursor: pointer;
+}
+.swal2-confirm {
+  @apply bg-black;
 }

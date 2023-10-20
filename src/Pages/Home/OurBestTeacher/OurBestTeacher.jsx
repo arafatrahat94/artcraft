@@ -99,7 +99,7 @@ const OurBestTeacher = () => {
                     type="button"
                     data-ripple-light="true"
                   >
-                    View Details
+                    View Classes
                   </button>
                 </div>
               </div>
