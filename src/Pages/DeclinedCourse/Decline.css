@@ -1,0 +1,9 @@
+.react-tabs__tab {
+  @apply lg:w-[100px] w-[80px] text-center font-Montserrat text-pink-600 mx-1 font-semibold  transform duration-300  justify-center border-none flex items-center py-3 rounded-lg !important;
+}
+.react-tabs__tab--selected {
+  @apply bg-pink-600 w-[100px] text-center font-Montserrat text-white border-none py-2 rounded-lg !important;
+}
+.react-tabs__tab-list {
+  @apply border-none lg:w-full lg:scale-100 scale-75 w-[350px] mx-auto px-2 lg:mx-5  flex  justify-center  !important;
+}

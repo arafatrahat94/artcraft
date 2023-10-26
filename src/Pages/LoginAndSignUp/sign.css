@@ -1,5 +1,5 @@
 .swal2-popup {
-  @apply bg-white lg:h-[310px] h-[275px] font-VarelaRound   ring ring-red-400;
+  @apply bg-white lg:h-[310px]  font-VarelaRound   ring ring-red-400;
 }
 .swal2-popup a {
   @apply bg-white text-red-800 font-semibold font-VarelaRound  lg:text-base text-xs;
@@ -63,7 +63,4 @@ input#file-upload-button {
   right: 0;
   opacity: 0;
   cursor: pointer;
-}
-.swal2-confirm {
-  @apply bg-black;
 }

@@ -15,15 +15,18 @@ import { Circles } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import iconImg from "../../assets/icon/icons8-error-80.png";
 import "./sign.css";
-import useToast from "../../Hooks/useToast";
+
 import { FaGooglePlusG } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const SignUp = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
   const [passErro, setPassErro] = useState("");
-  //   hooks
-  const toast = useToast();
+  const location = useLocation();
+  const from = location?.state?.from || "/";
+
+  const navigate = useNavigate();
+
   // auth data
   const { createN, glogin } = useContext(AuthCOntext);
   // img url
@@ -48,29 +51,33 @@ const SignUp = () => {
       createN(data.email, data.pass)
         .then((result) => {
           const user = result.user;
-          console.log(user);
+
           fetch(imgHostingUrl, {
             method: "POST",
             body: formData,
           })
             .then((res) => res.json())
             .then((idata) => {
-              console.log(idata);
               if (idata.success === true) {
                 const newData = {
                   name: data.name,
                   email: data.email,
                   img: idata.data.display_url,
+                  profiletype: "student",
                 };
 
                 axios
                   .post("https://artogram-server.vercel.app/users", newData)
-                  .then(function (response) {
+                  .then(function () {
                     setSubMitLoading(false);
-                    toast.fire({
+                    Swal.fire({
+                      position: "center",
                       icon: "success",
                       title: "Signed up successfully",
+                      showConfirmButton: true,
+                      timer: 1500,
                     });
+                    navigate(from, { replace: true });
                   });
               }
             });
@@ -90,10 +97,8 @@ const SignUp = () => {
             footer: '<a href="">you did not created any account yet?Report</a>',
           });
           setSubMitLoading(false);
-          console.log(error.message);
         });
     }
-    console.log(data);
   };
   // image show
   const [image, setImage] = useState(null);
@@ -111,19 +116,21 @@ const SignUp = () => {
           name: user.displayName,
           email: user.email,
           img: user.photoURL,
+          profiletype: "student",
         };
 
         axios
           .post("https://artogram-server.vercel.app/users", newData)
           .then(function (response) {
-            console.log(response);
             setSubMitLoading(false);
-            toast.fire({
+            Swal.fire({
+              position: "center",
               icon: "success",
               title: "Signed up successfully",
+              showConfirmButton: true,
+              timer: 1500,
             });
           });
-        console.log(result);
       })
       .catch(() => {});
   };
@@ -177,9 +184,9 @@ const SignUp = () => {
                     type="text"
                     required
                     placeholder="enter your name"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Name
                   </label>
                 </div>
@@ -191,9 +198,9 @@ const SignUp = () => {
                     {...register("email")}
                     required
                     placeholder="@mail.com"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Email
                   </label>
                 </div>
@@ -206,9 +213,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                   </label>
                 </div>
@@ -221,9 +228,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass2")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Confirm Password
                   </label>
                 </div>
@@ -320,7 +327,7 @@ const SignUp = () => {
                 <Circles
                   height="80"
                   width="80"
-                  color="#ee5b54"
+                  color="#D81B60"
                   ariaLabel="circles-loading"
                   wrapperStyle={{}}
                   wrapperClassName=""

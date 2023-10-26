@@ -4,7 +4,7 @@ import banenr2 from "../../assets/sliderImage/banner8.png";
 import banenr3 from "../../assets/sliderImage/banner7.png";
 import banenr4 from "../../assets/sliderImage/banner6.png";
 import { useForm } from "react-hook-form";
-import iconsupload from "../../assets/icon/icons8-upload-to-cloud-96.png";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -15,20 +15,22 @@ import { Circles } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import iconImg from "../../assets/icon/icons8-error-80.png";
 import "./sign.css";
-import useToast from "../../Hooks/useToast";
+
 import { FaGooglePlusG } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   // location
   const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const navigate = useNavigate();
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
   const [passErro, setPassErro] = useState("");
   //   hooks
-  const toast = useToast();
+
   // auth data
-  const { createN, logIn, glogin } = useContext(AuthCOntext);
+  const { logIn, glogin } = useContext(AuthCOntext);
 
   const { register, handleSubmit } = useForm();
   //   form on submit
@@ -37,13 +39,17 @@ const Login = () => {
     logIn(data.email, data.pass)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+
         if (user) {
-          toast.fire({
+          Swal.fire({
+            position: "center",
             icon: "success",
             title: "Signed in successfully",
+
+            timer: 1500,
+            showConfirmButton: true,
           });
-          navigate("/");
+          navigate(from, { replace: true });
           setSubMitLoading(false);
         }
       })
@@ -61,10 +67,7 @@ const Login = () => {
           showConfirmButton: false,
         });
         setSubMitLoading(false);
-        console.log(error.message);
       });
-
-    console.log(data);
   };
 
   const handleGlog = () => {
@@ -80,14 +83,16 @@ const Login = () => {
         axios
           .post("https://artogram-server.vercel.app/users", newData)
           .then(function (response) {
-            console.log(response);
             setSubMitLoading(false);
-            toast.fire({
+            Swal.fire({
+              position: "center",
               icon: "success",
               title: "Signed in successfully",
+              showConfirmButton: true,
+              timer: 1500,
             });
+            navigate(from, { replace: true });
           });
-        console.log(result);
       })
       .catch(() => {});
   };
@@ -141,9 +146,9 @@ const Login = () => {
                     {...register("email")}
                     required
                     placeholder="@mail.com"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Email
                   </label>
                 </div>
@@ -156,9 +161,9 @@ const Login = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#ee5b54] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#ee5b54] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                   </label>
                 </div>
@@ -192,7 +197,11 @@ const Login = () => {
                   </button>
                   <div className="mt-5 font-VarelaRound text-black">
                     New Here?{" "}
-                    <Link className="theme-text btn-link" to="/SignUp">
+                    <Link
+                      state={{ from: from }}
+                      className="theme-text btn-link"
+                      to="/SignUp"
+                    >
                       Sign Up
                     </Link>
                   </div>
@@ -207,7 +216,7 @@ const Login = () => {
                 <Circles
                   height="80"
                   width="80"
-                  color="#ee5b54"
+                  color="#D81B60"
                   ariaLabel="circles-loading"
                   wrapperStyle={{}}
                   wrapperClassName=""
@@ -219,18 +228,6 @@ const Login = () => {
             <></>
           )}
         </div>
-        {/* <div className="order-2 flex items-center flex-col justify-center gap-y-3">
-          <h1 className="text-4xl mb-10 font-KaushanScript theme-text hidden lg:block text-center">
-            Or Login With
-          </h1>
-          <div className="divider theme-text mt-10 lg:hidden text-2xl mb-10 font-KaushanScript">
-            Or Login With
-          </div>
-          <button className="btn theme-color1 text-white h-[70px] w-[200px] border-none font-Montserrat btn-primary">
-            <FaGooglePlusG className="text-5xl" />
-            Google
-          </button>
-        </div> */}
       </div>
     </div>
   );

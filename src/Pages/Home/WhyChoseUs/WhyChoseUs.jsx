@@ -22,8 +22,8 @@ const WhyChoseUs = () => {
           />
         </div>
         <div
-          className="relative  bg-i
- h-full flex items-center mt-6 mb-10 theme-text lg:w-1/2 flex-col"
+          className="relative  
+ h-full flex items-center mt-10 mb-10 theme-text lg:w-1/2 flex-col"
         >
           <h1 className=" my-5 text-3xl lg:text-5xl  font-KaushanScript text-center">
             Why Choose Us
@@ -33,7 +33,7 @@ const WhyChoseUs = () => {
             Masterpieces&ldquo;
           </p>
           <div className="  mx-5 w-11/12">
-            <div className="p-2 my-2 lg:bg-opacity-70 bg-white rounded-2xl shadow">
+            <div className="p-2 my-2 lg:bg-opacity-70  rounded-2xl ">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">
@@ -46,7 +46,7 @@ const WhyChoseUs = () => {
                 learners to get better taste.
               </p>
             </div>
-            <div className="p-2 lg:bg-opacity-70 bg-white rounded-2xl  shadow">
+            <div className="p-2 lg:bg-opacity-70 rounded-2xl  ">
               <div className="py-1 px-1 rounded-xl  flex items-center gap-x-2 ">
                 <img src={img1} alt="" />
                 <h1 className="theme-text font-VarelaRound text-[18px] font-bold">

@@ -19,6 +19,7 @@ import useToast from "../../Hooks/useToast";
 import { FaGooglePlusG } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 const AddClasses = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -44,12 +45,9 @@ const AddClasses = () => {
   } = useForm();
   //   form on submit
   const onSubmit = (data) => {
-    console.log(data);
     formData.append("image", data.img[0]);
     setSubMitLoading(true);
     axios.post(imgHostingUrl, formData).then(function (response) {
-      console.log(response.data.data.display_url);
-
       const newData = {
         courseImg: response.data.data.display_url,
         name: data.name,
@@ -58,14 +56,17 @@ const AddClasses = () => {
         availableseats: parseFloat(data.seats),
         bookedSets: 0,
         email: user.email,
+        status: "pending",
         duration: data.duration + " " + data.durationType,
       };
       axios
         .post(
-          `https://artogram-server.vercel.app/courses?email=${user.email}`,
+          `https://artogram-server.vercel.app/PendingCourses?email=${user.email}`,
           newData,
           {
-            headers,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("ArtAccess")}`,
+            },
           }
         )
         .then(function (responseEI) {
@@ -74,14 +75,13 @@ const AddClasses = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Your Course has been added",
+              title:
+                "Your Course has been submitted to admin wait for approval",
               showConfirmButton: true,
             });
           }
         });
-      console.log(newData);
     });
-    console.log(data);
   };
   // image show
   const [image, setImage] = useState(null);
@@ -94,6 +94,8 @@ const AddClasses = () => {
 
   return (
     <div className="relative min-h-screen">
+      <ScrolltoTop></ScrolltoTop>
+      <ScrolltoTop></ScrolltoTop>
       <div className="absolute opacity-30 min-h-screen -z-30  w-full flex items-center ">
         <Swiper
           spaceBetween={30}
@@ -184,9 +186,9 @@ const AddClasses = () => {
                       {...register("category")}
                       className="peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 font-sans text-xl font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200  placeholder-shown:border-t-blue-gray-200 empty:!bg-red-500 focus:border-b-2 focus:border-pink-500 focus:border-x-transparent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     >
-                      <option value="3D Painting">3D Painting</option>
-                      <option value="Acrylic Painting">Acrylic Painting</option>
-                      <option value="Water Painting">Water Painting</option>
+                      <option value="3D">3D Painting</option>
+                      <option value="Acrylic">Acrylic Painting</option>
+                      <option value="Water">Water Painting</option>
                     </select>
                     <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-600 peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 after:border-pink-600">
                       Select a Category
@@ -204,7 +206,7 @@ const AddClasses = () => {
                       type="number"
                       required
                       {...register("duration")}
-                      placeholder="total seats"
+                      placeholder="duration"
                       className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-pink-600 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     />
                     <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-sm lg:text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-600 peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -217,7 +219,7 @@ const AddClasses = () => {
                     <div className="relative font-VarelaRound h-14  min-w-[100px]">
                       <select
                         {...register("durationType")}
-                        className="peer h-full w-full    bg-transparent px-3 py-2.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 border-gray-300 border-b placeholder-shown:border-t-blue-gray-200 empty:!bg-red-500 focus:border-b focus:border-pink-500 border-x-none focus:border-x-transparent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                        className="peer h-full w-full    bg-transparent px-3 py-2.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 border-gray-300 border-b placeholder-shown:border-t-blue-gray-200 empty:!bg-pink-500 focus:border-b focus:border-pink-500 border-x-none focus:border-x-transparent focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                       >
                         <option value="Hour">Hour</option>
                         <option value="Min">Min</option>
@@ -271,7 +273,7 @@ const AddClasses = () => {
                 <Circles
                   height="80"
                   width="80"
-                  color="#ee5b54"
+                  color="#D81B60"
                   ariaLabel="circles-loading"
                   wrapperStyle={{}}
                   wrapperClassName=""

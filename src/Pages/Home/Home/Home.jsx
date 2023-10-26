@@ -1,3 +1,4 @@
+import ScrolltoTop from "../../Shared/ScroolltoTop/Scrolltotop";
 import Banner from "../Banner/Banner";
 import BestCourse from "../BestCourse/BestCourse";
 import Categories from "../Categories/Categories";
@@ -11,13 +12,15 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <Banner></Banner>
+      <ScrolltoTop></ScrolltoTop>
+      <ScrolltoTop></ScrolltoTop>
       <Support></Support>
       <WhyChoseUs></WhyChoseUs>
       <OurBestTeacher></OurBestTeacher>
       <Join></Join>
       <BestCourse></BestCourse>
       <Categories></Categories>
-      <WhatourCLientSay></WhatourCLientSay>
+      {/* <WhatourCLientSay></WhatourCLientSay> */}
     </div>
   );
 };

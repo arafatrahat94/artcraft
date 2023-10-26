@@ -1,0 +1,33 @@
+.sweet_confirmbuttonImportant {
+  border: 0 !important;
+  border-radius: 3rem !important;
+  background: initial;
+  background-color: #d81b60 !important;
+  color: #fff;
+  font-size: 1em;
+  @apply ring-0 !important;
+}
+.cancelButton {
+  @apply bg-white !important;
+  @apply text-pink-600 !important;
+  @apply border  !important;
+  @apply ring-1 font-Montserrat ring-pink-600 !important;
+}
+.swal2-popup {
+  @apply ring text-pink-600 lg:h-[330px] font-Montserrat uppercase ring-pink-600 !important;
+}
+.swal2-icon-show {
+  @apply !important;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  @apply ring bg-transparent text-pink-600 font-VarelaRound ring-pink-600 px-7 rounded-3xl !important;
+}
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+  @apply ring ring-pink-600 w-20 h-20 !important;
+}
+div:where(.swal2-container) .swal2-textarea {
+  @apply mx-5 my-0 h-[170px] rounded-3xl border-pink-400 focus:outline-none border text-pink-600 font-VarelaRound !important;
+}
+.textArea {
+  @apply w-[300px] p-0 !important;
+}

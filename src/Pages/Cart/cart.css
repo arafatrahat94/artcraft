@@ -1,0 +1,21 @@
+.sweet_confirmbuttonImportant {
+  border: 0 !important;
+  border-radius: 3rem !important;
+  background: initial;
+  background-color: #d81b60 !important;
+  color: #fff;
+  font-size: 1em;
+  @apply ring-0 !important;
+}
+.cancelButton {
+  @apply bg-white !important;
+  @apply text-pink-600 !important;
+  @apply border  !important;
+  @apply ring-1 font-Montserrat ring-pink-600 !important;
+}
+.swal2-popup {
+  @apply ring text-pink-600 lg:h-[330px] font-Montserrat uppercase ring-pink-600 !important;
+}
+.swal2-icon-show {
+  @apply !important;
+}

@@ -26,8 +26,8 @@ const Support = () => {
             fontStyle={{
               fontSize: 40,
               width: "25px",
-              color: "#ee5b54",
-              textDecorationColor: "#ee5b54",
+              color: "#D81B60",
+              textDecorationColor: "#D81B60",
             }}
             locale="en-US"
             configs={[
@@ -54,8 +54,8 @@ const Support = () => {
               fontStyle={{
                 fontSize: 40,
                 width: "30px",
-                color: "#ee5b54",
-                textDecorationColor: "#ee5b54",
+                color: "#D81B60",
+                textDecorationColor: "#D81B60",
               }}
               locale="en-US"
               configs={[
