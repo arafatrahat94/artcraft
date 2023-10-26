@@ -184,7 +184,7 @@ const Nav = () => {
               <div className="dropdown  dropdown-hover dropdown-bottom text-black">
                 <button tabIndex={0} className=" m-1">
                   <img
-                    className=" w-14 ring ring-red-500  rounded-full"
+                    className=" w-14 ring ring-pink-500  rounded-full"
                     src={user?.img}
                   />
                 </button>
@@ -202,7 +202,7 @@ const Nav = () => {
                     className="w-full mt-1 btn rounded-lg text-pink-600 focus:text-white  bg-white normal-case font-VarelaRound text-base focus:bg-pink-600"
                   >
                     <Link className="">
-                      <a>Logout</a>
+                      <a>SignOut</a>
                     </Link>
                   </button>
                 </ul>
@@ -213,7 +213,7 @@ const Nav = () => {
           <>
             <Link to="/Login" className="navbar-end me-2">
               <a className="btn theme-text rounded-2xl px-6  theme-border">
-                Login
+                SignIn
               </a>
             </Link>
           </>

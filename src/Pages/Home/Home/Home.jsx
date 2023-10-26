@@ -21,7 +21,7 @@ const Home = () => {
       <Support></Support>
       <WhyChoseUs></WhyChoseUs>
       <OurBestTeacher></OurBestTeacher>
-      <Join></Join>
+      {/* <Join></Join> */}
       <BestCourse></BestCourse>
       <Categories></Categories>
       {/* <WhatourCLientSay></WhatourCLientSay> */}

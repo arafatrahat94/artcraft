@@ -19,7 +19,7 @@ const SideNavOptions = ({
   const isAdmin = useAdmin();
   return (
     <div>
-      <ul className="menu  w-[260px] min-h-screen  text-base-content bg-white">
+      <ul className="menu  w-[260px] min-h-[99.9vh]  text-base-content bg-white">
         {/* Sidebar content here */}
         <div
           className="h-10 flex flex-col
