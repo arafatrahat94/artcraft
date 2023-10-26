@@ -14,6 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { AiTwotoneTablet } from "react-icons/ai";
 import successIcon from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const Cart = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_PK);
   const { user } = useAuth();
@@ -190,6 +191,9 @@ const Cart = () => {
     <div>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
+      <Helmet>
+        <title>Cart | ARTOGRAM</title>
+      </Helmet>
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">

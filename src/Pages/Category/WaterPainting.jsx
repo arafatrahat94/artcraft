@@ -22,6 +22,7 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLoaderData, useLocation } from "react-router-dom";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const WaterPainting = () => {
   const location = useLocation();
   const [courses, setCourses] = useState([]);
@@ -92,6 +93,9 @@ const WaterPainting = () => {
   }, []);
   return (
     <div id="Courses" className=" mb-10 w-11/12 mx-auto">
+      <Helmet>
+        <title>Category | ARTOGRAM</title>
+      </Helmet>
       {/* best tutor */}
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>

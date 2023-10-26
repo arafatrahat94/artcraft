@@ -9,6 +9,7 @@ import "../../Admin/AllUsers/AllUser.css";
 import { useForm } from "react-hook-form";
 import { Circles } from "react-loader-spinner";
 import ScrolltoTop from "../../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 // import useAuth from "../../../Hooks/useAuth";
 const ManageCourses = () => {
   const [users, setUsers] = useState([]);
@@ -127,6 +128,9 @@ const ManageCourses = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>ManageCourses | ARTOGRAM</title>
+      </Helmet>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       <h1 className="text-pink-600 font-KaushanScript text-4xl text-center hidden lg:block mt-10">

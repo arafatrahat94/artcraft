@@ -20,6 +20,7 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const AddClasses = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -94,6 +95,9 @@ const AddClasses = () => {
 
   return (
     <div className="relative min-h-screen">
+      <Helmet>
+        <title>AddClasses | ARTOGRAM</title>
+      </Helmet>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       <div className="absolute opacity-30 min-h-screen -z-30  w-full flex items-center ">

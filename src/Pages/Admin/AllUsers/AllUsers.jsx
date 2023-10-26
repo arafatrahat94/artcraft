@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import "./AllUser.css";
 import useAuth from "../../../Hooks/useAuth";
 import ScrolltoTop from "../../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const { user } = useAuth();
@@ -198,6 +199,9 @@ const AllUsers = () => {
   return (
     <div>
       <>
+        <Helmet>
+          <title>AllUser | ARTOGRAM</title>
+        </Helmet>
         <ScrolltoTop></ScrolltoTop>
         <ScrolltoTop></ScrolltoTop>
       </>

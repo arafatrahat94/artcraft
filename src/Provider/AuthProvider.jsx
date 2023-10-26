@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
                 setUser(response.data);
                 setloading(false);
               });
-          }, 2000);
+          }, 3000);
         }
       } else {
         localStorage.removeItem("ArtAccess");

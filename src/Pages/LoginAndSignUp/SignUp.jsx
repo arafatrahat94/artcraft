@@ -18,6 +18,7 @@ import "./sign.css";
 
 import { FaGooglePlusG } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const SignUp = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -136,6 +137,9 @@ const SignUp = () => {
   };
   return (
     <div className="relative ">
+      <Helmet>
+        <title>SignUp | ARTOGRAM</title>
+      </Helmet>
       <div className="absolute opacity-30  -z-30  w-full flex items-center min-h-screen">
         <Swiper
           spaceBetween={30}

@@ -1,8 +1,14 @@
-# React + Vite
+# ARTOGRAM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+liveLink : https://art-craft-39a97.web.app/
 
-Currently, two official plugins are available:
+- This is a web site where people can buy and learn art and craft easily.
+- Admin can control the teachers and courses from dashboard.
+- Any one can purchase courses from site
+- I used React.js, Tailwind CSS, DaisyUI and many other library components and packages for front-end.
+- I used Express.js for back-end.
+- Database was used MongoDB.
+- Login and Registration authentication were implemented by Firebase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* admin email : araf@gmail.com
+* admin pass : pAssw0rd

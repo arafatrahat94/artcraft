@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 import success from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const EnrolledCourse = () => {
   const { user } = useAuth();
 
@@ -69,6 +70,9 @@ const EnrolledCourse = () => {
     <div>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
+      <Helmet>
+        <title>EnrolledCourse | ARTOGRAM</title>
+      </Helmet>
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 import success from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const Favorite = () => {
   const { user } = useAuth();
 
@@ -75,6 +76,9 @@ const Favorite = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Favorite | ARTOGRAM</title>
+      </Helmet>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       {loading ? (

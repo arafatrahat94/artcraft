@@ -19,11 +19,13 @@ import Transactions from "../Pages/Transactions/Transactions";
 import EnrolledCourse from "../Pages/EnrolledCourse/EnrolledCourse";
 import Favorite from "../Pages/Favorite/Favorite";
 import TeacherRoute from "./TeacherRoute";
+import Error from "../Pages/Shared/Error.jsx/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -78,6 +80,7 @@ const router = createBrowserRouter([
         <DashBoard></DashBoard>
       </PrivateRoute>
     ),
+    errorElement: <Error></Error>,
     children: [
       {
         path: "CourseCart",

@@ -8,6 +8,7 @@ import { Circles } from "react-loader-spinner";
 
 import successIcon from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const Transactions = () => {
   const { user } = useAuth();
 
@@ -36,6 +37,9 @@ const Transactions = () => {
     <div>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
+      <Helmet>
+        <title>Transactions | ARTOGRAM</title>
+      </Helmet>
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">

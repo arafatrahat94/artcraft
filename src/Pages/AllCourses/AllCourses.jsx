@@ -21,6 +21,7 @@ import { AiOutlineHourglass } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 
 const AllCourses = () => {
   const [initialLoading, setInitialLoading] = useState(true);
@@ -94,7 +95,9 @@ const AllCourses = () => {
   return (
     <div id="Courses" className=" mb-10 w-11/12 mx-auto">
       {/* best tutor */}
-
+      <Helmet>
+        <title>AllCourses | ARTOGRAM</title>
+      </Helmet>
       {initialLoading ? (
         <>
           <div className=" min-h-[70vh] flex  justify-center items-center">

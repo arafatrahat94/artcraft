@@ -22,6 +22,7 @@ import { Circles } from "react-loader-spinner";
 import useToast from "../../Hooks/useToast";
 import { Link, useNavigation } from "react-router-dom";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const AllTeachers = () => {
   const { user } = useAuth();
   const Toast = useToast();
@@ -111,6 +112,9 @@ const AllTeachers = () => {
   }, []);
   return (
     <div id="Courses" className=" mb-10 w-11/12 mx-auto">
+      <Helmet>
+        <title>AllTeacher | ARTOGRAM</title>
+      </Helmet>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       {/* best tutor */}

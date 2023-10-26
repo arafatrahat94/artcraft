@@ -8,6 +8,7 @@ import Activelink2 from "../Pages/Shared/Activelink/Activelink2";
 import useAdmin from "../Hooks/useAdmin";
 import useTeacher from "../Hooks/useTeacher";
 import ScrolltoTop from "../Pages/Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
   const { user, logOUT } = useAuth();
@@ -21,6 +22,9 @@ const DashBoard = () => {
   return (
     <div>
       <Nav></Nav>
+      <Helmet>
+        <title>DashBoard | ARTOGRAM</title>
+      </Helmet>
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       <div className="drawer lg:drawer-open">

@@ -7,7 +7,6 @@ import { Circles } from "react-loader-spinner";
 const Main = () => {
   const location = useLocation();
 
-  const [loading, setloading] = useState(null);
   const navigation = useNavigation();
 
   const signUp =

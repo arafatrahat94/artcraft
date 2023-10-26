@@ -6,6 +6,7 @@ import {
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 
 function formatCardNumber(value) {
   const val = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -42,7 +43,10 @@ export default function Payment() {
   return (
     <div className="w-full max-w-[24rem]">
       <ScrolltoTop></ScrolltoTop>
-      <ScrolltoTop></ScrolltoTop>
+      <ScrolltoTop></ScrolltoTop>{" "}
+      <Helmet>
+        <title>Payment | ARTOGRAM</title>
+      </Helmet>
       <div className="bg-gray-100 p-4 flex justify-center items-center text-center">
         <div className="mb-4 h-20 p-6 text-white">
           {type === "card" ? (

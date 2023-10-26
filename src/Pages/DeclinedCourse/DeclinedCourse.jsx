@@ -13,6 +13,7 @@ import exclamation from "../../assets/icon/icons8-exclamation-96.png";
 import success2 from "../../assets/icon/icons8-verified-account-96.png";
 import { Circles } from "react-loader-spinner";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
+import { Helmet } from "react-helmet-async";
 const DeclinedCourse = () => {
   const [users, setUsers] = useState([]);
   const { user } = useAuth();
@@ -111,6 +112,10 @@ const DeclinedCourse = () => {
   return (
     <div>
       <>
+        {" "}
+        <Helmet>
+          <title>DeclinedCourses | ARTOGRAM</title>
+        </Helmet>
         <ScrolltoTop></ScrolltoTop>
         <ScrolltoTop></ScrolltoTop>
       </>
