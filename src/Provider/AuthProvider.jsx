@@ -16,6 +16,7 @@ export const AuthCOntext = createContext(null);
 const AuthProvider = ({ children }) => {
   // states
   const [user, setUser] = useState(null);
+  const [user2, setUser2] = useState(null);
   const [loading, setloading] = useState(true);
   // new user
   const createN = (email, pass) => {
@@ -39,7 +40,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (currentUser) => {
       setloading(false);
-
+      setUser(currentUser);
       if (currentUser && currentUser.email) {
         const loggedUser = {
           email: currentUser.email,
@@ -57,20 +58,7 @@ const AuthProvider = ({ children }) => {
           )
           .then(function (response) {
             setUser(response.data);
-            setloading(false);
           });
-        if (user === null) {
-          setTimeout(() => {
-            axios
-              .get(
-                `https://artogram-server.vercel.app/users?email=${currentUser.email}`
-              )
-              .then(function (response) {
-                setUser(response.data);
-                setloading(false);
-              });
-          }, 3000);
-        }
       } else {
         localStorage.removeItem("ArtAccess");
         setUser(null);

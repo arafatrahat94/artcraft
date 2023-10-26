@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import useAuth from "../Hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
 import useAdmin from "../Hooks/useAdmin";
+import { AuthCOntext } from "../Provider/AuthProvider";
 
 const AdminRoute = ({ children }) => {
   const location = useLocation();
   const isAdmin = useAdmin();
 
-  const { user, loading } = useAuth();
+  const { user, loading } = useContext(AuthCOntext);
   if (loading) {
     return (
       <>
@@ -27,9 +28,10 @@ const AdminRoute = ({ children }) => {
       </>
     );
   }
-  if (user.profiletype === "admin" && isAdmin === true) {
+  if (user?.profiletype === "admin" && isAdmin) {
     return children;
-  } else if (user.profiletype !== "admin" && isAdmin === false) {
+  }
+  if (user?.profiletype !== "admin" && isAdmin === false) {
     return (
       <Navigate
         to="/Login"

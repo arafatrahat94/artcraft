@@ -72,7 +72,7 @@ justify-center mb-2 items-center "
               ) : (
                 <></>
               )}
-              {user.profiletype === "student" ? (
+              {user?.profiletype === "student" ? (
                 <>
                   <Activelink2 to="/DashBoard/CourseCart">
                     Course Cart

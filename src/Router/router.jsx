@@ -14,11 +14,11 @@ import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 import PrivateRoute from "./PrivateRoute";
 import ManageCourses from "../Pages/Admin/ManageCourses/ManageCourses";
 import DeclinedCourse from "../Pages/DeclinedCourse/DeclinedCourse";
-import AdminRoute from "./AdminRoute";
+
 import Transactions from "../Pages/Transactions/Transactions";
 import EnrolledCourse from "../Pages/EnrolledCourse/EnrolledCourse";
 import Favorite from "../Pages/Favorite/Favorite";
-import TeacherRoute from "./TeacherRoute";
+
 import Error from "../Pages/Shared/Error.jsx/Error";
 
 const router = createBrowserRouter([
@@ -75,11 +75,7 @@ const router = createBrowserRouter([
   },
   {
     path: "DashBoard",
-    element: (
-      <PrivateRoute>
-        <DashBoard></DashBoard>
-      </PrivateRoute>
-    ),
+    element: <DashBoard></DashBoard>,
     errorElement: <Error></Error>,
     children: [
       {
@@ -125,33 +121,33 @@ const router = createBrowserRouter([
       {
         path: "AllUsers",
         element: (
-          <AdminRoute>
+          <PrivateRoute>
             <AllUsers></AllUsers>
-          </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "ManageCourses",
         element: (
-          <AdminRoute>
+          <PrivateRoute>
             <ManageCourses></ManageCourses>
-          </AdminRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "AddClasses",
         element: (
-          <TeacherRoute>
+          <PrivateRoute>
             <AddClasses></AddClasses>
-          </TeacherRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "ManageCourse",
         element: (
-          <TeacherRoute>
+          <PrivateRoute>
             <DeclinedCourse></DeclinedCourse>
-          </TeacherRoute>
+          </PrivateRoute>
         ),
       },
     ],
