@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import useAuth from "../Hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 import { Circles } from "react-loader-spinner";
@@ -28,17 +28,15 @@ const AdminRoute = ({ children }) => {
       </>
     );
   }
-  if (user?.profiletype === "admin" && isAdmin) {
-    return children;
-  }
-  if (user?.profiletype !== "admin" && isAdmin === false) {
-    return (
-      <Navigate
-        to="/Login"
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
-    );
+  if (user) {
+    if (user?.profiletype === "admin") {
+      return children;
+    } else if (
+      user.profiletype === "teacher" ||
+      user.profiletype === "student"
+    ) {
+      return <Navigate to="/"></Navigate>;
+    }
   }
 };
 

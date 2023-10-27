@@ -20,6 +20,8 @@ import EnrolledCourse from "../Pages/EnrolledCourse/EnrolledCourse";
 import Favorite from "../Pages/Favorite/Favorite";
 
 import Error from "../Pages/Shared/Error.jsx/Error";
+import AdminRoute from "./AdminRoute";
+import TeacherRoute from "./TeacherRoute";
 
 const router = createBrowserRouter([
   {
@@ -121,33 +123,33 @@ const router = createBrowserRouter([
       {
         path: "AllUsers",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <AllUsers></AllUsers>
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "ManageCourses",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <ManageCourses></ManageCourses>
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "AddClasses",
         element: (
-          <PrivateRoute>
+          <TeacherRoute>
             <AddClasses></AddClasses>
-          </PrivateRoute>
+          </TeacherRoute>
         ),
       },
       {
         path: "ManageCourse",
         element: (
-          <PrivateRoute>
+          <TeacherRoute>
             <DeclinedCourse></DeclinedCourse>
-          </PrivateRoute>
+          </TeacherRoute>
         ),
       },
     ],

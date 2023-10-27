@@ -30,14 +30,13 @@ const TeacherRoute = ({ children }) => {
   }
   if (user.profiletype === "teacher" && isTecher === true) {
     return children;
-  } else if (user.profiletype !== "teacher" && isTecher === false) {
-    return (
-      <Navigate
-        to="/Login"
-        state={{ from: location }}
-        replace={true}
-      ></Navigate>
-    );
+  }
+  if (user) {
+    if (user?.profiletype === "teacher") {
+      return children;
+    } else if (user.profiletype === "admin" || user.profiletype === "student") {
+      return <Navigate to="/"></Navigate>;
+    }
   }
 };
 
