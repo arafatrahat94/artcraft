@@ -2,11 +2,9 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import deleteicon from "../../assets/icon/icons8-delete-96.png";
 
 import { Circles } from "react-loader-spinner";
 
-import successIcon from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 import { Helmet } from "react-helmet-async";
 const Transactions = () => {
@@ -94,17 +92,6 @@ const Transactions = () => {
                     </div>
                   </>
                 ))}
-              </div>
-              <div className="justify-end w-11/12 mt-5 flex">
-                <div
-                  onClick={() => {
-                    document.getElementById("my_modal_3").showModal();
-                  }}
-                >
-                  <button className="btn focus:text-white w-[150px] focus:bg-pink-600 bg-white text-pink-600 border border-pink-600 font-Montserrat rounded-xl">
-                    Pay Now
-                  </button>
-                </div>
               </div>
             </>
           ) : (

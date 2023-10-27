@@ -168,7 +168,7 @@ const Cart = () => {
           availableseats: y.availableseats - 1,
           bookedSets: y.bookedSets + 1,
         };
-        fetch(`https://artogram-server.vercel.app/CourseUpdate/${y._id}`, {
+        fetch(`https://artogram-server.vercel.app/CourseUpdate/${y.courseId}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -186,7 +186,7 @@ const Cart = () => {
       }
     });
   }
-
+  console.log(checked2);
   return (
     <div>
       <ScrolltoTop></ScrolltoTop>

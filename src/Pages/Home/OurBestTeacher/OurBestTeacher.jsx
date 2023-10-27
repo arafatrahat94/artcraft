@@ -33,12 +33,14 @@ const OurBestTeacher = () => {
   const [closedModal, setClosedModal] = useState(false);
   // Add/Remove checked item from list
   const handleCheck = (event, datas) => {
-    delete datas._id;
+    const newDatas2 = { ...datas };
+    delete newDatas2._id;
     const newData = {
       customerEmail: user.email,
-      ...datas,
+      ...newDatas2,
+      courseId: datas._id,
     };
-
+    console.log(newData);
     var updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, newData];

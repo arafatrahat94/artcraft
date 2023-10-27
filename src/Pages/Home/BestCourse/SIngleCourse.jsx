@@ -15,6 +15,7 @@ const SingleCourse = ({ x, setClose, close }) => {
     const newData = {
       customerEmail: user.email,
       ...datas,
+      courseId: x._id,
     };
 
     setClose(null);

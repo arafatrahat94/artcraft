@@ -51,6 +51,7 @@ const WaterPainting = () => {
   const ItemsPerPage = 6;
   const totalItemsPage = Math.ceil(courses.length / ItemsPerPage);
   const pageNumber = [...Array(totalItemsPage).keys()];
+  const [close, setClose] = useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -65,10 +66,11 @@ const WaterPainting = () => {
     const newData = {
       customerEmail: user.email,
       ...datas,
+      courseId: item._id,
     };
-
+    console.log(newData);
     setIsLoading(true);
-
+    setClose(null);
     axios
       .post("https://artogram-server.vercel.app/cartSingle", newData)
       .then(function (response) {
@@ -78,8 +80,9 @@ const WaterPainting = () => {
           title: "Successfully Added To Cart",
           showConfirmButton: true,
         });
-
+        // console.log(response);
         setIsLoading(false);
+        setClose(true);
       });
   };
   setTimeout(() => {
@@ -91,6 +94,12 @@ const WaterPainting = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+  if (close === true) {
+    setTimeout(() => {
+      setClose(null);
+    }, 1000);
+  }
+  // console.log(close);
   return (
     <div id="Courses" className=" mb-10 w-11/12 mx-auto">
       <Helmet>
@@ -141,109 +150,116 @@ const WaterPainting = () => {
                 onChange={() => console.log("hi")}
                 className="mySwiper     w-[97%] mx-auto"
               >
-                {closedModal ? (
+                {close === true ? (
                   <></>
                 ) : (
                   <>
-                    <dialog id="my_modal_1" className="modal">
-                      <div className="modal-box flex items-center justify-center flex-col h-[570px]">
-                        {modalLoading ? (
-                          <>
-                            <Circles
-                              height="80"
-                              width="80"
-                              method="dialog"
-                              color="#D81B60"
-                              ariaLabel="circles-loading"
-                              wrapperStyle={{}}
-                              wrapperClass=""
-                              visible={true}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <div className="flex items-center flex-col justify-center min-h-[300px] lg:w-[460px] w-full">
-                              {isloading ? (
-                                <>
-                                  <Circles
-                                    height="80"
-                                    width="80"
-                                    method="dialog"
-                                    color="#D81B60"
-                                    ariaLabel="circles-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                  />
-                                </>
-                              ) : (
-                                <>
-                                  <div>
-                                    <div className="lg:w-[450px] w-[300px] h-[210px]  mx-auto">
-                                      <img
-                                        className="rounded-[2rem] mx-auto w-full object-contain h-full
-                                "
-                                        src={modal.courseImg}
-                                        alt=""
+                    {closedModal ? (
+                      <></>
+                    ) : (
+                      <>
+                        <dialog id="my_modal_1" className="modal">
+                          <div className="modal-box flex items-center justify-center flex-col h-[570px]">
+                            {modalLoading ? (
+                              <>
+                                <Circles
+                                  height="80"
+                                  width="80"
+                                  method="dialog"
+                                  color="#D81B60"
+                                  ariaLabel="circles-loading"
+                                  wrapperStyle={{}}
+                                  wrapperClass=""
+                                  visible={true}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <div className="flex items-center flex-col justify-center min-h-[300px] lg:w-[460px] w-full">
+                                  {isloading ? (
+                                    <>
+                                      <Circles
+                                        height="80"
+                                        width="80"
+                                        method="dialog"
+                                        color="#D81B60"
+                                        ariaLabel="circles-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        visible={true}
                                       />
-                                    </div>
-                                    <div>
-                                      <h1 className="text-center font-KaushanScript text-pink-500 text-2xl">
-                                        Course Name: {modal.name}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Art Category : {modal.category} Art
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Available Seats : {modal.availableseats}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Booked Seats : {modal.bookedSets}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Course Duration : {modal.duration}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-xl text-pink-600 mt-2">
-                                        Course Price : {modal.price} $
-                                      </h1>
-                                    </div>
-                                    <button
-                                      onClick={() => handleCart(modal)}
-                                      className="px-5 btn theme-color1 border-none mt-4 w-full rounded-2xl text-white font-Montserrat uppercase"
-                                      type="button"
-                                      data-ripple-light="true"
-                                    >
-                                      Add To Cart
+                                    </>
+                                  ) : (
+                                    <>
+                                      <div>
+                                        <div className="lg:w-[450px] w-[300px] h-[210px]  mx-auto">
+                                          <img
+                                            className="rounded-[2rem] mx-auto w-full object-contain h-full
+                                  "
+                                            src={modal.courseImg}
+                                            alt=""
+                                          />
+                                        </div>
+                                        <div>
+                                          <h1 className="text-center font-KaushanScript text-pink-500 text-2xl">
+                                            Course Name: {modal.name}
+                                          </h1>
+                                          <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
+                                            Art Category : {modal.category} Art
+                                          </h1>
+                                          <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
+                                            Available Seats :{" "}
+                                            {modal.availableseats}
+                                          </h1>
+                                          <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
+                                            Booked Seats : {modal.bookedSets}
+                                          </h1>
+                                          <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
+                                            Course Duration : {modal.duration}
+                                          </h1>
+                                          <h1 className="font-VarelaRound text-xl text-pink-600 mt-2">
+                                            Course Price : {modal.price} $
+                                          </h1>
+                                        </div>
+                                        <button
+                                          onClick={() => handleCart(modal)}
+                                          className="px-5 btn theme-color1 border-none mt-4 w-full rounded-2xl text-white font-Montserrat uppercase"
+                                          type="button"
+                                          data-ripple-light="true"
+                                        >
+                                          Add To Cart
+                                        </button>
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                                <div className="modal-action flex justify-between">
+                                  <form method="dialog">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn btn-square outline-pink-600 border w-10 h-10 border-pink-600">
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="#D81B60"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                          d="M6 18L18 6M6 6l12 12"
+                                        />{" "}
+                                      </svg>
                                     </button>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                            <div className="modal-action flex justify-between">
-                              <form method="dialog">
-                                {/* if there is a button in form, it will close the modal */}
-                                <button className="btn btn-square outline-pink-600 border w-10 h-10 border-pink-600">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="#D81B60"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                      d="M6 18L18 6M6 6l12 12"
-                                    />{" "}
-                                  </svg>
-                                </button>
-                              </form>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </dialog>
+                                  </form>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </dialog>
+                      </>
+                    )}
                   </>
                 )}
                 {pageNumber.map((index) => (

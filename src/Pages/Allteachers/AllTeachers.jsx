@@ -41,6 +41,7 @@ const AllTeachers = () => {
     const newData = {
       customerEmail: user.email,
       ...datas,
+      courseId: findData._id,
     };
 
     var updatedList = [...checked];

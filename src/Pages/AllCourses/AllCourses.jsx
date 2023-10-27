@@ -60,13 +60,15 @@ const AllCourses = () => {
   const pageNumber = [...Array(totalItemsPage).keys()];
 
   const handleCart = (datas) => {
-    datas;
-    delete datas._id;
+    const newDatas = { ...datas };
+
+    delete newDatas._id;
     const newData = {
       customerEmail: user.email,
-      ...datas,
+      ...newDatas,
+      courseId: datas._id,
     };
-    newData;
+
     setIsLoading(true);
     axios
       .post("https://artogram-server.vercel.app/cartSingle", newData)
