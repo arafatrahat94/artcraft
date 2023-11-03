@@ -24,6 +24,7 @@ export default {
         KaushanScript: ["Kaushan Script"],
         Montserrat: ["Montserrat"],
         VarelaRound: ["Varela Round", "sans-serif"],
+        RussoOne: ["Russo One"],
       },
     },
   },

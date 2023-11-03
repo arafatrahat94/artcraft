@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsFillCaretUpFill } from "react-icons/bs";
-
+import "./scroll.css";
 const ScrolltoTop = () => {
   const [buttonShow, setButton] = useState(false);
   const changeBackground = () => {
@@ -26,16 +26,13 @@ const ScrolltoTop = () => {
       <div
         className={`${
           buttonShow === true
-            ? "fixed bottom-14 right-2 transform opacity-100 duration-500"
+            ? "fixed bottom-14 right-4 transform opacity-100 duration-500"
             : "opacity-0 fixed bottom-14 right-0 transform duration-500"
         } z-20 animate-bounce duration-300 delay-300`}
       >
-        <button
-          onClick={HandleScroll}
-          className="btn p-2 lg:w-14 rounded-full cursor-pointer border-2 border-pink-600  "
-        >
-          <span className="text-pink-600 ">
-            <BsFillCaretUpFill />
+        <button onClick={HandleScroll} className="learn-more">
+          <span className="circleScroll -rotate-90" aria-hidden="true">
+            <span className="icon arrow"></span>
           </span>
         </button>
       </div>

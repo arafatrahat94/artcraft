@@ -1,0 +1,30 @@
+.active1 {
+  box-shadow: 7px 7px 0px 0px #0b2447;
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  text-align: center;
+
+  border: 2px solid #0b2447;
+
+  @apply font-bold my-4 mx-2;
+  background: transparent;
+  outline: none;
+  box-shadow: 5px 5px 0px 0px #0b2447;
+  transition: all 0.5s;
+  color: #0b2447;
+  border-radius: 10px;
+}
+.inactive1 {
+  padding: 10px;
+  height: 40px;
+  width: 130px;
+  text-align: center;
+  @apply my-4 mx-0 font-bold;
+  font-size: 16px;
+  background: transparent;
+  outline: none;
+
+  transition: all 0.5s;
+  color: #0b2447;
+}

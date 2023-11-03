@@ -80,44 +80,19 @@ const Nav = () => {
       >
         Home
       </Activelink>
-      {location.pathname === "/" ? (
-        <>
-          <Link
-            onClick={() => scrollToElement("instructors")}
-            className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
-          >
-            Teachers
-          </Link>
-        </>
-      ) : (
-        <>
-          <Activelink
-            to="/AllTeachers"
-            className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
-          >
-            Teachers
-          </Activelink>
-        </>
-      )}
-      <Link
+      <Activelink
+        to="/AllTeachers"
+        className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
+      >
+        Teachers
+      </Activelink>
+      <Activelink
         to="/AllCourses"
         className="px-5 text-base cursor-pointer font-Montserrat font-semibold"
       >
         Courses
-      </Link>
-
-      <Activelink>
-        <Link
-          onClick={() => {
-            setTimeout(() => {
-              scrollToElement("Category");
-            }, 1000);
-          }}
-          className=" font-semibold text-base cursor-pointer font-Montserrat "
-        >
-          Category
-        </Link>
       </Activelink>
+
       {user ? (
         <>
           <Activelink
@@ -134,8 +109,8 @@ const Nav = () => {
   );
   return (
     <div className=" w-full ">
-      <div className="navbar mx-auto lg:w-11/12 h-20 mt-1">
-        <div className="navbar-center">
+      <div className="navbar  h-20 mt-1">
+        <div className="navbar-start">
           <div className="dropdown w-full">
             <div className="drawer-content lg:hidden">
               {/* Page content here */}
@@ -160,10 +135,14 @@ const Nav = () => {
               </label>
             </div>
           </div>
-          <h1 className="text-4xl ms-3 font-KaushanScript  lg:flex hidden text-center text-pink-600">
-            <span>ArtoGram</span>
-          </h1>
-          <h1 className="text-3xl ms-3 font-KaushanScript lg:hidden text-center text-pink-600">
+          <div className="wrapper2">
+            <svg>
+              <text x="50%" y="50%" dy=".35em" textAnchor="middle">
+                Artogram
+              </text>
+            </svg>
+          </div>
+          {/* <h1 className="text-3xl ms-3 font-KaushanScript lg:hidden text-center text-pink-600">
             {location.pathname === "/" ? (
               <>
                 <span>ArtoGram</span>
@@ -173,7 +152,7 @@ const Nav = () => {
                 <span>{location.pathname.split("/DashBoard/")}</span>
               </>
             )}
-          </h1>
+          </h1> */}
         </div>
         <div className="navbar-center justify-center w-[700px] hidden lg:flex">
           <ul className="menu menu-horizontal uppercase  px-1">{NavOptions}</ul>
@@ -211,10 +190,8 @@ const Nav = () => {
           </>
         ) : (
           <>
-            <Link to="/Login" className="navbar-end me-2">
-              <a className="btn theme-text rounded-2xl px-6  theme-border">
-                SignIn
-              </a>
+            <Link to="/Login" id="" className="navbar-end me-2">
+              <a className="btn rounded-sm px-7 shadowButton ">SignIn</a>
             </Link>
           </>
         )}

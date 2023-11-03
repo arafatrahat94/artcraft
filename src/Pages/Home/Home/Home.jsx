@@ -8,6 +8,7 @@ import OurBestTeacher from "../OurBestTeacher/OurBestTeacher";
 import Support from "../Supports/Support";
 import WhatourCLientSay from "../Whatour/WhatourCLientSay";
 import WhyChoseUs from "../WhyChoseUs/WhyChoseUs";
+import Join from "../Join/Join";
 
 const Home = () => {
   return (
@@ -16,12 +17,14 @@ const Home = () => {
         <title>Home | ARTOGRAM</title>
       </Helmet>
       <Banner></Banner>
+
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       <Support></Support>
+
       <WhyChoseUs></WhyChoseUs>
       <OurBestTeacher></OurBestTeacher>
-      {/* <Join></Join> */}
+      <Join></Join>
       <BestCourse></BestCourse>
       <Categories></Categories>
       {/* <WhatourCLientSay></WhatourCLientSay> */}

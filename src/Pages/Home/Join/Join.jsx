@@ -2,19 +2,20 @@ import React from "react";
 
 const Join = () => {
   return (
-    <div className="my-20 h-[150px] py-2 lg:h-[260px] theme-color1 bg-opacity-20 grid grid-cols-1 lg:grid-cols-2 ">
+    <div className="my-20 h-[150px] py-2 lg:h-[200px] theme-color1 bg-opacity-20 grid grid-cols-1 lg:grid-cols-2 ">
       <div className="flex items-center relative">
-        <h1 className="lg:text-3xl text-2xl font font-serif mx-2 font-medium text-center justify-center text-black lg:ms-20 flex">
+        <h1 className="lg:text-3xl text-xl font font-RussoOne mx-6 lg:mx-2 font-medium lg:text-center justify-center theme-text lg:ms-20 flex">
           Daily Art tips and Methods to your inbox!
         </h1>
       </div>
       <div className="flex justify-center items-center w-full">
         <div className="join relative w-full">
           <input
-            className="input input-bordered mx-auto lg:w-[420px] font-VarelaRound lg:text-2xl lg:ps-4 w-[300px] rounded-lg  lg:h-16 h-12"
+            style={{ boxShadow: "7px 7px 0 0 #0b2447" }}
+            className="border-[#0b2447] border-none focus:border-none ring-transparent mx-auto lg:w-[420px] font-VarelaRound lg:text-2xl lg:ps-4 px-5 w-[290px] rounded-lg  lg:h-16 h-12"
             placeholder="@mail.com"
           />
-          <button className="btn absolute mt-2 rounded-lg  -top-2 scale-90 lg:scale-100 lg:top-0 lg:right-[55px] theme-color1 text-white font-Montserrat">
+          <button className="btn absolute mt-2 rounded-lg  -top-2 scale-90 lg:scale-100 lg:top-0 right-[42px] lg:right-[55px] theme-color1 text-white font-Montserrat">
             Subscribe
           </button>
         </div>

@@ -1,0 +1,212 @@
+.buttonView {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 3px 3px 0px 0px #0b2447;
+
+  background-color: rgb(0 107 179);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #0b2447;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+  @apply py-2 px-4 lg:px-7 lg:py-3 font-Montserrat uppercase;
+}
+
+.iconView {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.buttonView:hover {
+  transform: scale(1.05);
+  border-color: #0b2447;
+}
+
+.buttonView:hover .icon {
+  transform: translate(4px);
+}
+
+.buttonView:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.buttonView::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+.card2 {
+  width: 190px;
+  height: 254px;
+  transition: all 0.2s;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 7px 7px 0px 0px #0b2447;
+}
+
+.card-inner {
+  width: inherit;
+  height: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+}
+
+.card2:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0px 0px 5px 5px #0b2447;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.circle:nth-child(1) {
+  top: -25px;
+  left: -25px;
+}
+
+.circle:nth-child(2) {
+  bottom: -25px;
+  right: -25px;
+  animation-name: move-down1;
+}
+
+@keyframes move-up6 {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes move-down1 {
+  to {
+    transform: translateY(10px);
+  }
+}
+.card3 {
+  width: 17em;
+  height: 22.5em;
+  background: white;
+  transition: 1s ease-in-out;
+  clip-path: polygon(
+    35px 0%,
+    100% 0,
+    100% calc(100% - 35px),
+    calc(100% - 35px) 100%,
+    0 100%,
+    0% 35px
+  );
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 5px dashed #0b2447;
+}
+
+.card3 span {
+  font-weight: bold;
+  color: #0b2447;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card3 .info {
+  font-weight: 400;
+  color: #0b2447;
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  margin: 1em;
+}
+
+.card3 .img {
+  width: 5.8em;
+  height: 5.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+.card3 .img img {
+  width: 5.8em;
+  height: 5.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.card3 button {
+  padding: 0.8em 1.7em;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: 0.4s ease-in-out;
+}
+.cta {
+  @apply relative transition-all duration-[0.2s] ease-[ease]  m-auto px-[20px] py-3 border-[none] before:content-[""] before:absolute before:block before:w-[48px] before:h-[48px] before:transition-all before:duration-[0.3s] before:ease-[ease]  before:rounded-[50px] before:left-0 before:top-0 hover:before:w-full active:scale-95;
+  background: none;
+}
+.cta:before {
+  background: #b1dae7;
+}
+.span2 {
+  @apply relative text-[18px] font-bold tracking-wider  font-VarelaRound  before:text-[#0b2447] -mt-[2px];
+}
+.span2:before {
+  content: "View Courses";
+  color: #0b2447;
+}
+.span2:hover:before {
+  color: rgb(255, 249, 249);
+  content: "View Courses";
+}
+
+.cta:hover:before {
+  background: #0b2447;
+  box-shadow: 5px 5px 0 0 #a6cdda;
+}
+.cta:hover svg {
+  @apply translate-x-0;
+}

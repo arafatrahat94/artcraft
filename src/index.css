@@ -1,20 +1,67 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700&family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 @tailwind base;
 
 @layer components {
   #file-upload-button {
-    @apply bg-red-500;
+    @apply bg-[#2d8cf0];
   }
   .theme-color1 {
-    @apply bg-pink-600;
+    @apply bg-[#2d8cf0];
   }
   .theme-text {
-    @apply text-pink-600;
+    @apply text-[#0b2447];
+  }
+  .theme-text2 {
+    @apply text-[#2d8cf0];
   }
   .theme-border {
     @apply border border-pink-600;
+  }
+  .shadowButton {
+    box-shadow: 5px 5px 0px 0px #0b2447;
+    background: #2d8cf0;
+    border: none;
+    color: white;
+    @apply normal-case  font-sans tracking-wider;
+  }
+
+  svg {
+    font-family: "Russo One", sans-serif;
+    @apply w-[200px] h-[50px];
+  }
+  svg text {
+    animation: stroke 15s infinite alternate;
+    stroke-width: 1;
+    stroke: #0b2447;
+    font-size: 40px;
+  }
+  @keyframes stroke {
+    0% {
+      fill: rgba(17, 57, 112, 0);
+      stroke: rgba(11, 36, 71, 1);
+      stroke-dashoffset: 25%;
+      stroke-dasharray: 0 50%;
+      stroke-width: 2;
+    }
+    70% {
+      fill: rgba(17, 57, 112, 0);
+      stroke: rgba(11, 36, 71, 1);
+    }
+    80% {
+      fill: rgba(17, 57, 112, 0);
+      stroke: rgba(11, 36, 71, 1);
+      stroke-width: 3;
+    }
+    100% {
+      fill: rgba(17, 57, 112, 1);
+      stroke: rgba(11, 36, 71, 0);
+      stroke-dashoffset: -25%;
+      stroke-dasharray: 50% 0;
+      stroke-width: 0;
+    }
   }
 }
 

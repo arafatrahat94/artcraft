@@ -22,6 +22,10 @@ import { Circles } from "react-loader-spinner";
 import useToast from "../../../Hooks/useToast";
 import { Link } from "react-router-dom";
 import useScroll from "../../../Hooks/useScroll";
+import Card from "../../Card/Card";
+import Title from "../../Shared/title/title";
+import "./teacher.css";
+import { BsGithub } from "react-icons/bs";
 const OurBestTeacher = () => {
   const { user } = useAuth();
   const Toast = useToast();
@@ -96,18 +100,18 @@ const OurBestTeacher = () => {
   }, 1000);
 
   return (
-    <div id="instructors" className=" mb-10 w-11/12 mx-auto">
+    <div id="instructors" className=" my-20 w-11/12 mx-auto">
       {/* best tutor */}
-      <div className="theme-color1 lg:h-[700px] h-[660px] bg-opacity-5 theme-border border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
-        <h1 className="text-center mt-10 text-4xl lg:text-5xl font-KaushanScript theme-text">
-          Our Best Teachers
-        </h1>
-        <div className="w-6/12 h-[3px] opacity-40 lg:mt-7 mt-3 theme-color1 mx-auto "></div>
+
+      <div className=" lg:h-[700px] h-[660px] bg-opacity-5  border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
+        <div className="my-5">
+          <Title>{"Our Best Teachers"}</Title>
+        </div>
         <div className="mt-7">
           <Swiper
             spaceBetween={10}
             breakpoints={breakpoint}
-            modules={[Navigation]}
+            modulesbreakpoints={[Navigation]}
             navigation={{
               prevEl: navigationPrevRef.current,
               nextEl: navigationNextRef.current,
@@ -119,7 +123,7 @@ const OurBestTeacher = () => {
               swiper.params.navigation.prevEl = navigationPrevRef.current;
               swiper.params.navigation.nextEl = navigationNextRef.current;
             }}
-            className="mySwiper    h-[460px] w-[97%] mx-auto"
+            className="mySwiper    h-[470px] w-[97%] mx-auto"
           >
             {closedModal ? (
               <></>
@@ -137,7 +141,7 @@ const OurBestTeacher = () => {
                             color="#D81B60"
                             ariaLabel="circles-loading"
                             wrapperStyle={{}}
-                            wrapperClass=""
+                            wrapperClassbreakpoints=""
                             visible={true}
                           />
                         </>
@@ -154,7 +158,7 @@ const OurBestTeacher = () => {
                                     color="#D81B60"
                                     ariaLabel="circles-loading"
                                     wrapperStyle={{}}
-                                    wrapperClass=""
+                                    wrapperClassbreakpoints=""
                                     visible={true}
                                   />
                                 </>
@@ -231,49 +235,38 @@ const OurBestTeacher = () => {
             )}
             {courses.map((x, i) => (
               <>
-                <SwiperSlide key={i} className="w-72 pt-5  ">
-                  <div onClick={() => handleLoadData(x.email)}>
-                    <div className="relative theme-text  flex flex-col theme-color1 rounded-[3rem] mx-3 pb-1  bg-white h-[400px] bg-clip-border  shadow-xl shadow-[#ee5c541c]">
-                      <div className="relative  h-48 overflow-hidden rounded-[3rem] bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                        <img
-                          src={x.img}
-                          className="w-full h-full bg-white object-cover"
-                        />
+                <SwiperSlide key={i} className="w-72 py-8 lg:ps-10 ">
+                  <div
+                    onClick={() => handleLoadData(x.email)}
+                    className=" flex justify-center"
+                  >
+                    <div className="card3">
+                      <div className="img">
+                        <img src={x.img} className="" alt="" />
                       </div>
-                      <div className="p-4 pt-4">
-                        <h5 className="flex items-center   text-2xl  font-semibold leading-snug tracking-normal justify-center font-KaushanScript  text-blue-gray-900 antialiased">
-                          {x.name ? x.name.slice(0, 19) : "coursetittle"}
-                        </h5>
+                      <span>{x.name}</span>
+                      <p className="info">
+                        I’m Walter, a multidisciplinary designer who focuses on
+                        telling my clients’ stories visually.
+                      </p>
+                      <div className="flex items-center justify-center">
+                        <Rating style={{ maxWidth: 130 }} value={3} readOnly />{" "}
+                        (4.9)
+                      </div>
+                      <div
+                        onClick={() => {
+                          setTimeout(() => {
+                            document.getElementById("my_modal_1").showModal();
+                          }, 250);
 
-                        <div className="flex flex-grow flex-col h-full justify-end">
-                          <div className="mt-4  flex items-center  justify-center gap-x-2 text-xl font-VarelaRound">
-                            <Rating
-                              style={{ maxWidth: 130 }}
-                              value={3}
-                              readOnly
-                            />{" "}
-                            (4.9)
-                          </div>
-                          <div className="mt-3 flex items-center justify-center h-10">
-                            <button
-                              onClick={() => {
-                                setTimeout(() => {
-                                  document
-                                    .getElementById("my_modal_1")
-                                    .showModal();
-                                }, 250);
-
-                                setModalLoading(true);
-                                setTimeout(() => {
-                                  setModalLoading(false);
-                                }, 1000);
-                              }}
-                              className="btn w-full mt-3 outline h-full outline-pink-500 text-pink-600 font-VarelaRound font-semibold bg-white "
-                            >
-                              View Classes
-                            </button>
-                          </div>
-                        </div>
+                          setModalLoading(true);
+                          setTimeout(() => {
+                            setModalLoading(false);
+                          }, 1000);
+                        }}
+                        className="cta"
+                      >
+                        <h1 className="span2"></h1>
                       </div>
                     </div>
                   </div>
@@ -304,11 +297,15 @@ const OurBestTeacher = () => {
             </button>
           </div>
           <div className="lg:me-10 ms-4 scale-90 me-3 flex justify-end">
-            <Link
-              to="/AllTeachers"
-              className="flex items-center gap-x-2 btn bg-white ring-2 ring-pink-600 text-pink-600 lg:w-[200px] justify-center "
-            >
-              View All <MdArrowCircleRight className="text-3xl text-pink-600" />
+            <Link to="/AllTeachers" className="buttonView font-VarelaRound">
+              View All
+              <svg className="iconView" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
             </Link>
           </div>
         </div>

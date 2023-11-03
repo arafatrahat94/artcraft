@@ -3,7 +3,7 @@ import { Rating } from "@smastrom/react-rating";
 import { MdArrowCircleRight, MdOutlineHotelClass } from "react-icons/md";
 import { AiOutlineHourglass } from "react-icons/ai";
 import "@smastrom/react-rating/style.css";
-
+import "./bes.css";
 // swiper import code
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -19,6 +19,7 @@ import useAuth from "../../../Hooks/useAuth";
 import SingleCourse from "./SingleCourse";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import Title from "../../Shared/title/title";
 const BestCourse = () => {
   const [courses, setCourses] = useState([]);
   const [modal, setModal] = useState([]);
@@ -38,21 +39,153 @@ const BestCourse = () => {
     axios
       .get("https://artogram-server.vercel.app/courses")
       .then(function (response) {
-        setCourses(response.data);
+        const coursesWithLoadingStatus = response.data.map((course) => ({
+          ...course,
+          isAddingToCart: false, // Initial loading state for each card
+        }));
+        setCourses(coursesWithLoadingStatus);
       });
   }, []);
   const scrollTop = () => {
     window.scrollTo({ top: 225, left: 0, behavior: "smooth" });
   };
+  const [loading, setIsLoading] = useState(false);
+  const handleCart = (item) => {
+    const itemIndex = courses.findIndex((course) => course._id === item._id);
+
+    if (itemIndex === -1) {
+      return;
+    }
+
+    const newData = {
+      customerEmail: user?.email,
+      ...item,
+      courseId: item._id,
+    };
+
+    // Set the loading state for the clicked card to true
+    setCourses((prevCourses) => {
+      const updatedCourses = [...prevCourses];
+      updatedCourses[itemIndex].isAddingToCart = true;
+      return updatedCourses;
+    });
+
+    axios
+      .post("https://artogram-server.vercel.app/cartSingle", newData)
+      .then(function (response) {
+        document.getElementById("my_modal_n2").showModal();
+        setTimeout(() => {
+          document.getElementById("loginAlertClose2").click();
+        }, 5000);
+        setCourses((prevCourses) => {
+          const updatedCourses = [...prevCourses];
+          updatedCourses[itemIndex].isAddingToCart = false;
+          return updatedCourses;
+        });
+      });
+  };
   return (
     <div id="Courses" className=" mb-10 w-11/12 mx-auto">
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_n" className="modal">
+        <div className="font-VarelaRound">
+          <div className="cardAlert modal-box">
+            <div className="cardAlertheader">
+              <span className="cardAlerticon">
+                <svg
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                    fillRule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <p className="cardAlertalert font-Montserrat">
+                sign in to continue!
+              </p>
+            </div>
+
+            <p className="cardAlertmessage ps-1 tracking-wide lg:tracking-normal">
+              You need to be signed in , to add this item to your cart. Sign in
+              now to enjoy a seamless shopping experience!
+            </p>
+
+            <div className="cardAlertactions">
+              <Link to="/Login" className="cardAlertread tracking-wider">
+                Sign in
+              </Link>
+
+              <div className="cardAlertmark-as-read" href="">
+                <form method="dialog" className="">
+                  <button className=" h-[30px] w-full " id="loginAlertClose">
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+      <dialog id="my_modal_n2" className="modal">
+        <div className="AddedToCartcard">
+          <button type="button" className="AddedToCartcarddismiss">
+            <form method="dialog" className="">
+              <button id="loginAlertClose2">×</button>
+            </form>
+          </button>
+          <div className="AddedToCartcardheader">
+            <div className="AddedToCartcardimage">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  id="SVGRepo_tracerCarrier"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <path
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="1.5"
+                    stroke="#000000"
+                    d="M20 7L9.00004 18L3.99994 13"
+                  ></path>{" "}
+                </g>
+              </svg>
+            </div>
+            <div className="AddedToCartcardcontent">
+              <span className="AddedToCartcardtitle">Added To Cart</span>
+              <p className="AddedToCartcardmessage">
+                Thank you for your selecting this item. you just have payment
+                left now
+              </p>
+            </div>
+            <div className="AddedToCartcardactions">
+              <Link
+                to="/DashBoard/CourseCart"
+                type="button"
+                className="AddedToCartcardhistory"
+              >
+                Checkout
+              </Link>
+            </div>
+          </div>
+        </div>
+      </dialog>
       {/* best tutor */}
-      <div className="theme-color1 lg:h-[720px] h-[700px] bg-opacity-5 theme-border border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
-        <h1 className="text-center mt-10 text-4xl lg:text-5xl font-KaushanScript theme-text">
-          Our Courses
-        </h1>
-        <div className="w-6/12 h-[3px] opacity-40 lg:mt-7 mt-3 theme-color1 mx-auto "></div>
-        <div className="mt-7">
+      <Title>{"Our Course"}</Title>
+      <div>
+        <div className="mt-6 ">
           <Swiper
             spaceBetween={10}
             breakpoints={breakpoint}
@@ -68,57 +201,85 @@ const BestCourse = () => {
             onSlideChange={(swiper) => {
               setCurrentPage(swiper.activeIndex);
             }}
-            className="mySwiper    h-[500px] w-[97%] mx-auto"
+            className="mySwiper     w-[97%] mx-auto"
           >
             {courses.map((x, i) => (
               <>
-                <SwiperSlide key={i} className="w-72 pt-5 block  h-[550px] ">
+                <SwiperSlide key={i} className=" pt-5 block  h-[550px] ">
                   <SingleCourse
                     setClose={setClose}
                     close={close}
                     x={modal}
                   ></SingleCourse>
-                  <div onBlur={() => setModal(x)}>
-                    <div className="relative theme-text flex flex-col theme-color1 rounded-[3rem] mx-3 pb-1  bg-white bg-clip-border  shadow-xl shadow-[#ee5c541c]">
-                      <div className="relative  h-56 overflow-hidden rounded-[3rem] bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                        <img
-                          src={x.courseImg}
-                          className="w-full h-full bg-white object-cover"
-                        />
-                      </div>
-                      <div className="p-4 pt-4">
-                        <h5 className="flex items-center  text-2xl  font-semibold leading-snug tracking-normal justify-center font-KaushanScript  text-blue-gray-900 antialiased">
-                          {x.name ? x.name : "coursetittle"}
-                        </h5>
-                        <h2 className="flex justify-center mt-1 text-xl font-semibold items-center font-Montserrat">
-                          <AiOutlineHourglass className="text-2xl" />
-                          Duration: {x.duration}
-                        </h2>
-                        <div className="mt-1 font-KaushanScript items-center font-bold justify-center flex">
-                          <MdOutlineHotelClass className="text-2xl" />
-                          <span className="font-Montserrat mx-1">
-                            {" "}
-                            Category:{x.category} Art
-                          </span>{" "}
-                        </div>
-
-                        <div className="mt-4 flex items-center justify-center gap-x-2 text-xl font-VarelaRound">
-                          <Rating
-                            style={{ maxWidth: 130 }}
-                            value={3}
-                            readOnly
-                          />{" "}
-                          (4.9)
-                        </div>
-                        <div
-                          onClick={() => {
-                            document.getElementById("my_modal_3").showModal();
-                          }}
-                          className="mt-3 flex items-center justify-center h-10"
-                        >
-                          <button className="btn w-full mt-3 outline h-full outline-pink-500 text-pink-600 font-VarelaRound font-semibold bg-white ">
-                            View Details
-                          </button>
+                  <div>
+                    <div
+                      className="w-[300px] lg:w-[290px] flex mb-14 justify-center mx-auto"
+                      onBlur={() => setModal(x)}
+                    >
+                      <div className="card w-72 bg-base-100   h-[450px] shadow-xl">
+                        <figure className="h-[200px]">
+                          <img src={x.courseImg} alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                          <h2 className="card-title font-VarelaRound flex justify-between theme-text">
+                            {x.name}{" "}
+                            <span className="font-RussoOne">{x.price} $</span>
+                          </h2>
+                          <p className="font-VarelaRound theme-text">
+                            <h1>Duration: {x.duration}</h1>
+                            <h1>Available Seats : {x.availableseats}</h1>
+                            <h1>Enrolled Seats : {x.bookedSets}</h1>
+                          </p>
+                          <div className="card-actions justify-end">
+                            {x.isAddingToCart ? (
+                              <>
+                                <div
+                                  style={{ scale: "35%" }}
+                                  className="flex justify-center items-center h-[45px]  
+                                  "
+                                >
+                                  <div className="spinner">
+                                    <div />
+                                    <div />
+                                    <div />
+                                    <div />
+                                    <div />
+                                    <div />
+                                  </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div
+                                  onClick={() => {
+                                    if (user) {
+                                      setTimeout(() => {
+                                        handleCart(x);
+                                      }, 360);
+                                    } else {
+                                      document
+                                        .getElementById("my_modal_n")
+                                        .showModal();
+                                      setTimeout(() => {
+                                        document
+                                          .getElementById("loginAlertClose")
+                                          .click();
+                                      }, 5000);
+                                    }
+                                  }}
+                                  className={` ${
+                                    x.availableseats === 0
+                                      ? "btn-disabled btn rounded-lg font-VarelaRound h-[0.6em] px-[1.7em]"
+                                      : "buttonshop"
+                                  }`}
+                                >
+                                  <h1 className="transform duration-300 hover:text-white">
+                                    Add to Cart
+                                  </h1>
+                                </div>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -130,11 +291,7 @@ const BestCourse = () => {
         </div>
         <div className="flex items-center justify-between w-full">
           <div className="join ms-5 bg-white shadow-md shadow-pink-300">
-            <button
-              onClick={scrollTop}
-              ref={navigationPrevRef}
-              className=" text-white"
-            >
+            <button ref={navigationPrevRef} className=" text-white">
               <img
                 className="w-[50px] rotate-180"
                 src={arrow2}
@@ -144,11 +301,7 @@ const BestCourse = () => {
             <button className="join-item lg:hidden bg-white text-pink-600 font-bold uppercase w-[35px]">
               {currentPage + 1}/{totalItemsPage}
             </button>
-            <button
-              onClick={scrollTop}
-              ref={navigationNextRef}
-              className=" text-white"
-            >
+            <button ref={navigationNextRef} className=" text-white">
               <img
                 className="w-[50px]"
                 src={arrow2}
@@ -157,11 +310,15 @@ const BestCourse = () => {
             </button>
           </div>
           <div className="lg:me-10 ms-4 scale-90 me-3 flex justify-end">
-            <Link
-              to="/AllCourses"
-              className="flex items-center gap-x-2 btn bg-white ring-2 ring-pink-600 text-pink-600 lg:w-[200px] justify-center "
-            >
-              View All <MdArrowCircleRight className="text-3xl text-pink-600" />
+            <Link to="/AllCourses" className="buttonView font-VarelaRound">
+              View All
+              <svg className="iconView" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
             </Link>
           </div>
         </div>

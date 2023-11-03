@@ -3,3 +3,125 @@
   /* background-size: cover; */
   background-repeat: no-repeat;
 }
+.Burshcard-id567 {
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  transition: 300ms ease;
+  animation: 10s thumb-thumb infinite;
+  border: 2px solid #0b24472e;
+  @apply lg:w-[290px] flex lg:h-[190px] h-[150px] theme-text font-VarelaRound;
+}
+.Burshcard-id5672 {
+  color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+
+  justify-content: center;
+  align-items: center;
+  transition: 300ms ease;
+  animation: 10s thumb-thumb infinite;
+  /* border: 2px solid #0b24472e; */
+  @apply lg:w-[330px] flex lg:h-[290px] h-[150px] theme-text items-center justify-center font-VarelaRound;
+}
+
+.card-id567 svg path {
+  transition: 300ms ease;
+  opacity: 0;
+}
+
+.Burshcardbold-567 {
+  font-weight: bold;
+}
+
+.Burshcardcreator-points {
+  width: 3.25rem;
+  height: 3rem;
+  color: rgb(167 139 250);
+  /* w-5 h-5 mr-2 text-indigo-400 */
+}
+
+.Burshcardblurry-splash {
+  position: absolute;
+  inset: 0;
+  width: 60px;
+  margin: 0 auto;
+  height: 60px;
+  border-radius: 1rem;
+  z-index: -1;
+  opacity: 70%;
+  filter: blur(15px);
+  background: linear-gradient(
+    120deg,
+    rgba(167, 139, 250, 0.24),
+    rgba(167, 139, 250, 0.384),
+    rgba(167, 139, 250, 0.226)
+  );
+}
+
+.Burshcardprompt-id567 {
+  position: absolute;
+  /* color: rgb(173, 173, 173); */
+  text-align: center;
+  @apply flex lg:flex-col items-center gap-x-2 flex-row-reverse;
+}
+
+.Burshcardreally-small-text {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-size: 8px;
+  margin-top: 28px;
+  opacity: 0.5;
+}
+
+.Burshcard-id567:hover {
+  cursor: none;
+  background-color: white;
+}
+
+.Burshcard-id567:hover .prompt-id567 {
+  transition: 300ms ease;
+  opacity: 0;
+}
+
+.Burshcardtoken-container {
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+  margin-bottom: 10px;
+}
+
+@keyframes spinny-token-yayyy {
+  0% {
+    transform: perspective(200px) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(200px) rotateY(360deg);
+  }
+}
+
+@keyframes thumb-thumb {
+  0%,
+  10%,
+  100% {
+    transform: scale(100%);
+  }
+
+  5% {
+    transform: scale(103%);
+  }
+
+  7% {
+    transform: scale(97%);
+  }
+}
+@keyframes move-up6 {
+  to {
+    transform: translateY(-10px);
+  }
+}
