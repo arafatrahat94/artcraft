@@ -264,7 +264,7 @@ const BestCourse = () => {
                                         document
                                           .getElementById("loginAlertClose")
                                           .click();
-                                      }, 5000);
+                                      }, 10000);
                                     }
                                   }}
                                   className={` ${

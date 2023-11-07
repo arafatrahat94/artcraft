@@ -19,6 +19,7 @@ import "./sign.css";
 import { FaGooglePlusG } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Spinner from "../Shared/Spinner/Spinner";
 const SignUp = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -34,7 +35,9 @@ const SignUp = () => {
   const imgHostingUrl = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_SEC_IMG
   }`;
-
+  const closedPopUp = () => {
+    navigate(from, { replace: true });
+  };
   //   form data
   const formData = new FormData();
   const {
@@ -71,14 +74,8 @@ const SignUp = () => {
                   .post("https://artogram-server.vercel.app/users", newData)
                   .then(function () {
                     setSubMitLoading(false);
-                    Swal.fire({
-                      position: "center",
-                      icon: "success",
-                      title: "Signed up successfully",
-                      showConfirmButton: true,
-                      timer: 1500,
-                    });
-                    navigate(from, { replace: true });
+                    document.getElementById("showSuccess").click();
+                    // navigate(from, { replace: true });
                   });
               }
             });
@@ -103,7 +100,9 @@ const SignUp = () => {
   };
   // image show
   const [image, setImage] = useState(null);
-
+  const deleteImg = () => {
+    setImage(null);
+  };
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImage(URL.createObjectURL(event.target.files[0]));
@@ -124,13 +123,7 @@ const SignUp = () => {
           .post("https://artogram-server.vercel.app/users", newData)
           .then(function (response) {
             setSubMitLoading(false);
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Signed up successfully",
-              showConfirmButton: true,
-              timer: 1500,
-            });
+            document.getElementById("showSuccess").click();
           });
       })
       .catch(() => {});
@@ -168,10 +161,13 @@ const SignUp = () => {
         </Swiper>
       </div>
 
-      <div className="w-11/12 mx-auto min-h-screen flex h-full p-2 lg:p-5 rounded-3xl my-5 lg:mt-10  items-center justify-center">
+      <div className="lg:w-11/12 mx-auto min-h-screen flex h-full p-2 lg:p-5 rounded-3xl my-5 lg:mt-10  items-center justify-center">
         {" "}
         <div className="card order-2 flex-shrink-0 w-full  lg:h-[590px]   h-full shadow-2xl ">
-          <div className="lg:h-[590px]  h-[998px]  rounded-3xl w-full absolute backdrop-blur-xs lg:backdrop-blur-sm bg-opacity-5 bg-red-300 border lg:theme-border "></div>
+          <div
+            style={{ boxShadow: "0px 0px 10px 0 #0b2447" }}
+            className="lg:h-[590px]  h-full  rounded-3xl w-full absolute backdrop-blur-xs lg:backdrop-blur-sm bg-opacity-5 bg-red-300 border border-[#0b2447] "
+          ></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body theme-color1 bg-opacity-5 lg:w-full rounded-3xl flex lg:flex-row items-center"
@@ -182,15 +178,15 @@ const SignUp = () => {
               </h1>
 
               <div className="form-control my-10">
-                <div className="relative h-14 w-full lg:min-w-[200px] min-w-[270px]">
+                <div className="relative h-14 w-full lg:min-w-[200px] min-w-[290px]">
                   <input
                     {...register("name")}
                     type="text"
                     required
                     placeholder="enter your name"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Name
                   </label>
                 </div>
@@ -202,9 +198,9 @@ const SignUp = () => {
                     {...register("email")}
                     required
                     placeholder="@mail.com"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Email
                   </label>
                 </div>
@@ -217,9 +213,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                   </label>
                 </div>
@@ -232,9 +228,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass2")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#D81B60] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#D81B60] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Confirm Password
                   </label>
                 </div>
@@ -256,45 +252,96 @@ const SignUp = () => {
               OR
             </div>
             <div className="z-0 lg:w-1/2">
-              <div className="form-control z-0">
-                <div className="file-upload font-VarelaRound">
-                  {image ? (
-                    ""
-                  ) : (
-                    <>
-                      <img src={iconsupload} alt="upload" />
-                      <h3>Click box to upload</h3>
-                    </>
-                  )}
-                  <input
-                    {...register("img", { required: true })}
-                    aria-invalid={errors.img ? "true" : "false"}
-                    onChange={onImageChange}
-                    type="file"
-                  />
-                  {image ? (
-                    <img
-                      className="w-full  h-full object-cover rounded-[3rem]"
-                      src={image}
-                      alt=""
+              <div className="form-control z-0 flex items-center ">
+                <div className="containerUp">
+                  <div className="containerUpheader relative">
+                    {image ? (
+                      ""
+                    ) : (
+                      <>
+                        <div className="absolute">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></g>
+                            <g id="SVGRepo_iconCarrier">
+                              <path
+                                d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15"
+                                stroke="#000000"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              ></path>{" "}
+                            </g>
+                          </svg>{" "}
+                          <p>Browse File to upload!</p>{" "}
+                        </div>
+                      </>
+                    )}
+                    <input
+                      className="opacity w-full relative opacity-0 h-full "
+                      {...register("img", { required: true })}
+                      aria-invalid={errors.img ? "true" : "false"}
+                      onChange={onImageChange}
+                      type="file"
                     />
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div>
-                  {/* {errors.img?.type === "required" && (
-                  <p
-                    role="alert"
-                    className="duration-300 mt-3 transform bg-white py-2 rounded-xl theme-text text-center font-VarelaRound"
-                  >
-                    ⚠ Profile Image Required
-                  </p>
-                )}{" "} */}
+                    {image ? (
+                      <img
+                        className="w-full  h-full object-cover absolute -z-10"
+                        src={image}
+                        alt=""
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="relative">
+                    <div onClick={deleteImg} className="svgDelete ">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          {" "}
+                          <path
+                            d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z"
+                            stroke="#000000"
+                            strokeWidth="2"
+                          ></path>{" "}
+                          <path
+                            d="M19.5 5H4.5"
+                            stroke="#000000"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z"
+                            stroke="#000000"
+                            strokeWidth="2"
+                          ></path>{" "}
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
+
               <div className="form-control z-0 mt-6">
-                <button className="btn theme-color1 text-white border-none font-Montserrat btn-primary">
+                <button className="btn bg-[#0b2447] rounded-md text-white border-none font-Montserrat btn-primary">
                   Sign Up
                 </button>
               </div>
@@ -308,10 +355,9 @@ const SignUp = () => {
                   </div>
                   <button
                     type="button"
+                    className="btn px-20 outline outline-[#0b2447] bg-transparent theme-text"
                     onClick={handleGlog}
-                    className="btn theme-color1 text-white h-[70px] w-[200px] border-none font-Montserrat btn-primary"
                   >
-                    <FaGooglePlusG className="text-5xl" />
                     Google
                   </button>
                   <div className="mt-5 font-VarelaRound text-black">
@@ -328,33 +374,71 @@ const SignUp = () => {
             <>
               <div className="lg:h-[590px] rounded-3xl w-full h-full absolute backdrop-blur-sm bg-opacity-5 z-0 bg-black  "></div>
               <div className="absolute text-5xl lg:h-[590px]  w-full h-full flex justify-center items-center">
-                <Circles
-                  height="80"
-                  width="80"
-                  color="#D81B60"
-                  ariaLabel="circles-loading"
-                  wrapperStyle={{}}
-                  wrapperClassName=""
-                  visible={true}
-                />
+                <div className="w-full min-h-[100vh] flex justify-center items-center z-50 ">
+                  <div className="w-full min-h-[100vh] flex justify-center items-center z-50 ">
+                    <div className="spinner">
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                      <div />
+                    </div>
+                  </div>
+                </div>
               </div>
             </>
           ) : (
             <></>
           )}
+          <button
+            id="showSuccess"
+            onClick={() => document.getElementById("my_modal_n2").showModal()}
+          ></button>
+          <dialog id="my_modal_n2" className="modal">
+            <div className="AddedToCartcard">
+              <button type="button" className="AddedToCartcarddismiss">
+                <form method="dialog" className="">
+                  <button onClick={closedPopUp} id="loginAlertClose2">
+                    ×
+                  </button>
+                </form>
+              </button>
+              <div className="AddedToCartcardheader">
+                <div className="AddedToCartcardimage">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
+                    <g
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      id="SVGRepo_tracerCarrier"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        strokeWidth="1.5"
+                        stroke="#000000"
+                        d="M20 7L9.00004 18L3.99994 13"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                </div>
+                <div className="AddedToCartcardcontent">
+                  <span className="AddedToCartcardtitle">Sucess</span>
+                  <p className="AddedToCartcardmessage">
+                    Thank you for your selecting us. your account is created.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </dialog>
         </div>
-        {/* <div className="order-2 flex items-center flex-col justify-center gap-y-3">
-          <h1 className="text-4xl mb-10 font-KaushanScript theme-text hidden lg:block text-center">
-            Or Sign Up With
-          </h1>
-          <div className="divider theme-text mt-10 lg:hidden text-2xl mb-10 font-KaushanScript">
-            Or Sign Up With
-          </div>
-          <button className="btn theme-color1 text-white h-[70px] w-[200px] border-none font-Montserrat btn-primary">
-            <FaGooglePlusG className="text-5xl" />
-            Google
-          </button>
-        </div> */}
       </div>
     </div>
   );

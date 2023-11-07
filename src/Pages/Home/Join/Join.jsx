@@ -9,13 +9,13 @@ const Join = () => {
         </h1>
       </div>
       <div className="flex justify-center items-center w-full">
-        <div className="join relative w-full">
+        <div className="join  relative w-full">
           <input
             style={{ boxShadow: "7px 7px 0 0 #0b2447" }}
-            className="border-[#0b2447] border-none focus:border-none ring-transparent mx-auto lg:w-[420px] font-VarelaRound lg:text-2xl lg:ps-4 px-5 w-[290px] rounded-lg  lg:h-16 h-12"
+            className="border-[#0b2447] border-none focus:border-none ring-transparent mx-auto lg:w-[420px]  join-item font-VarelaRound lg:text-2xl lg:ps-4 px-5 w-[287px] rounded-lg  lg:h-16 h-12"
             placeholder="@mail.com"
           />
-          <button className="btn absolute mt-2 rounded-lg  -top-2 scale-90 lg:scale-100 lg:top-0 right-[42px] lg:right-[55px] theme-color1 text-white font-Montserrat">
+          <button className="btn absolute mt-2 rounded-lg join-item -top-2 scale-90 lg:scale-100 lg:top-0 right-[42px] lg:right-[55px] theme-color1 text-white font-Montserrat">
             Subscribe
           </button>
         </div>

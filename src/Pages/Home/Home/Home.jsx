@@ -6,11 +6,15 @@ import Categories from "../Categories/Categories";
 
 import OurBestTeacher from "../OurBestTeacher/OurBestTeacher";
 import Support from "../Supports/Support";
-import WhatourCLientSay from "../Whatour/WhatourCLientSay";
+
 import WhyChoseUs from "../WhyChoseUs/WhyChoseUs";
 import Join from "../Join/Join";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="min-h-screen">
       <Helmet>
@@ -27,6 +31,7 @@ const Home = () => {
       <Join></Join>
       <BestCourse></BestCourse>
       <Categories></Categories>
+
       {/* <WhatourCLientSay></WhatourCLientSay> */}
     </div>
   );
