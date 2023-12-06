@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -18,6 +19,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [user2, setUser2] = useState(null);
   const [loading, setloading] = useState(true);
+  const [themeN, setThemeN] = useState(null);
+
   // new user
   const createN = (email, pass) => {
     setloading(true);
@@ -36,6 +39,9 @@ const AuthProvider = ({ children }) => {
     setloading(true);
     return signOut(auth);
   };
+  const resetPAss = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   // onauth State CHanges
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (currentUser) => {
@@ -50,15 +56,23 @@ const AuthProvider = ({ children }) => {
           .post("https://artogram-server.vercel.app/jwt", loggedUser)
           .then(function (response) {
             localStorage.setItem("ArtAccess", response.data);
+            axios
+              .get(
+                `https://artogram-server.vercel.app/users?email=${currentUser.email}`
+              )
+              .then(function (response) {
+                setUser(response.data);
+              });
           });
-
-        axios
-          .get(
-            `https://artogram-server.vercel.app/users?email=${currentUser.email}`
-          )
-          .then(function (response) {
-            setUser(response.data);
-          });
+        setTimeout(() => {
+          axios
+            .get(
+              `https://artogram-server.vercel.app/users?email=${currentUser.email}`
+            )
+            .then(function (response) {
+              setUser(response.data);
+            });
+        }, 2000);
       } else {
         localStorage.removeItem("ArtAccess");
         setUser(null);
@@ -75,6 +89,9 @@ const AuthProvider = ({ children }) => {
     logIn,
     logOUT,
     loading,
+    themeN,
+    setThemeN,
+    resetPAss,
   };
 
   return (

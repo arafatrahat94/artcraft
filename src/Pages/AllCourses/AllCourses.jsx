@@ -22,6 +22,10 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import Title from "../Shared/title/title";
+import ImgLoad from "../Shared/ImgLoad/ImgLoad";
+import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
 
 const AllCourses = () => {
   const [initialLoading, setInitialLoading] = useState(true);
@@ -103,27 +107,18 @@ const AllCourses = () => {
       {initialLoading ? (
         <>
           <div className=" min-h-[70vh] flex  justify-center items-center">
-            <Circles
-              height="80"
-              width="80"
-              method="dialog"
-              color="#D81B60"
-              ariaLabel="circles-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
+            <div className="loader32 "></div>
           </div>
         </>
       ) : (
         <>
-          <div className="theme-color1 pb-5  bg-opacity-5 theme-border border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
+          <div className="theme-color1 flex justify-center flex-col bg-opacity-5  border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
             <ScrolltoTop></ScrolltoTop>
             <ScrolltoTop></ScrolltoTop>
-            <h1 className="text-center mt-10 text-4xl lg:text-5xl font-KaushanScript theme-text">
-              All Courses
-            </h1>
-            <div className="w-6/12 h-[3px] opacity-40 lg:mt-7 mt-3 theme-color1 mx-auto "></div>
+            <div className="mt-7">
+              <Title>{"Our Courses"}</Title>
+            </div>
+
             <div className="mt-7">
               <Swiper
                 spaceBetween={10}
@@ -144,216 +139,207 @@ const AllCourses = () => {
                 onChange={() => "hi"}
                 className="mySwiper     w-[97%] mx-auto"
               >
-                {closedModal ? (
-                  <></>
-                ) : (
-                  <>
-                    <dialog id="my_modal_1" className="modal">
-                      <div className="modal-box flex items-center justify-center flex-col h-[570px]">
-                        {modalLoading ? (
-                          <>
-                            <Circles
-                              height="80"
-                              width="80"
-                              method="dialog"
-                              color="#D81B60"
-                              ariaLabel="circles-loading"
-                              wrapperStyle={{}}
-                              wrapperClass=""
-                              visible={true}
-                            />
-                          </>
-                        ) : (
-                          <>
-                            <div className="flex items-center flex-col justify-center min-h-[300px] lg:w-[460px] w-full">
-                              {isloading ? (
-                                <>
-                                  <Circles
-                                    height="80"
-                                    width="80"
-                                    method="dialog"
-                                    color="#D81B60"
-                                    ariaLabel="circles-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    visible={true}
-                                  />
-                                </>
-                              ) : (
-                                <>
-                                  <div>
-                                    <div className="lg:w-[450px] w-[300px] h-[210px]  mx-auto">
-                                      <img
-                                        className="rounded-[2rem] mx-auto w-full object-contain h-full
-                                "
-                                        src={modal.courseImg}
-                                        alt=""
-                                      />
-                                    </div>
-                                    <div>
-                                      <h1 className="text-center font-KaushanScript text-pink-500 text-2xl">
-                                        Course Name: {modal.name}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Art Category : {modal.category} Art
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Available Seats : {modal.availableseats}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Booked Seats : {modal.bookedSets}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-base text-pink-600 mt-2">
-                                        Course Duration : {modal.duration}
-                                      </h1>
-                                      <h1 className="font-VarelaRound text-xl text-pink-600 mt-2">
-                                        Course Price : {modal.price} $
-                                      </h1>
-                                    </div>
-                                    <button
-                                      onClick={() => handleCart(modal)}
-                                      className={`${
-                                        modal.availableseats === 0
-                                          ? "btn-disabled"
-                                          : ""
-                                      }px-5 btn theme-color1 border-none mt-4 w-full rounded-2xl text-white font-Montserrat uppercase`}
-                                      type="button"
-                                      data-ripple-light="true"
-                                    >
-                                      Add To Cart
-                                    </button>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                            <div className="modal-action flex justify-between">
-                              <form method="dialog">
-                                {/* if there is a button in form, it will close the modal */}
-                                <button className="btn btn-square outline-pink-600 border w-10 h-10 border-pink-600">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="#D81B60"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                      d="M6 18L18 6M6 6l12 12"
-                                    />{" "}
-                                  </svg>
-                                </button>
-                              </form>
-                            </div>
-                          </>
-                        )}
+                <dialog
+                  id="my_modal_n"
+                  className="modal bg-opacity-5 backdrop-blur"
+                >
+                  <div className="font-VarelaRound">
+                    <div className="cardAlert modal-box">
+                      <div className="cardAlertheader">
+                        <span className="cardAlerticon">
+                          <svg
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clipRule="evenodd"
+                              d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
+                              fillRule="evenodd"
+                            ></path>
+                          </svg>
+                        </span>
+                        <p className="cardAlertalert font-Montserrat">
+                          sign in to continue!
+                        </p>
                       </div>
-                    </dialog>
-                  </>
-                )}
+
+                      <p className="cardAlertmessage ps-1 tracking-wide lg:tracking-normal">
+                        You need to be signed in , to add this item to your
+                        cart. Sign in now to enjoy a seamless shopping
+                        experience!
+                      </p>
+
+                      <div className="cardAlertactions">
+                        <Link
+                          to="/Login"
+                          className="cardAlertread tracking-wider"
+                        >
+                          Sign in
+                        </Link>
+
+                        <div className="cardAlertmark-as-read" href="">
+                          <form method="dialog" className="">
+                            <button
+                              className=" h-[30px] w-full "
+                              id="loginAlertClose"
+                            >
+                              Cancel
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </dialog>
+                <dialog
+                  id="my_modal_n2"
+                  className="modal bg-opacity-5 backdrop-blur"
+                >
+                  <div className="AddedToCartcard">
+                    <button type="button" className="AddedToCartcarddismiss">
+                      <form method="dialog" className="">
+                        <button id="loginAlertClose2">×</button>
+                      </form>
+                    </button>
+                    <div className="AddedToCartcardheader">
+                      <div className="AddedToCartcardimage">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <g strokeWidth="0" id="SVGRepo_bgCarrier"></g>
+                          <g
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            id="SVGRepo_tracerCarrier"
+                          ></g>
+                          <g id="SVGRepo_iconCarrier">
+                            {" "}
+                            <path
+                              strokeLinejoin="round"
+                              strokeLinecap="round"
+                              strokeWidth="1.5"
+                              stroke="#000000"
+                              d="M20 7L9.00004 18L3.99994 13"
+                            ></path>{" "}
+                          </g>
+                        </svg>
+                      </div>
+                      <div className="AddedToCartcardcontent">
+                        <span className="AddedToCartcardtitle">
+                          Added To Cart
+                        </span>
+                        <p className="AddedToCartcardmessage">
+                          Thank you for your selecting this item. you just have
+                          payment left now
+                        </p>
+                      </div>
+                      <div className="AddedToCartcardactions">
+                        <Link
+                          to="/DashBoard/CourseCart"
+                          type="button"
+                          className="AddedToCartcardhistory"
+                        >
+                          Checkout
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </dialog>
                 {pageNumber.map((index) => (
                   <>
                     <SwiperSlide className=" pt-5 w-full  h-[50px] ">
-                      <div className="lg:grid flex flex-col justify-center items-center lg:grid-cols-3 gap-y-2 pb-5">
-                        {courses
-                          .slice(
-                            index * ItemsPerPage,
-                            (index + 1) * ItemsPerPage
-                          )
-                          .map((x, i) => (
+                      <div className="my-6 ">
+                        <div className="grid gap-x-2 xl:grid-cols-4 gap-y-3 lg:grid-cols-3 ">
+                          {courses.map((x, i) => (
                             <>
-                              <div className="w-72" key={i}>
-                                <div className="relative theme-text flex flex-col theme-color1 rounded-[3rem] mx-3 pb-1  bg-white bg-clip-border  shadow-xl shadow-[#ee5c541c]">
-                                  <div className="relative  h-56 overflow-hidden rounded-[3rem] bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-                                    <img
-                                      src={x.courseImg}
-                                      className="w-full h-full bg-white object-cover"
-                                    />
-                                  </div>
-                                  <div className="p-4 pt-4">
-                                    <h5 className="flex items-center  text-2xl  font-semibold leading-snug tracking-normal justify-center font-KaushanScript  text-blue-gray-900 antialiased">
-                                      {x.name ? x.name : "coursetittle"}
-                                    </h5>
-                                    <h2 className="flex justify-center mt-1  font-semibold items-center font-Montserrat">
-                                      <AiOutlineHourglass className="text-2xl" />
-                                      Duration: {x.duration}
-                                    </h2>
-                                    <div className="mt-1 font-KaushanScript items-center font-bold justify-center flex">
-                                      <MdOutlineHotelClass className="" />
-                                      <span className="font-Montserrat mx-1">
-                                        {" "}
-                                        Category:{x.category}
-                                      </span>{" "}
+                              <div key={i}>
+                                {x.isAddingToCart ? (
+                                  <>
+                                    <div className="card w-full bg-base-100  h-[520px] flex justify-center items-center shadow-xl">
+                                      <div className="loader32 "></div>
                                     </div>
-
-                                    <div className="mt-4 flex items-center justify-center gap-x-2 text-xl font-VarelaRound">
-                                      <Rating
-                                        style={{ maxWidth: 130 }}
-                                        value={3}
-                                        readOnly
-                                      />{" "}
-                                      (4.9)
-                                    </div>
+                                  </>
+                                ) : (
+                                  <>
                                     <div
-                                      onClick={() => setModal(x)}
-                                      className="mt-3 flex items-center justify-center h-10"
+                                      className=" flex    justify-center mx-auto"
+                                      onBlur={() => setModal(x)}
                                     >
-                                      <button
-                                        onClick={() => {
-                                          setTimeout(() => {
-                                            document
-                                              .getElementById("my_modal_1")
-                                              .showModal();
-                                          }, 250);
-
-                                          setModalLoading(true);
-                                          setTimeout(() => {
-                                            setModalLoading(false);
-                                          }, 1000);
-                                        }}
-                                        className="btn w-full mt-3 outline h-full outline-pink-500 text-pink-600 font-VarelaRound font-semibold bg-white "
-                                      >
-                                        View Details
-                                      </button>
+                                      <div className="card w-[300px]  dark:bg-[#121212] border border-blue-400 dark:bg-opacity-60 bg-opacity-25 bg-white h-[470px] xl:h-[500px] shadow-xl ">
+                                        <figure className="xl:h-[240px] h-[240px] rounded-[1rem]">
+                                          <ImgLoad imgs={x.courseImg}></ImgLoad>
+                                        </figure>
+                                        <div className=" h-10 mt-2 flex gap-x-1 mx-3">
+                                          <div className="flex items-center justify-center gap-x-1 font-VarelaRound text-[14px] theme-text bg-opacity-25 w-[100px] rounded-[0.5rem] bg-slate-400 font-semibold">
+                                            <img
+                                              className="w-6"
+                                              src="https://i.ibb.co/fFKTWhG/icons8-clock-100.png"
+                                              alt=""
+                                            />
+                                            {x.duration}
+                                          </div>
+                                          <div className="flex items-center justify-center gap-x-1 font-VarelaRound text-[14px] theme-text bg-opacity-25 w-[150px] rounded-[0.5rem]  bg-slate-400 font-semibold">
+                                            <img
+                                              className="w-8"
+                                              src="https://i.ibb.co/hKLKz0K/icons8-three-people-32.png"
+                                              alt=""
+                                            />
+                                            {x.availableseats} Seat Left
+                                          </div>
+                                        </div>
+                                        <div className="card-body">
+                                          <h2 className="card-title font-Montserrat font-bold flex dark:text-blue-300 justify-between uppercase theme-text">
+                                            {x.name}{" "}
+                                            <span className="font-RussoOne">
+                                              {x.price} $
+                                            </span>
+                                          </h2>
+                                          <p className="font-VarelaRound dark:text-blue-300 theme-text">
+                                            <h1>Enrolled : {x.bookedSets}</h1>
+                                          </p>
+                                          <div className="card-actions justify-end">
+                                            <Link
+                                              className="buttonshop"
+                                              to={`/CourseDetail/${x._id}`}
+                                            >
+                                              View Details{" "}
+                                            </Link>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div>
-                                </div>
+                                  </>
+                                )}
                               </div>
                             </>
                           ))}
+                        </div>
                       </div>
                     </SwiperSlide>
                   </>
                 ))}
               </Swiper>
             </div>
-            <div className="join ms-5 bg-white shadow-md shadow-pink-300">
+            <div className="join ms-5 theme-text">
               <button
                 onClick={scrollTop}
                 ref={navigationPrevRef}
-                className=" text-white"
+                className=" theme-text text-4xl"
               >
-                <img
-                  className="w-[50px] rotate-180"
-                  src={arrow2}
-                  alt="circled-chevron-right--v2"
-                />
+                <FaCircleChevronLeft />
               </button>
-              <button className="join-item bg-white text-pink-600 font-bold uppercase w-[75px]">
+              <button className="join-item mx-2 font-bold uppercase w-[75px]">
                 Page {currentPage + 1}/{totalItemsPage}
               </button>
               <button
                 onClick={scrollTop}
                 ref={navigationNextRef}
-                className=" text-white"
+                className=" theme-text text-4xl"
               >
-                <img
-                  className="w-[50px]"
-                  src={arrow2}
-                  alt="circled-chevron-right--v2"
-                />
+                <FaCircleChevronRight />
               </button>
             </div>
           </div>

@@ -20,6 +20,7 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Spinner from "../Shared/Spinner/Spinner";
+import Title from "../Shared/title/title";
 const SignUp = () => {
   // states
   const [subMitLoading, setSubMitLoading] = useState(false);
@@ -129,17 +130,16 @@ const SignUp = () => {
       .catch(() => {});
   };
   return (
-    <div className="relative ">
+    <div className="relative dark:bg-[#121212]">
       <Helmet>
         <title>SignUp | ARTOGRAM</title>
       </Helmet>
-      <div className="absolute opacity-30  -z-30  w-full flex items-center min-h-screen">
+      <div className="absolute opacity-30     w-full flex items-center  min-h-[100%] lg:min-h-screen ">
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
-          effect={"fade"}
-          modules={[EffectFade, Autoplay]}
-          className="mySwiper"
+          modules={[Autoplay]}
+          className="mySwiper min-h-screen lg:min-h-full"
           loop={true}
           autoplay={{
             delay: 5500,
@@ -147,34 +147,31 @@ const SignUp = () => {
           }}
         >
           <SwiperSlide>
-            <img className="bg-white w-[700px] mx-auto" src={banenr1} />
+            <img loading="lazy" className=" w-[700px] mx-auto" src={banenr1} />
           </SwiperSlide>
           <SwiperSlide>
-            <img className="bg-white w-[700px] mx-auto" src={banenr2} />
+            <img loading="lazy" className=" w-[700px] mx-auto" src={banenr2} />
           </SwiperSlide>
           <SwiperSlide>
-            <img className="bg-white w-[700px] mx-auto" src={banenr3} />
+            <img loading="lazy" className=" w-[700px] mx-auto" src={banenr3} />
           </SwiperSlide>
           <SwiperSlide>
-            <img className="bg-white w-[700px] mx-auto" src={banenr4} />
+            <img loading="lazy" className=" w-[700px] mx-auto" src={banenr4} />
           </SwiperSlide>
         </Swiper>
       </div>
 
-      <div className="lg:w-11/12 mx-auto min-h-screen flex h-full p-2 lg:p-5 rounded-3xl my-5 lg:mt-10  items-center justify-center">
+      <div className="lg:w-11/12 mx-auto flex h-full lg:px-5 rounded-3xl min-h-[100%] lg:min-h-screen    items-center justify-center">
         {" "}
-        <div className="card order-2 flex-shrink-0 w-full  lg:h-[590px]   h-full shadow-2xl ">
-          <div
-            style={{ boxShadow: "0px 0px 10px 0 #0b2447" }}
-            className="lg:h-[590px]  h-full  rounded-3xl w-full absolute backdrop-blur-xs lg:backdrop-blur-sm bg-opacity-5 bg-red-300 border border-[#0b2447] "
-          ></div>
+        <div className="card order-2 flex-shrink-0 w-full  lg:h-[590px]   h-full  ">
+          <div className="lg:h-[590px]    rounded-3xl w-full hidden lg:block absolute backdrop-blur-md bg-opacity-5  "></div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body theme-color1 bg-opacity-5 lg:w-full rounded-3xl flex lg:flex-row items-center"
           >
             <div className="lg:w-1/2 z-0">
-              <h1 className="text-center font-KaushanScript z-0 my-5 mb-14 text-4xl  theme-text">
-                Sign Up
+              <h1 className="text-center font-KaushanScript z-i0 my-5  mb-14 text-4xl  scale-75 theme-text">
+                <Title>{"SignUp"}</Title>
               </h1>
 
               <div className="form-control my-10">
@@ -184,9 +181,9 @@ const SignUp = () => {
                     type="text"
                     required
                     placeholder="enter your name"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all dark:text-white placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound theme-text absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm  peer-focus:leading-tight peer-focus:theme-text peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Name
                   </label>
                 </div>
@@ -198,9 +195,9 @@ const SignUp = () => {
                     {...register("email")}
                     required
                     placeholder="@mail.com"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal  text-blue-gray-700 outline outline-0 transition-all dark:text-white placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound theme-text absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal  leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:theme-text peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Email
                   </label>
                 </div>
@@ -213,9 +210,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent dark:text-white pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound theme-text absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:theme-text peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                   </label>
                 </div>
@@ -228,9 +225,9 @@ const SignUp = () => {
                     onChangeCapture={() => setPassErro("")}
                     {...register("pass2")}
                     placeholder="pAssw0rd"
-                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    className="peer h-full w-full border-b border-gr bg-transparent pt-4 ps-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all dark:text-white placeholder-shown:border-gray-300 focus:border-[#0b2447] focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   />
-                  <label className="after:content[' '] pointer-events-none font-VarelaRound text-black absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-[#0b2447] peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  <label className="after:content[' '] pointer-events-none font-VarelaRound theme-text absolute left-0 -top-4 flex h-full w-full select-none text-xl font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0  after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:theme-text peer-focus:after:scale-x-100 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Confirm Password
                   </label>
                 </div>
@@ -253,13 +250,13 @@ const SignUp = () => {
             </div>
             <div className="z-0 lg:w-1/2">
               <div className="form-control z-0 flex items-center ">
-                <div className="containerUp">
+                <div className="containerUpn">
                   <div className="containerUpheader relative">
                     {image ? (
                       ""
                     ) : (
                       <>
-                        <div className="absolute">
+                        <div className="absolute w-20">
                           <svg
                             viewBox="0 0 24 24"
                             fill="none"
@@ -281,7 +278,7 @@ const SignUp = () => {
                               ></path>{" "}
                             </g>
                           </svg>{" "}
-                          <p>Browse File to upload!</p>{" "}
+                          <p className="theme-text">Browse File to upload!</p>{" "}
                         </div>
                       </>
                     )}
@@ -294,6 +291,7 @@ const SignUp = () => {
                     />
                     {image ? (
                       <img
+                        loading="lazy"
                         className="w-full  h-full object-cover absolute -z-10"
                         src={image}
                         alt=""
@@ -301,41 +299,6 @@ const SignUp = () => {
                     ) : (
                       ""
                     )}
-                  </div>
-                  <div className="relative">
-                    <div onClick={deleteImg} className="svgDelete ">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                        <g
-                          id="SVGRepo_tracerCarrier"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></g>
-                        <g id="SVGRepo_iconCarrier">
-                          {" "}
-                          <path
-                            d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z"
-                            stroke="#000000"
-                            strokeWidth="2"
-                          ></path>{" "}
-                          <path
-                            d="M19.5 5H4.5"
-                            stroke="#000000"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                          ></path>{" "}
-                          <path
-                            d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z"
-                            stroke="#000000"
-                            strokeWidth="2"
-                          ></path>{" "}
-                        </g>
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -360,7 +323,7 @@ const SignUp = () => {
                   >
                     Google
                   </button>
-                  <div className="mt-5 font-VarelaRound text-black">
+                  <div className="mt-5 font-VarelaRound text-black dark:text-white">
                     Already Created Account?{" "}
                     <Link className="theme-text btn-link" to="/Login">
                       Sign In
@@ -376,13 +339,8 @@ const SignUp = () => {
               <div className="absolute text-5xl lg:h-[590px]  w-full h-full flex justify-center items-center">
                 <div className="w-full min-h-[100vh] flex justify-center items-center z-50 ">
                   <div className="w-full min-h-[100vh] flex justify-center items-center z-50 ">
-                    <div className="spinner">
-                      <div />
-                      <div />
-                      <div />
-                      <div />
-                      <div />
-                      <div />
+                    <div className="w-full  flex justify-center items-center z-50 ">
+                      <div className="loader32 "></div>
                     </div>
                   </div>
                 </div>

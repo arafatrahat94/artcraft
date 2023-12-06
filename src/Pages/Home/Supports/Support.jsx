@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPaintBrush } from "react-icons/fa";
 import { PiChalkboardTeacherLight, PiStudentDuotone } from "react-icons/pi";
 import "./support.css";
 import AnimatedNumbers from "react-animated-numbers";
+import axios from "axios";
 const Support = () => {
+  const [teacherCount, setTeacherCount] = useState("");
+  const [studenCount, setStudentCount] = useState("");
+  useEffect(() => {
+    axios.get("https://artogram-server.vercel.app/teacherCount").then((res) => {
+      setTeacherCount(res.data.num);
+    });
+    axios.get("https://artogram-server.vercel.app/studentCount").then((res) => {
+      setStudentCount(res.data.num);
+    });
+  }, []);
   return (
-    <div className="lg:h-40 mb-5">
+    <div className="lg:h-40 mb-14">
       <div className="grid mt-[250px] lg:mt-0 grid-cols-1 lg:grid-cols-3 h-full w-11/12 mx-auto rounded-2xl gap-y-5">
         <div className="Burshcard-id567">
           <div className="Burshcardprompt-id567">
             <div className="Burshcardtoken-container">
               <img
+                loading="lazy"
                 className="mx-auto"
                 width={96}
                 height={96}
@@ -18,11 +30,11 @@ const Support = () => {
                 alt="illustrator"
               />
             </div>
-            <div className="Burshcardblurry-splash" />
-            <p>
+            <div className="Burshcardblurry-splash theme-text" />
+            <p className="theme-text">
               Best Quality Items
               <br />
-              <span className="Burshcardbold-567 ">
+              <span className="Burshcardbold-567 theme-text">
                 Free For New Comers
               </span>{" "}
             </p>
@@ -32,6 +44,7 @@ const Support = () => {
           <div className="Burshcardprompt-id567">
             <div className="Burshcardtoken-container">
               <img
+                loading="lazy"
                 width="100"
                 height="100"
                 src="https://img.icons8.com/stickers/100/000000/training-skin-type-1.png"
@@ -39,12 +52,12 @@ const Support = () => {
               />
             </div>
             <div className="Burshcardblurry-splash" />
-            <p className="flex items-center">
+            <p className="flex items-center theme-text">
               We Have &nbsp;
               <AnimatedNumbers
                 includeComma
                 className=" bg-blue-400"
-                animateToNumber={55}
+                animateToNumber={teacherCount}
                 fontStyle={{
                   fontSize: 40,
                   width: "25px",
@@ -72,6 +85,7 @@ const Support = () => {
             <div className="Burshcardprompt-id5672">
               <h1 className="mt-10 Burshcardtoken-container">
                 <img
+                  loading="lazy"
                   className="mx-auto"
                   width="96"
                   height="96"
@@ -82,12 +96,12 @@ const Support = () => {
               <h1 className="text-4xl flex font-RussoOne ms-4 theme-text">
                 <AnimatedNumbers
                   includeComma
-                  className=" bg-blue-400"
-                  animateToNumber={640}
+                  className=" bg-blue-400 dark:text-white"
+                  animateToNumber={studenCount}
                   fontStyle={{
                     fontSize: 40,
                     width: "30px",
-                    color: "#0b2447",
+
                     textDecorationColor: "#D81B60",
                   }}
                   locale="en-US"

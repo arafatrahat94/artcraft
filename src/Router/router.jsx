@@ -3,7 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import SignUp from "../Pages/LoginAndSignUp/SignUp";
 import Login from "../Pages/LoginAndSignUp/Login";
-import AddClasses from "../Pages/AddClasses/AddClasses";
+// import AddClasses from "../Pages/AddClasses/AddClasses";
 import AllTeachers from "../Pages/Allteachers/AllTeachers";
 import AllCourses from "../Pages/AllCourses/AllCourses";
 import WaterPainting from "../Pages/Category/WaterPainting";
@@ -22,6 +22,11 @@ import Favorite from "../Pages/Favorite/Favorite";
 import Error from "../Pages/Shared/Error.jsx/Error";
 import AdminRoute from "./AdminRoute";
 import TeacherRoute from "./TeacherRoute";
+import ShareArt from "../Pages/ShareArt/ShareArt";
+import CourseDetail from "../Pages/CourseDetail/CourseDetail";
+import AddCourses from "../Pages/AddCourses/AddCourses";
+import PhotoALbum from "../Pages/Home/ReactPhotoAlbum/PhotoALbum";
+import ViewClass from "../Pages/ViewClass/ViewClass";
 
 const router = createBrowserRouter([
   {
@@ -42,32 +47,40 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path: "AddClasses",
-        element: <AddClasses></AddClasses>,
+        path: "Gallery",
+        element: <PhotoALbum></PhotoALbum>,
+      },
+      {
+        path: "AddCourses",
+        element: <AddCourses></AddCourses>,
       },
       {
         path: "AllTeachers",
-        element: (
-          <PrivateRoute>
-            <AllTeachers></AllTeachers>
-          </PrivateRoute>
-        ),
+        element: <AllTeachers></AllTeachers>,
       },
       {
         path: "AllCourses",
-        element: (
-          <PrivateRoute>
-            <AllCourses></AllCourses>
-          </PrivateRoute>
-        ),
+        element: <AllCourses></AllCourses>,
+      },
+      {
+        path: "CourseDetail/:id",
+        element: <CourseDetail></CourseDetail>,
+        loader: ({ params }) =>
+          fetch(`https://artogram-server.vercel.app/Course/${params.id}`),
+      },
+      {
+        path: "ShareArt",
+        element: <ShareArt></ShareArt>,
+      },
+      {
+        path: "ViewClass/:id",
+        element: <ViewClass></ViewClass>,
+        loader: ({ params }) =>
+          fetch(`https://artogram-server.vercel.app/Course/${params.id}`),
       },
       {
         path: "Category/:id",
-        element: (
-          <PrivateRoute>
-            <WaterPainting></WaterPainting>
-          </PrivateRoute>
-        ),
+        element: <WaterPainting></WaterPainting>,
         loader: ({ params }) =>
           fetch(
             `https://artogram-server.vercel.app/courseCategory/${params.id}`
@@ -136,14 +149,14 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "AddClasses",
-        element: (
-          <TeacherRoute>
-            <AddClasses></AddClasses>
-          </TeacherRoute>
-        ),
-      },
+      // {
+      //   path: "AddClasses",
+      //   element: (
+      //     <TeacherRoute>
+      //       <AddClasses></AddClasses>
+      //     </TeacherRoute>
+      //   ),
+      // },
       {
         path: "ManageCourse",
         element: (

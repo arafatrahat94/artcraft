@@ -55,17 +55,7 @@ const SingleCourse = ({ x, setClose, close }) => {
           >
             {isloading === true ? (
               <>
-                <Circles
-                  onClose={() => setClose(null)}
-                  height="80"
-                  width="80"
-                  method="dialog"
-                  color="#D81B60"
-                  ariaLabel="circles-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
+                <div className="loader32 "></div>
               </>
             ) : (
               <>
@@ -80,6 +70,7 @@ const SingleCourse = ({ x, setClose, close }) => {
                   <div>
                     <div className="lg:w-[400px] h-[300px] my-5 mx-auto">
                       <img
+                        loading="lazy"
                         className="rounded-[2rem] mx-auto w-full object-cover h-full"
                         src={x.courseImg}
                         alt=""

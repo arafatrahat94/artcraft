@@ -1,21 +1,66 @@
-.sweet_confirmbuttonImportant {
-  border: 0 !important;
-  border-radius: 3rem !important;
-  background: initial;
-  background-color: #d81b60 !important;
-  color: #fff;
-  font-size: 1em;
-  @apply ring-0 !important;
+.checkbox-container2 {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
 }
-.cancelButton {
-  @apply bg-white !important;
-  @apply text-pink-600 !important;
-  @apply border  !important;
-  @apply ring-1 font-Montserrat ring-pink-600 !important;
+
+.custom-checkbox2 {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
-.swal2-popup {
-  @apply ring text-pink-600 lg:h-[330px] font-Montserrat uppercase ring-pink-600 !important;
+
+.checkmark2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  @apply border border-blue-500;
 }
-.swal2-icon-show {
-  @apply !important;
+
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 10px;
+  top: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox2:checked ~ .checkmark2 {
+  background-color: #2196f3;
+  box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
+}
+
+.custom-checkbox2:checked ~ .checkmark2:after {
+  display: block;
+}
+
+@keyframes checkAnim {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 10px;
+  }
+}
+
+.custom-checkbox2:checked ~ .checkmark2:after {
+  animation: checkAnim 0.2s forwards;
 }

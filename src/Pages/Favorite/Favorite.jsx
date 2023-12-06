@@ -140,7 +140,13 @@ const Favorite = () => {
                           className="h-full flex items-center justify-center"
                         >
                           <button className="btn  w-[150px]  bg-white text-pink-600 border border-pink-600 font-Montserrat rounded-xl">
-                            <img className="w-5" src={plus} alt="" /> Favorites
+                            <img
+                              loading="lazy"
+                              className="w-5"
+                              src={plus}
+                              alt=""
+                            />{" "}
+                            Favorites
                           </button>
                         </div>
                       </div>

@@ -52,7 +52,12 @@ export default function Payment() {
           {type === "card" ? (
             <CreditCardIcon className="h-10 w-10 text-white" />
           ) : (
-            <img alt="paypal " className="w-14 " src="/icons/paypall.png" />
+            <img
+              loading="lazy"
+              alt="paypal "
+              className="w-14 "
+              src="/icons/paypall.png"
+            />
           )}
         </div>
         <h5 className="text-white">Material Tailwind PRO</h5>

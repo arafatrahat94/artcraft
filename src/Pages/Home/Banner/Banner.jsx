@@ -1,6 +1,5 @@
-import React from "react";
 import img1 from "../../../assets/bannerEl/Dark Green Minimalist Aesthetic Modern Paper Texture Brand Fashion Logo (1).png";
-import img2 from "../../../assets/bannerEl/Dark Green Minimalist Aesthetic Modern Paper Texture Brand Fashion Logo (11).png";
+
 import img4 from "../../../assets/bannerEl/Dark Green Minimalist Aesthetic Modern Paper Texture Brand Fashion Logo (4).png";
 // swiper import code
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,37 +10,36 @@ import banenr1 from "../../../assets/sliderImage/banner9.png";
 import banenr2 from "../../../assets/sliderImage/banner8.png";
 import banenr3 from "../../../assets/sliderImage/banner7.png";
 import banenr4 from "../../../assets/sliderImage/banner6.png";
-import banenr5 from "../../../assets/sliderImage/banner5.png";
+
 // import required modules
 import "./banner.css";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { scroller } from "react-scroll";
+import { Autoplay } from "swiper/modules";
+
 const Banner = () => {
-  const scrollToElement = (element) => {
-    scroller.scrollTo(element, {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-    });
-  };
   return (
-    <div className=" lg:h-[550px]">
-      <div className="flex flex-col-reverse lg:flex-row w-full h-full ">
+    <div className=" transform duration-300 transition-transform ">
+      <div className="flex flex-col-reverse lg:flex-row xl:p-12 h-full">
         <div className="lg:ms-14 mx-5 lg:w-1/2 lg:mt-32 ">
-          <h1 className="lg:text-5xl font-Montserrat font-bold text-4xl text-gray-800">
-            <span className="theme-text text-3xl">The</span> Most Creative{" "}
-            <span className="font-KaushanScript text-4xl theme-text2">
+          <h1
+            className={`lg:text-5xl xl:text-[55px] font-Montserrat text-black dark:text-white font-bold text-4xl  `}
+          >
+            <span className="theme-text2 before:-z-[1] before:text-black relative text-3xl before:top-[-2px]  before:left-[-2px] before:absolute before:content-['The']">
+              The
+            </span>{" "}
+            Most Creative{" "}
+            <span className="font-KaushanScript text-4xl lg:text-4xl xl:text-5xl theme-text2">
               Art School{" "}
             </span>
             &nbsp; That can Develop Your Talent
           </h1>
           <img
-            className="lg:w-80 w-[200px] absolute -z-0 lg:left-40  left-36 bottom-1/3"
+            loading="lazy"
+            className="lg:w-80 w-[200px] absolute -z-10 lg:left-40  left-36 bottom-[40%]"
             src={img4}
             alt=""
           />
-          <div onClick={() => scrollToElement("Courses")} className="">
-            <div className="Enroll">
+          <a href="#Courses" className="">
+            <div className="Enroll ">
               Enroll Now
               <div className="star-1">
                 <svg
@@ -120,7 +118,7 @@ const Banner = () => {
               </div>
               {/*  */}
             </div>
-          </div>
+          </a>
         </div>
         <div
           className="lg:w-1/2
@@ -129,36 +127,53 @@ const Banner = () => {
           <Swiper
             spaceBetween={100}
             slidesPerView={1}
-            effect={window.innerWidth >= 1000 ? "fade" : ""}
-            modules={[EffectFade, Autoplay]}
-            className="mySwiper "
+            effect={window.innerWidth >= 1000 ? "" : ""}
+            modules={[Autoplay]}
+            className="mySwiper z-0  flex justify-center items-center mx-auto"
             loop={true}
             autoplay={{
               delay: 3500,
               disableOnInteraction: false,
             }}
           >
-            <SwiperSlide>
-              <img className="lg:bg-white" src={banenr1} />
+            <SwiperSlide className=" flex justify-center items-center">
+              <div
+                className="flex justify-center items-center w-full
+              "
+              >
+                <img loading="lazy" src={banenr1} />
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <img className=" lg:bg-white" src={banenr2} />
+              <div
+                className="flex justify-center items-center w-full
+              "
+              >
+                <img loading="lazy" src={banenr2} />
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <img className="lg:bg-white" src={banenr3} />
+              <div
+                className="flex justify-center items-center w-full
+              "
+              >
+                <img loading="lazy" src={banenr3} />
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <img className="lg:bg-white" src={banenr4} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="lg:bg-white w-11/12" src={banenr5} />
+              <div
+                className="flex justify-center items-center w-full
+              "
+              >
+                <img loading="lazy" src={banenr4} />
+              </div>
             </SwiperSlide>
           </Swiper>
         </div>
       </div>
       <div className="">
         <img
-          className="lg:w-72 w-56 opacity-60 -z-30 absolute top-1"
+          className="lg:w-72 w-56 opacity-60 -z-10 absolute top-1"
           src={img1}
           alt=""
         />

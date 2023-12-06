@@ -7,8 +7,8 @@ const Error = () => {
     <div className="min-h-screen flex items-center flex-col justify-center">
       <img className="mx-auto lg:w-fit w-56" src={lanscapeImg} alt="" />
       <button
-        className="bg-pink-600 mt-4 btn-wide btn rounded-md font-VarelaRound text-white"
-        onClick={() => navigate(-1)}
+        className="theme-color1 mt-4 btn-wide btn rounded-md font-VarelaRound text-white"
+        onClick={() => navigate("/")}
       >
         Back To Home
       </button>

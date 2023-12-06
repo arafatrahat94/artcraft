@@ -14,7 +14,7 @@
   transition: 300ms ease;
   animation: 10s thumb-thumb infinite;
   border: 2px solid #0b24472e;
-  @apply lg:w-[290px] flex lg:h-[190px] h-[150px] theme-text font-VarelaRound;
+  @apply px-3 lg:mx-2 flex lg:h-[190px] h-[150px]  font-VarelaRound;
 }
 .Burshcard-id5672 {
   color: white;
@@ -27,7 +27,7 @@
   transition: 300ms ease;
   animation: 10s thumb-thumb infinite;
   /* border: 2px solid #0b24472e; */
-  @apply lg:w-[330px] flex lg:h-[290px] h-[150px] theme-text items-center justify-center font-VarelaRound;
+  @apply lg:w-[330px] flex lg:h-[290px] h-[150px]  items-center justify-center font-VarelaRound;
 }
 
 .card-id567 svg path {
@@ -102,26 +102,5 @@
 
   100% {
     transform: perspective(200px) rotateY(360deg);
-  }
-}
-
-@keyframes thumb-thumb {
-  0%,
-  10%,
-  100% {
-    transform: scale(100%);
-  }
-
-  5% {
-    transform: scale(103%);
-  }
-
-  7% {
-    transform: scale(97%);
-  }
-}
-@keyframes move-up6 {
-  to {
-    transform: translateY(-10px);
   }
 }

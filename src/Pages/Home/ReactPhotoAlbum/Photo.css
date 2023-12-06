@@ -1,0 +1,30 @@
+.PhotoView-Slider__BannerWrap {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  display: flex;
+  height: 44px;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.2s ease-out;
+  width: 100%;
+  z-index: 20;
+  @apply items-center bg-white dark:bg-opacity-0 bg-opacity-0 dark:backdrop-blur pb-2 lg:mt-1;
+}
+.PhotoView-Slider__toolbarIcon {
+  fill: #98ccfd;
+  box-sizing: border-box;
+  cursor: pointer;
+  opacity: 0.75;
+  padding: 5px !important;
+  transition: opacity 0.2s linear;
+  @apply w-[35px] lg:w-[45px] mx-1 flex mt-2  items-center justify-center;
+}
+.PhotoView-Slider__Counter {
+  opacity: 0.75;
+  padding: 0 10px;
+  color: #98ccfd;
+  @apply ms-2 flex items-center justify-center lg:text-xl text-base mt-2 font-RussoOne rounded-md;
+}

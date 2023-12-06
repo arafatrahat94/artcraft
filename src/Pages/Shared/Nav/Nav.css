@@ -1,3 +1,214 @@
-#sectionToScrollTo {
-  scroll-behavior: smooth;
+.cardu {
+  width: 300px;
+
+  /* color: black; */
+  position: relative;
+  border-radius: 2.5em;
+  /* padding: 2em; */
+  transition: transform 0.4s ease;
+  @apply shadow-xl border-2 border-blue-300 dark:border-opacity-30 border-opacity-30 dark:bg-opacity-10 dark:border-[#121212] dark:bg-[#121212];
+}
+
+.cardu .cardu-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5em;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.cardu .cardu-top,
+.cardu .cardu-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .cardu .cardu-top p,
+.cardu .cardu-top .cardu-title,
+.cardu .cardu-bottom p,
+.cardu .cardu-bottom .cardu-title {
+  margin: 0;
+} */
+
+.cardu .cardu-title {
+  font-weight: bold;
+}
+
+.cardu .cardu-top p,
+.cardu .cardu-bottom p {
+  font-weight: 600;
+}
+
+.cardu .cardu-bottom {
+  align-items: flex-end;
+}
+
+.cardu .cardu-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.cardu .cardu-image svg {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.4s ease;
+}
+.switcho {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 34px;
+}
+@import url("https://fonts.googleapis.com/css2?family=Potta+One&display=swap");
+
+svg {
+  font-family: "Potta One", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+svg text {
+  animation: stroke 5s infinite alternate;
+  stroke-width: 2;
+  stroke: #2d8cf0;
+  font-size: 100px;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(45, 140, 240, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+  }
+  70% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(45, 140, 240, 1);
+  }
+  80% {
+    fill: rgba(72, 138, 204, 0);
+    stroke: rgba(45, 140, 240, 1);
+    stroke-width: 3;
+  }
+  100% {
+    fill: rgba(72, 138, 204, 1);
+    stroke: rgba(45, 140, 240, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+.wrapper {
+  background-color: #ffffff;
+}
+
+.switcho inputo {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slidero {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #73c0fc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slidero:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  left: 2px;
+  bottom: 2px;
+  z-index: 2;
+  background-color: #e8e8e8;
+  transition: 0.4s;
+}
+
+.suno svg {
+  position: absolute;
+  top: 6px;
+  left: 36px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+.moono svg {
+  fill: #73c0fc;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+}
+
+/* .switch:hover */
+.suno svg {
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .switch:hover */
+.moono svg {
+  animation: tilt 5s linear infinite;
+}
+
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.inputo:checked + .slidero {
+  background-color: #183153;
+}
+
+.inputo:focus + .slidero {
+  box-shadow: 0 0 1px #183153;
+}
+
+.inputo:checked + .slidero:before {
+  transform: translateX(30px);
+}
+.inputo {
+  @apply bg-transparent flex justify-center flex-row fill-transparent items-center h-[2px] mt-1 w-[80px];
 }

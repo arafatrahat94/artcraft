@@ -1,7 +1,7 @@
 .Enroll {
   position: relative;
   padding: 20px 45px;
-  background: white;
+
   font-size: 17px;
   font-weight: 500;
   color: #2d8cf0;
@@ -9,7 +9,7 @@
   border-radius: 20px;
   box-shadow: 7px 7px 0 0 #0b2447;
   transition: all 0.3s ease-in-out;
-  @apply w-[230px] font-RussoOne text-xl text-center my-2;
+  @apply w-[230px] bg-white dark:bg-[#121212] font-RussoOne text-xl text-center my-[2rem];
 }
 
 .star-1 {

@@ -15,6 +15,14 @@ import { AiTwotoneTablet } from "react-icons/ai";
 import successIcon from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 import { Helmet } from "react-helmet-async";
+import Title from "../Shared/title/title";
+import { ToastContainer, toast } from "react-toastify";
+const customId = "custom-id-yes";
+
+import { PiStickerBold } from "react-icons/pi";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { TiTickOutline } from "react-icons/ti";
+import OutsideClickHandler from "react-outside-click-handler";
 const Cart = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_PK);
   const { user } = useAuth();
@@ -40,30 +48,16 @@ const Cart = () => {
         setCartData(data);
       });
   };
-
+  console.log(cartData);
   const handleDeleteItem = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "",
-      iconHtml: `<img src=${exclamation} alt="" />`,
-      showCancelButton: true,
-      customClass: {
-        confirmButton: "sweet_confirmbuttonImportant",
-        cancelButton: "cancelButton",
-      },
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(`https://artogram-server.vercel.app/cart/${id}`)
-          .then((res) => {
-            Swal.fire("Deleted!", "Your file has been deleted.", "success");
-
-            refetch();
-          });
-      }
-    });
+    axios
+      .delete(`https://artogram-server.vercel.app/cart/${id}`)
+      .then((res) => {
+        toast.info("Your product has been deleted", {
+          toastId: customId,
+        });
+        refetch();
+      });
   };
   const [checked, setChecked] = useState([]);
   const [checked2, setChecked2] = useState([]);
@@ -140,11 +134,15 @@ const Cart = () => {
     if (checked2.length > 1) {
       checked2.map((x) => {
         axios
-          .post("https://artogram-server.vercel.app/purchasedProducts", x, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem(`ArtAccess`)}`,
-            },
-          })
+          .post(
+            "https://artogram-server.vercel.app/SinglepurchasedProducts",
+            x,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem(`ArtAccess`)}`,
+              },
+            }
+          )
           .then((res) => {});
       });
     } else if (checked2.length === 1) {
@@ -165,7 +163,7 @@ const Cart = () => {
     checked2.map((y) => {
       if (checked2.length > 0) {
         const newData3 = {
-          availableseats: y.availableseats - 1,
+          seats: y.seats - 1,
           bookedSets: y.bookedSets + 1,
         };
         fetch(`https://artogram-server.vercel.app/CourseUpdate/${y.courseId}`, {
@@ -197,57 +195,68 @@ const Cart = () => {
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">
-            <Circles
-              height="80"
-              width="80"
-              method="dialog"
-              color="#D81B60"
-              ariaLabel="circles-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
+            <div className="w-full min-h-[100vh] flex justify-center items-center z-50 bg-transparent">
+              <div className="loader32"></div>
+            </div>
           </div>
         </>
       ) : (
         <>
-          <h1 className="hidden lg:block text-center text-4xl font-KaushanScript  my-5 text-pink-600">
-            Course Cart
+          <h1 className="hidden lg:block text-center text-4xl font-KaushanScript  my-5 ">
+            <Title>{"Course Cart"}</Title>
           </h1>
           {cartData.length > 0 ? (
             <>
-              <div>
+              <div className="grid lg:grid-cols-2 w-11/12 mx-auto">
                 {cartData.map((x) => (
                   <>
-                    <div className="grid gap-x-2 gap-y-2 grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto theme-color1 bg-opacity-5 border my-1 rounded-[2rem]">
-                      <div className="flex items-center lg:flex-row flex-col lg:col-span-2">
+                    <div className="my-3 relative rounded-3xl dark:bg-opacity-40 dark:bg-[#121212] border-2 border-blue-400 dark:border-opacity-25 lg:mx-2 mx-14 flex-col justify-center lg:justify-start lg:flex-row flex items-center gap-x-2  p-2">
+                      <div className="flex items-center lg:flex-row theme-text w-full flex-col lg:col-span-2">
                         <div className="rounded-3xl my-1  ">
                           <img
+                            loading="lazy"
                             className="w-16 lg:w-28"
                             src={x.courseImg}
                             alt=""
                           />
                         </div>
-                        <div className="text-pink-600  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center font-bold font-VarelaRound">
-                          <h1>Name:{x?.name}</h1>
-                          <h1>Available: {x?.availableseats} sits</h1>
-                          <h1>Price:{x?.price} $</h1>
+                        <div className="  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center font-bold font-VarelaRound">
+                          <h1 className="flex items-center justify-start overflow-scroll">
+                            <div>
+                              <h1 className="flex">
+                                <PiStickerBold className="text-xl" />
+                                {x?.courseTitle}
+                              </h1>
+                            </div>{" "}
+                          </h1>
+
+                          <h1 className="flex">
+                            <PiStickerBold className="text-xl" /> {x?.seats}
+                            Seats{" "}
+                          </h1>
+                          <h1 className="flex">
+                            <PiStickerBold className="text-xl" />
+                            {x?.price}$
+                          </h1>
                         </div>
                       </div>
-                      <div className="rounded-3xl my-1  flex gap-x-6 items-center gap-y-2 justify-center">
+                      <div className="rounded-3xl my-1  flex gap-x-6  w-full items-center gap-y-2 justify-center">
                         <div className=" flex">
-                          <input
-                            onChange={() => handleCheck(event, x)}
-                            value={x._id}
-                            type="checkbox"
-                            className="checkbox checkbox-lg  checkbox-secondary"
-                          />
+                          <label className="checkbox-container2">
+                            <input
+                              className="custom-checkbox2"
+                              onChange={() => handleCheck(event, x)}
+                              value={x._id}
+                              type="checkbox"
+                            />
+                            <span className="checkmark2 -mt-2"></span>
+                          </label>
                         </div>
                         <div
                           onClick={() => handleDeleteItem(x._id)}
-                          className="  flex justify-center"
+                          className=" text-red-600 text-4xl flex justify-center"
                         >
-                          <img className="w-14 -mt-1" src={deleteicon} alt="" />
+                          <IoCloseCircleOutline />
                         </div>
                       </div>
                     </div>
@@ -261,7 +270,7 @@ const Cart = () => {
                     setPaymentId(null);
                   }}
                 >
-                  <button className="btn focus:text-white w-[150px] focus:bg-pink-600 bg-white text-pink-600 border border-pink-600 font-Montserrat rounded-xl">
+                  <button className="btn focus:text-white w-[150px]  bg-white  border  font-Montserrat rounded-xl">
                     Pay Now
                   </button>
                 </div>
@@ -269,16 +278,15 @@ const Cart = () => {
             </>
           ) : (
             <>
-              <h1 className="text-pink-600 min-h-[70vh] font-KaushanScript text-xl flex justify-center items-center divider-vertical text-center">
+              <h1 className="theme-text min-h-[70vh] font-KaushanScript text-3xl flex justify-center items-center divider-vertical text-center">
                 Cart Is Empty
               </h1>
             </>
           )}
         </>
       )}
-
-      <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+      <dialog id="my_modal_3" className="modal backdrop-blur-md">
+        <div className="modal-box dark:bg-black theme-color1 bg-opacity-5">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button
@@ -290,104 +298,143 @@ const Cart = () => {
           </form>
           {paymentId ? (
             <>
-              <div>
-                <div className="flex justify-center ">
-                  <img className="lg:w-32" src={successIcon} alt="" />
+              <OutsideClickHandler
+                onOutsideClick={() => {
+                  document.getElementById("closeNow").click();
+                }}
+              >
+                <div>
+                  <div className="flex justify-center w-[100px] mx-auto">
+                    <TiTickOutline className="text-4xl theme-text scale-100" />
+                  </div>
+                  <h1 className="text-2xl font-VarelaRound theme-text text-center">
+                    Payment Was Successfull
+                  </h1>
+                  <h1 className="font-VarelaRound text-center dark:text-white my-[1.5rem]">
+                    TransictionId :{" "}
+                    <span className="bg-blue-100 p-2">{paymentId}</span>
+                  </h1>
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button
+                      id="closeNow"
+                      className="btn btn-sm btn-circle btn-ghost  absolute right-2 top-2"
+                    >
+                      ✕
+                    </button>
+                  </form>
                 </div>
-                <h1 className="text-2xl font-VarelaRound text-pink-600 text-center">
-                  Payment Was Successfull
-                </h1>
-                <h1 className="font-VarelaRound text-center my-2">
-                  TransictionId :{" "}
-                  <span className="bg-pink-100 p-2">{paymentId}</span>
-                </h1>
-              </div>
+              </OutsideClickHandler>
             </>
           ) : (
-            <div>
-              <h1 className="font-KaushanScript text-2xl text-pink-600 text-center">
-                Provide Information
-              </h1>
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                document.getElementById("closeNow").click();
+              }}
+            >
               <div>
-                <div className="form-control w-full ">
-                  <label className="label">
-                    <span className="label-text font-Montserrat text-base text-pink-600">
-                      Name :
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    value={user?.name}
-                    placeholder="Type here"
-                    className="input input-bordered w-full border border-pink-200 disabled font-Montserrat text-pink-600 bg-white input-disabled rounded-xl "
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="form-control w-full ">
-                  <label className="label">
-                    <span className="label-text font-Montserrat text-base text-pink-600">
-                      Billing Email :
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    value={user?.email}
-                    placeholder="Type here"
-                    className="input input-bordered w-full border border-pink-200 font-Montserrat text-pink-600 bg-white input-disabled disabled rounded-xl "
-                  />
-                </div>
-              </div>
-              <div>
-                <div disabled className="mt-2">
-                  <label className="label">
-                    <span className="label-text font-Montserrat text-base text-pink-600">
-                      Products :
-                    </span>
-                  </label>
-                  <div className="form-control border border-pink-200  rounded-xl p-4 disabled  w-full ">
-                    {checked.map((x) => (
-                      <>
-                        <div className="flex flex-col lg:flex-row my-2">
-                          <h1 className="text-pink-600 text-base lg:w-1/2 font-Montserrat">
-                            Name: {x.name} , Price:{x.price}
-                          </h1>
-                          <h1 className="text-pink-600 text-base lg:w-1/2 font-Montserrat">
-                            {" "}
-                            Category : {x.category} Art
-                          </h1>
-                        </div>
-                      </>
-                    ))}
+                <h1 className="font-KaushanScript text-2xl text-pink-600 scale-75 text-center">
+                  <Title>{"Billing Information"}</Title>
+                </h1>
+                <div>
+                  <div className="form-control w-full ">
+                    <label className="label">
+                      <span className="label-text font-Montserrat text-base theme-text">
+                        Name :
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      value={user?.name}
+                      placeholder="Type here"
+                      className="input input-bordered w-full border border-blue-500 disabled font-Montserrat theme-text bg-transparent input-disabled rounded-xl "
+                    />
                   </div>
                 </div>
-              </div>
-              <div>
-                <div className="form-control mt-2 w-full ">
-                  <label className="label">
-                    <span className="label-text font-Montserrat text-base text-pink-600">
-                      Total Ammount :
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    value={`${total2} $`}
-                    className="input input-bordered w-full border border-pink-200 disabled font-Montserrat text-pink-600 bg-white input-disabled rounded-xl "
-                  />
+                <div>
+                  <div className="form-control w-full ">
+                    <label className="label">
+                      <span className="label-text font-Montserrat text-base theme-text">
+                        Billing Email :
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      value={user?.email}
+                      placeholder="Type here"
+                      className="input input-bordered w-full border border-blue-500 font-Montserrat theme-text bg-transparent input-disabled disabled rounded-xl "
+                    />
+                  </div>
                 </div>
+                <div>
+                  <div disabled className="mt-2">
+                    <label className="label">
+                      <span className="label-text font-Montserrat text-base theme-text">
+                        Products :
+                      </span>
+                    </label>
+                    <div className="form-control border border-blue-500  rounded-xl p-4 disabled  w-full ">
+                      {checked.map((x) => (
+                        <>
+                          <div className="flex flex-col lg:flex-row my-2">
+                            <h1 className="theme-text text-base lg:w-1/2 font-Montserrat">
+                              Name: {x.courseTitle} , Price:{x.price} Category :{" "}
+                              {x.category} Art
+                            </h1>
+                          </div>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="form-control mt-2 w-full ">
+                    <label className="label">
+                      <span className="label-text font-Montserrat text-base theme-text">
+                        Total Ammount :
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      value={`${total2} $`}
+                      className="input input-bordered w-full border border-blue-500 disabled font-Montserrat theme-text bg-transparent input-disabled rounded-xl "
+                    />
+                  </div>
+                </div>
+                {clientSecret && (
+                  <Elements options={options} stripe={stripePromise}>
+                    <PaymentGate
+                      paymentId={paymentId}
+                      setPaymentId={setPaymentId}
+                    ></PaymentGate>
+                  </Elements>
+                )}
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button
+                    id="closeNow"
+                    className="btn btn-sm btn-circle btn-ghost  absolute right-2 top-2"
+                  >
+                    ✕
+                  </button>
+                </form>
               </div>
-              {clientSecret && (
-                <Elements options={options} stripe={stripePromise}>
-                  <PaymentGate
-                    paymentId={paymentId}
-                    setPaymentId={setPaymentId}
-                  ></PaymentGate>
-                </Elements>
-              )}
-            </div>
+            </OutsideClickHandler>
           )}
         </div>
-      </dialog>
+      </dialog>{" "}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

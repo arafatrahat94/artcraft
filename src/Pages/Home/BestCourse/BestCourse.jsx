@@ -20,6 +20,11 @@ import SingleCourse from "./SingleCourse";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Title from "../../Shared/title/title";
+import ImgLoad from "../../Shared/ImgLoad/ImgLoad";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider } from "react-photo-view";
+import { FaArrowRight } from "react-icons/fa";
+
 const BestCourse = () => {
   const [courses, setCourses] = useState([]);
   const [modal, setModal] = useState([]);
@@ -43,7 +48,7 @@ const BestCourse = () => {
           ...course,
           isAddingToCart: false, // Initial loading state for each card
         }));
-        setCourses(coursesWithLoadingStatus);
+        setCourses(coursesWithLoadingStatus.slice(0, 6));
       });
   }, []);
   const scrollTop = () => {
@@ -85,10 +90,13 @@ const BestCourse = () => {
       });
   };
   return (
-    <div id="Courses" className=" mb-10 w-11/12 mx-auto">
+    <div id="Courses" className=" mb-10 w-11/12 xl:w-[86%] mx-auto">
       {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-      <dialog id="my_modal_n" className="modal">
+      <dialog
+        id="my_modal_n"
+        className="modal theme-color1 bg-opacity-5 backdrop-blur"
+      >
         <div className="font-VarelaRound">
           <div className="cardAlert modal-box">
             <div className="cardAlertheader">
@@ -131,7 +139,7 @@ const BestCourse = () => {
           </div>
         </div>
       </dialog>
-      <dialog id="my_modal_n2" className="modal">
+      <dialog id="my_modal_n2" className="modal bg-opacity-5 backdrop-blur">
         <div className="AddedToCartcard">
           <button type="button" className="AddedToCartcarddismiss">
             <form method="dialog" className="">
@@ -186,141 +194,84 @@ const BestCourse = () => {
       <Title>{"Our Course"}</Title>
       <div>
         <div className="mt-6 ">
-          <Swiper
-            spaceBetween={10}
-            breakpoints={breakpoint}
-            modules={[Navigation]}
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = navigationPrevRef.current;
-              swiper.params.navigation.nextEl = navigationNextRef.current;
-            }}
-            onSlideChange={(swiper) => {
-              setCurrentPage(swiper.activeIndex);
-            }}
-            className="mySwiper     w-[97%] mx-auto"
-          >
+          <div className="grid xl:grid-cols-4 gap-y-3 lg:grid-cols-3 ">
             {courses.map((x, i) => (
               <>
-                <SwiperSlide key={i} className=" pt-5 block  h-[550px] ">
-                  <SingleCourse
-                    setClose={setClose}
-                    close={close}
-                    x={modal}
-                  ></SingleCourse>
-                  <div>
-                    <div
-                      className="w-[300px] lg:w-[290px] flex mb-14 justify-center mx-auto"
-                      onBlur={() => setModal(x)}
-                    >
-                      <div className="card w-72 bg-base-100   h-[450px] shadow-xl">
-                        <figure className="h-[200px]">
-                          <img src={x.courseImg} alt="Shoes" />
-                        </figure>
-                        <div className="card-body">
-                          <h2 className="card-title font-VarelaRound flex justify-between theme-text">
-                            {x.name}{" "}
-                            <span className="font-RussoOne">{x.price} $</span>
-                          </h2>
-                          <p className="font-VarelaRound theme-text">
-                            <h1>Duration: {x.duration}</h1>
-                            <h1>Available Seats : {x.availableseats}</h1>
-                            <h1>Enrolled Seats : {x.bookedSets}</h1>
-                          </p>
-                          <div className="card-actions justify-end">
-                            {x.isAddingToCart ? (
-                              <>
-                                <div
-                                  style={{ scale: "35%" }}
-                                  className="flex justify-center items-center h-[45px]  
-                                  "
-                                >
-                                  <div className="spinner">
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                    <div />
-                                  </div>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div
-                                  onClick={() => {
-                                    if (user) {
-                                      setTimeout(() => {
-                                        handleCart(x);
-                                      }, 360);
-                                    } else {
-                                      document
-                                        .getElementById("my_modal_n")
-                                        .showModal();
-                                      setTimeout(() => {
-                                        document
-                                          .getElementById("loginAlertClose")
-                                          .click();
-                                      }, 10000);
-                                    }
-                                  }}
-                                  className={` ${
-                                    x.availableseats === 0
-                                      ? "btn-disabled btn rounded-lg font-VarelaRound h-[0.6em] px-[1.7em]"
-                                      : "buttonshop"
-                                  }`}
-                                >
-                                  <h1 className="transform duration-300 hover:text-white">
-                                    Add to Cart
-                                  </h1>
-                                </div>
-                              </>
-                            )}
+                <div key={i}>
+                  {x.isAddingToCart ? (
+                    <>
+                      <div className="card w-full bg-base-100  h-[520px] flex justify-center items-center shadow-xl">
+                        <div className="loader32 "></div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div
+                        className=" flex    justify-center mx-auto"
+                        onBlur={() => setModal(x)}
+                      >
+                        <div className="card w-[300px]  dark:bg-[#121212] border border-blue-400 dark:bg-opacity-60 bg-opacity-25 bg-white h-[470px] xl:h-[500px] shadow-xl ">
+                          <figure className="xl:h-[240px] h-[240px] rounded-t-[1rem]">
+                            <ImgLoad imgs={x.courseImg}></ImgLoad>
+                          </figure>
+                          <div className=" h-10 mt-2 flex gap-x-1 mx-3">
+                            <div className="flex items-center justify-center gap-x-1 font-VarelaRound text-[14px] theme-text bg-opacity-25 w-[100px] rounded-[0.5rem] bg-slate-400 font-semibold">
+                              <img
+                                className="w-6"
+                                src="https://i.ibb.co/fFKTWhG/icons8-clock-100.png"
+                                alt=""
+                              />
+                              34 H
+                            </div>
+                            <div className="flex items-center justify-center gap-x-1 font-VarelaRound text-[14px] theme-text bg-opacity-25 w-[150px] rounded-[0.5rem]  bg-slate-400 font-semibold">
+                              <img
+                                className="w-8"
+                                src="https://i.ibb.co/hKLKz0K/icons8-three-people-32.png"
+                                alt=""
+                              />
+                              {x.seats} Seat Left
+                            </div>
+                          </div>
+                          <div className="card-body">
+                            <h2 className="card-title font-Montserrat font-bold flex dark:text-blue-300 justify-between uppercase theme-text">
+                              {x.name}{" "}
+                              <span className="font-RussoOne">{x.price} $</span>
+                            </h2>
+                            <p className="font-VarelaRound dark:text-blue-300 theme-text">
+                              <h1>Enrolled : {x.bookedSets}</h1>
+                            </p>
+                            <div className="card-actions justify-end">
+                              <Link
+                                className="buttonshop"
+                                to={`CourseDetail/${x._id}`}
+                              >
+                                View Details{" "}
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                    </>
+                  )}
+                </div>
               </>
             ))}
-          </Swiper>
+          </div>
         </div>
-        <div className="flex items-center justify-between w-full">
-          <div className="join ms-5 bg-white shadow-md shadow-pink-300">
-            <button ref={navigationPrevRef} className=" text-white">
-              <img
-                className="w-[50px] rotate-180"
-                src={arrow2}
-                alt="circled-chevron-right--v2"
-              />
-            </button>
-            <button className="join-item lg:hidden bg-white text-pink-600 font-bold uppercase w-[35px]">
-              {currentPage + 1}/{totalItemsPage}
-            </button>
-            <button ref={navigationNextRef} className=" text-white">
-              <img
-                className="w-[50px]"
-                src={arrow2}
-                alt="circled-chevron-right--v2"
-              />
-            </button>
-          </div>
-          <div className="lg:me-10 ms-4 scale-90 me-3 flex justify-end">
-            <Link to="/AllCourses" className="buttonView font-VarelaRound">
-              View All
-              <svg className="iconView" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </Link>
-          </div>
+        <div className="flex items-center justify-center mt-3 w-full">
+          <Link
+            to="/AllCourses"
+            className="flex backdrop-blur lg:backdrop-blur-none lg:bg-opacity-100 lg:text-black bg-blue-400 bg-opacity-10 btn px-10 text-white font-VarelaRound"
+          >
+            View All
+            <svg className="iconView" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                fillRule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </Link>
         </div>
       </div>
     </div>

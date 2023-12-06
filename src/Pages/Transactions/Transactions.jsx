@@ -7,6 +7,7 @@ import { Circles } from "react-loader-spinner";
 
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 import { Helmet } from "react-helmet-async";
+import Title from "../Shared/title/title";
 const Transactions = () => {
   const { user } = useAuth();
 
@@ -32,61 +33,50 @@ const Transactions = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className=" max-w-6xl mt-10 mx-auto">
       <ScrolltoTop></ScrolltoTop>
       <ScrolltoTop></ScrolltoTop>
       <Helmet>
         <title>Transactions | ARTOGRAM</title>
       </Helmet>
+      <Title>{"Transictions"}</Title>
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">
-            <Circles
-              height="80"
-              width="80"
-              method="dialog"
-              color="#D81B60"
-              ariaLabel="circles-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
+            <div className="loader32"></div>
           </div>
         </>
       ) : (
         <>
-          <h1 className="hidden lg:block text-center text-4xl font-KaushanScript  my-5 text-pink-600">
-            Course Transactions
-          </h1>
           {data.length > 0 ? (
             <>
-              <div>
+              <div className="grid items-center justify-center lg:grid-cols-2 lg:mx-2">
                 {data.map((x, i) => (
                   <>
-                    <div className="flex lg:flex-row flex-col  gap-x-2  p-3 w-9/12 lg:w-11/12 mx-auto theme-color1 bg-opacity-5 border my-1 rounded-[2rem]">
-                      <div className="flex items-center lg:flex-row flex-col text-center lg:w-[500px] lg:col-span-2">
+                    <div className="my-3 relative rounded-3xl  dark:bg-[#121212] border-2 border-blue-400 dark:border-opacity-25 lg:mx-2  flex-col justify-center mx-3 lg:justify-start lg:flex-row flex items-center gap-x-2  p-2">
+                      <div className="flex items-center lg:flex-row flex-col text-center lg:w-[370px] overflow-scroll lg:col-span-2">
                         <div className="rounded-3xl my-1  ">
-                          <button className="btn-circle text-pink-600 btn">
+                          <button className="btn-circle theme-text btn">
                             {i + 1}
                           </button>
                         </div>
-                        <div className="text-pink-600  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center  font-VarelaRound">
+                        <div className="theme-text  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center  font-VarelaRound">
                           <h1>email:{x?.customerEmail}</h1>
                           <h1 className="my-2">
                             Transiction Id :{" "}
-                            <span className="bg-pink-200 p-[2px] ">
+                            <span className="bg-blue-200 p-[2px] ">
                               {x?.transictionId}
                             </span>{" "}
                           </h1>
                           <h1 className="my-2">
                             PaidAmmount :{" "}
-                            <span className="bg-pink-200 p-[2px] ">
+                            <span className="bg-blue-200 p-[2px] ">
                               {x?.paidAmmount} $
                             </span>{" "}
                           </h1>
                         </div>
                       </div>
-                      <div className=" text-pink-600 flex items-center justify-center">
+                      <div className=" text-blue-600 flex items-center justify-center">
                         {x.purchaseDate}
                       </div>
                     </div>
@@ -96,7 +86,7 @@ const Transactions = () => {
             </>
           ) : (
             <>
-              <h1 className="text-pink-600 min-h-[70vh] font-KaushanScript text-xl flex justify-center items-center divider-vertical text-center">
+              <h1 className="theme-text min-h-[70vh] font-KaushanScript text-xl flex justify-center items-center divider-vertical text-center">
                 Transactions Is Empty
               </h1>
             </>

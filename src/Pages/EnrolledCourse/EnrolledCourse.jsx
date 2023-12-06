@@ -10,12 +10,15 @@ import Swal from "sweetalert2";
 import success from "../../assets/icon/icons8-verified-account-96.png";
 import ScrolltoTop from "../Shared/ScroolltoTop/Scrolltotop";
 import { Helmet } from "react-helmet-async";
+import { PiStickerBold } from "react-icons/pi";
+import Title from "../Shared/title/title";
+import { Link } from "react-router-dom";
 const EnrolledCourse = () => {
   const { user } = useAuth();
 
   const [loading, setIsLoading] = useState(true);
   const [data, setdata] = useState([]);
-
+  console.log(data);
   useEffect(() => {
     setIsLoading(true);
     axios
@@ -32,40 +35,7 @@ const EnrolledCourse = () => {
         setIsLoading(false);
       });
   }, [user]);
-  const addToSelected = (x) => {
-    delete x._id;
-    Swal.fire({
-      title: "Are you sure?",
-      icon: "",
-      iconHtml: `<img src=${exclamation} alt="" />`,
-      customClass: {
-        confirmButton: "sweet_confirmbuttonImportant",
-        cancelButton: "cancelButton",
-        isConfirmed: "isConfirmed",
-      },
 
-      showCancelButton: true,
-
-      confirmButtonText: "Yes , add to favorite",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`https://artogram-server.vercel.app/FavouriteProducts`, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("ArtAccess")}`,
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(x),
-        }).then((res) => {
-          Swal.fire({
-            title: "Sweet!",
-            iconHtml: `<img src=${success} alt="" />`,
-            text: "Added to favorite",
-          });
-        });
-      }
-    });
-  };
   return (
     <div>
       <ScrolltoTop></ScrolltoTop>
@@ -73,69 +43,62 @@ const EnrolledCourse = () => {
       <Helmet>
         <title>EnrolledCourse | ARTOGRAM</title>
       </Helmet>
+      <div className="my-5">
+        <Title>{"EnrolledCourse"}</Title>
+      </div>
       {loading ? (
         <>
           <div className=" min-h-screen flex  justify-center items-center">
-            <Circles
-              height="80"
-              width="80"
-              method="dialog"
-              color="#D81B60"
-              ariaLabel="circles-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
+            <div className="w-full min-h-[100vh] flex justify-center items-center z-50 bg-transparent">
+              <div className="loader32"></div>
+            </div>
           </div>
         </>
       ) : (
         <>
-          <h1 className="hidden lg:block text-center text-4xl font-KaushanScript  my-5 text-pink-600">
-            Enrolled Course
-          </h1>
           {data.length > 0 ? (
             <>
-              <div>
+              <div className="grid lg:grid-cols-2 w-11/12 mx-auto">
                 {data.map((x, i) => (
                   <>
-                    <div className="flex lg:flex-row flex-col  gap-x-2  p-3 w-9/12 lg:w-11/12 mx-auto theme-color1 bg-opacity-5 border my-1 rounded-[2rem]">
-                      <div className="flex items-center lg:flex-row flex-col text-center lg:w-[500px] gap-x-2 lg:col-span-2">
+                    <div className="my-3 relative rounded-3xl dark:bg-opacity-40 dark:bg-[#121212] border-2 border-blue-400 dark:border-opacity-25 lg:mx-2 mx-14 flex-col justify-center lg:justify-start lg:flex-row flex items-center gap-x-2  p-2">
+                      <div className="flex items-center lg:flex-row theme-text w-full flex-col lg:col-span-2">
                         <div className="rounded-3xl my-1  ">
-                          <button className="btn-circle text-pink-600 btn">
-                            {i + 1}
-                          </button>
-                        </div>
-                        <div className=" rounded-3xl w-24 ">
                           <img
-                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            className="w-16 lg:w-28"
                             src={x.courseImg}
                             alt=""
                           />
                         </div>
-                        <div className="text-pink-600  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center  font-VarelaRound">
-                          <h1>Name:{x?.name}</h1>
-                          <h1 className="my-2">
-                            Category:{" "}
-                            <span className=" p-[2px] ">{x?.category}</span> Art
+                        <div className="  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center font-bold font-VarelaRound">
+                          <h1 className="flex items-center justify-start overflow-scroll">
+                            <div>
+                              <h1 className="flex">
+                                <PiStickerBold className="text-xl" />
+                                {x?.courseTitle}
+                              </h1>
+                            </div>{" "}
                           </h1>
-                          <h1 className="">
-                            Duration :{" "}
-                            <span className=" p-[2px] ">{x?.duration} $</span>{" "}
+
+                          <h1 className="flex">
+                            <PiStickerBold className="text-xl" /> {x?.seats}
+                            Seats{" "}
+                          </h1>
+                          <h1 className="flex">
+                            <PiStickerBold className="text-xl" />
+                            {x?.price}$
                           </h1>
                         </div>
                       </div>
-                      <div>
-                        <div
-                          onClick={() => {
-                            addToSelected(x);
-                          }}
-                          className="h-full flex items-center justify-center"
-                        >
-                          <button className="btn  w-[150px]  bg-white text-pink-600 border border-pink-600 font-Montserrat rounded-xl">
-                            <img className="w-5" src={plus} alt="" /> Favorites
-                          </button>
-                        </div>
-                      </div>
+                      <Link
+                        to={`/ViewClass/${x.courseId}`}
+                        className="rounded-3xl my-1  flex gap-x-6  w-full items-center gap-y-2 justify-center"
+                      >
+                        <button className="btn font-Montserrat bg-transparent theme-text border-blue-300">
+                          Continue Class
+                        </button>
+                      </Link>
                     </div>
                   </>
                 ))}
@@ -143,7 +106,7 @@ const EnrolledCourse = () => {
             </>
           ) : (
             <>
-              <h1 className="text-pink-600 min-h-[70vh] font-KaushanScript text-xl flex justify-center items-center divider-vertical text-center">
+              <h1 className="theme-text min-h-[70vh] font-KaushanScript text-xl flex justify-center items-center divider-vertical text-center">
                 Enrolled Course Is Empty
               </h1>
             </>

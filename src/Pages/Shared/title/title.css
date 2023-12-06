@@ -1,5 +1,6 @@
 .fancy {
-  background-color: transparent;
+  /* background-color: transparent; */
+
   border: 2px solid #0b2447;
   border-radius: 0;
   box-sizing: border-box;
@@ -24,7 +25,7 @@
   user-select: none;
   /* font-size: 14px; */
 
-  @apply lg:text-2xl py-4 w-[270px] lg:w-[390px] font-RussoOne lg:py-5;
+  @apply bg-white dark:bg-[#121212] lg:text-2xl py-4 w-[270px]  lg:w-[390px] font-RussoOne lg:py-5 dark:border-[#2d8cf0];
 }
 
 /* .fancy::before {
@@ -49,8 +50,9 @@
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
   text-decoration: none;
-  color: #0b2447;
+
   width: 100%;
+  @apply text-[#0b2447] dark:text-[#2d8cf0];
 }
 
 .fancy .top-key {
@@ -61,6 +63,7 @@
   position: absolute;
   background: white;
   transition: width 0.5s ease-out, left 0.3s ease-out;
+  @apply dark:bg-black;
 }
 
 .fancy .bottom-key-1 {
@@ -71,6 +74,7 @@
   position: absolute;
   background: white;
   transition: width 0.5s ease-out, right 0.3s ease-out;
+  @apply dark:bg-black;
 }
 
 .fancy .bottom-key-2 {
@@ -81,16 +85,12 @@
   position: absolute;
   background: white;
   transition: width 0.5s ease-out, right 0.3s ease-out;
+  @apply dark:bg-black;
 }
 
 .fancy:hover::before {
   width: 0.9375rem;
   background: #0b2447;
-}
-
-.fancy:hover .text {
-  color: #0b2447;
-  /* padding-left: 1.5em; */
 }
 
 .fancy:hover .top-key {

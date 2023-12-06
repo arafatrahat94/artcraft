@@ -122,8 +122,8 @@
   }
 }
 .card3 {
-  width: 17em;
-  height: 22.5em;
+  /* width: 17em; */
+  /* height: 22.5em; */
   background: white;
   transition: 1s ease-in-out;
   clip-path: polygon(
@@ -139,6 +139,7 @@
   display: flex;
   flex-direction: column;
   border: 5px dashed #0b2447;
+  @apply xl:py-10 py-5 mx-7 dark:border-[#2d8cf0]  lg:mx-0 xl:mx-4;
 }
 
 .card3 span {
@@ -147,6 +148,7 @@
   text-align: center;
   display: block;
   font-size: 1em;
+  @apply dark:text-[#2d8cf0];
 }
 
 .card3 .info {
@@ -156,12 +158,13 @@
   text-align: center;
   font-size: 0.72em;
   margin: 1em;
+  @apply dark:text-[#2d8cf0];
 }
 
 .card3 .img {
   width: 5.8em;
   height: 5.8em;
-  background: white;
+  /* background: white; */
   border-radius: 15px;
   margin: auto;
 }
@@ -192,15 +195,13 @@
   background: #b1dae7;
 }
 .span2 {
-  @apply relative text-[18px] font-bold tracking-wider  font-VarelaRound  before:text-[#0b2447] -mt-[2px];
+  @apply relative text-[18px] font-bold tracking-wider  font-VarelaRound dark:text-[#2d8cf0] before:text-[#0b2447] -mt-[2px];
 }
 .span2:before {
-  content: "View Courses";
   color: #0b2447;
 }
 .span2:hover:before {
   color: rgb(255, 249, 249);
-  content: "View Courses";
 }
 
 .cta:hover:before {
@@ -209,4 +210,121 @@
 }
 .cta:hover svg {
   @apply translate-x-0;
+}
+.cardCollection {
+  width: 100%;
+
+  height: 80px;
+  background-color: rgba(0, 110, 255, 0.075);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  transition: 0.5s ease-in-out;
+}
+
+.cardCollection:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.cardCollectionimg {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: linear-gradient(#d7cfcf, #9198e5);
+}
+
+.cardCollectiontextBox {
+  width: calc(100% - 90px);
+  margin-left: 10px;
+
+  font-family: "Poppins" sans-serif;
+}
+
+.cardCollectiontextContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.span {
+  font-size: 10px;
+}
+
+.cardCollectionh1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cardCollectionp {
+  font-size: 12px;
+  font-weight: lighter;
+}
+.cardCollectioncheckbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.cardCollectioncustom-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.cardCollectioncheckmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cardCollectioncheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.cardCollectioncustom-checkbox:checked ~ .cardCollectioncheckmark {
+  background-color: #2196f3;
+  box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
+}
+
+.cardCollectioncustom-checkbox:checked ~ .cardCollectioncheckmark:after {
+  display: block;
+}
+
+@keyframes checkAnim {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 10px;
+  }
+}
+
+.cardCollectioncustom-checkbox:checked ~ .cardCollectioncheckmark:after {
+  animation: checkAnim 0.2s forwards;
 }

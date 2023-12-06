@@ -1,10 +1,12 @@
 .swal2-popup {
-  @apply bg-white lg:h-[310px]  font-VarelaRound   ring ring-red-400;
+  @apply bg-black lg:h-[300px]  font-VarelaRound  text-white ring ring-blue-400;
 }
 .swal2-popup a {
-  @apply bg-white text-red-800 font-semibold font-VarelaRound  lg:text-base text-xs;
+  @apply bg-white theme-text font-semibold font-VarelaRound  lg:text-base text-xs;
 }
-
+.isConfirmed {
+  @apply bg-blue-300 !important;
+}
 .swal2-popup {
   display: none;
   position: relative;
@@ -65,17 +67,64 @@ input#file-upload-button {
   cursor: pointer;
 }
 .containerUp {
-  height: 250px;
-  width: 300px;
   border-radius: 10px;
   box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  /* padding: 10px; */
   gap: 5px;
   background-color: rgba(0, 110, 255, 0.041);
+  @apply w-[300px] h-[250px] lg:w-[600px] lg:h-[350px];
+}
+.containerUpn {
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 10px; */
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+  @apply w-[300px] h-[250px] lg:w-[300px] lg:h-[250px];
+}
+.containerUp2 {
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 10px; */
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+  @apply w-[100px] lg:h-[150px] lg:w-[200px] h-[100px];
+}
+.containerUp3 {
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 10px; */
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+  @apply w-[97%] mx-auto lg:h-[250px] lg:w-[400px] h-[250px];
+}
+.containerUp4 {
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 10px; */
+  gap: 5px;
+  background-color: rgba(0, 110, 255, 0.041);
+  @apply w-[50%] mx-auto  lg:w-[100px] h-[100px];
 }
 
 .containerUpheader {
@@ -111,10 +160,58 @@ input#file-upload-button {
   justify-content: flex-end;
   color: black;
   border: none;
-  @apply absolute  bottom-2 left-[90px] w-[50px];
+  @apply absolute  bottom-2 lg:left-[250px] left-[90px] w-[50px];
+}
+.svgDelete2 {
+  /* background-color: rgba(0, 110, 255, 0.075); */
+
+  height: 35px;
+  padding: 8px;
+
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  @apply absolute  bottom-2 left-[9px] lg:left-[56px] w-[50px];
+}
+.svgDelete3 {
+  /* background-color: rgba(0, 110, 255, 0.075); */
+
+  height: 35px;
+  padding: 8px;
+
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: black;
+  border: none;
+  @apply absolute  bottom-2 left-[130px] lg:left-[150px] w-[50px];
 }
 
 .svgDelete svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  /* padding: 2px; */
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+.svgDelete2 svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  /* padding: 2px; */
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+.svgDelete3 svg {
   height: 130%;
   fill: royalblue;
   background-color: rgba(70, 66, 66, 0.103);

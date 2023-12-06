@@ -1,9 +1,12 @@
 .react-tabs__tab {
-  @apply lg:w-[100px] w-[80px] text-center font-Montserrat text-pink-600 mx-1 font-semibold  transform duration-300  justify-center border-none flex items-center py-3 rounded-lg !important;
+  border-bottom: none !important;
+  @apply lg:w-[170px] w-[80px] text-center font-Montserrat text-blue-400 border-b-0 mx-1 font-semibold  transform duration-300  justify-center  flex items-center py-3 rounded-lg !important;
 }
 .react-tabs__tab--selected {
-  @apply bg-pink-600 w-[100px] text-center font-Montserrat text-white border-none py-2 rounded-lg !important;
+  border-bottom: transparent !important;
+  @apply bg-blue-600 w-[170px] text-center font-Montserrat text-white rounded-2xl dark:bg-opacity-50 border-none py-2  !important;
 }
 .react-tabs__tab-list {
-  @apply border-none lg:w-full lg:scale-100 scale-75 w-[350px] mx-auto px-2 lg:mx-5  flex  justify-center  !important;
+  border-bottom: transparent !important;
+  @apply border-none lg:w-full lg:scale-100 scale-75 w-[350px] mx-auto px-2 gap-x-6  flex  justify-center  !important;
 }

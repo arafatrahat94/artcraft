@@ -14,6 +14,7 @@
   text-transform: uppercase;
   color: var(--color);
   z-index: 1;
+  @apply dark:text-blue-300;
 }
 
 .buttonshop::before,

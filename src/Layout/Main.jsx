@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet, useLocation, useNavigation } from "react-router-dom";
 import Nav from "../Pages/Shared/Nav/Nav";
 import Footer from "../Pages/Shared/Footer/Footer";
-import { Circles } from "react-loader-spinner";
+import bgImg from "../assets/bg.png";
 import Spinner from "../Pages/Shared/Spinner/Spinner";
-import bgImg from "../assets/bgimage.png";
-import bgImgLandscape from "../assets/bglandscape.png";
+
+import svgw from "../assets/svfd.svg";
+
 const Main = () => {
   const location = useLocation();
 
@@ -20,14 +21,14 @@ const Main = () => {
       setLoad(false);
     }, 2000);
   }
+
   return (
     <div>
       {signUp || (
         <>
-          <img className="fixed -z-40 lg:hidden -mt-1 " src={bgImg} alt="" />
           <img
-            className="fixed hidden lg:block -z-40 opacity-80 w-full  -mt-1 "
-            src={bgImgLandscape}
+            className="fixed blur-[3px] lg:blur-[2px]  h-full top-0 pt-[1px] min-h-[110vh] pb-[1px] object-cover bg-no-repeat bg-center dark:bg-[#121212] bg-white -z-10  w-full "
+            src={bgImg}
             alt=""
           />
         </>
@@ -40,9 +41,15 @@ const Main = () => {
         </>
       ) : (
         <>
-          {signUp || <Nav></Nav>}
-          <Outlet />
-          {signUp || <Footer></Footer>}
+          <div className="">
+            {signUp || <Nav></Nav>}
+            <Outlet />
+            {signUp || (
+              <div>
+                <Footer></Footer>
+              </div>
+            )}
+          </div>
         </>
       )}
     </div>

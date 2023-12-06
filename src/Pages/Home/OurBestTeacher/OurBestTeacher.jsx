@@ -10,9 +10,6 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { Navigation } from "swiper/modules";
 
-// icons
-import arrow from "../../../assets/whychoseUs/triangle.png";
-import arrow2 from "../../../assets/icon/icons8-next-96.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../../Hooks/useAuth";
@@ -21,18 +18,19 @@ import Swal from "sweetalert2";
 import { Circles } from "react-loader-spinner";
 import useToast from "../../../Hooks/useToast";
 import { Link } from "react-router-dom";
-import useScroll from "../../../Hooks/useScroll";
-import Card from "../../Card/Card";
+
 import Title from "../../Shared/title/title";
 import "./teacher.css";
-import { BsGithub } from "react-icons/bs";
+
+import ImgLoad from "../../Shared/ImgLoad/ImgLoad";
 const OurBestTeacher = () => {
   const { user } = useAuth();
-  const Toast = useToast();
+
   const [courses, setCourses] = useState([]);
 
   const [modal, setModal] = useState([]);
   const [checked, setChecked] = useState([]);
+
   const [isloading, setIsLoading] = useState(false);
   const [closedModal, setClosedModal] = useState(false);
   // Add/Remove checked item from list
@@ -63,7 +61,7 @@ const OurBestTeacher = () => {
   const navigationNextRef = React.useRef(currentPage);
   const [modalLoading, setModalLoading] = useState(false);
   const ItemsPerPage = 1;
-  const totalItemsPage = Math.ceil(courses.length / ItemsPerPage);
+
   useEffect(() => {
     axios
       .get("https://artogram-server.vercel.app/teacherUser")
@@ -103,201 +101,230 @@ const OurBestTeacher = () => {
     <div id="instructors" className=" my-20 w-11/12 mx-auto">
       {/* best tutor */}
 
-      <div className=" lg:h-[700px] h-[660px] bg-opacity-5  border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
+      <div className="  lg:h-[700px] h-[660px] bg-opacity-5  border-opacity-40 rounded-tr-[3rem] rounded-bl-[3rem] ">
         <div className="my-5">
           <Title>{"Our Best Teachers"}</Title>
         </div>
         <div className="mt-7">
-          <Swiper
-            spaceBetween={10}
-            breakpoints={breakpoint}
-            modulesbreakpoints={[Navigation]}
-            navigation={{
-              prevEl: navigationPrevRef.current,
-              nextEl: navigationNextRef.current,
-            }}
-            onSlideChange={(swiper) => {
-              setCurrentPage(swiper.activeIndex);
-            }}
-            onBeforeInit={(swiper) => {
-              swiper.params.navigation.prevEl = navigationPrevRef.current;
-              swiper.params.navigation.nextEl = navigationNextRef.current;
-            }}
-            className="mySwiper    h-[470px] w-[97%] mx-auto"
-          >
-            {closedModal ? (
-              <></>
-            ) : (
-              <>
-                <dialog id="my_modal_1" className="modal">
-                  <div className="modal-box">
-                    <div className="flex items-center flex-col justify-center min-h-[300px] lg:w-[460px]">
-                      {isloading ? (
-                        <>
-                          <Circles
-                            height="80"
-                            width="80"
-                            method="dialog"
-                            color="#D81B60"
-                            ariaLabel="circles-loading"
-                            wrapperStyle={{}}
-                            wrapperClassbreakpoints=""
-                            visible={true}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          {modal.length > 0 ? (
-                            <>
-                              {modalLoading ? (
-                                <>
-                                  <Circles
-                                    height="80"
-                                    width="80"
-                                    method="dialog"
-                                    color="#D81B60"
-                                    ariaLabel="circles-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClassbreakpoints=""
-                                    visible={true}
-                                  />
-                                </>
-                              ) : (
-                                <>
-                                  {modal.map((x) => (
-                                    <>
-                                      <div className="grid gap-x-2 gap-y-2 grid-cols-2 lg:grid-cols-3 w-full theme-color1 bg-opacity-5 border my-1 rounded-[2rem]">
-                                        <div className="flex items-center lg:flex-row flex-col lg:col-span-2">
-                                          <div className="rounded-3xl my-1  ">
-                                            <img
-                                              className="w-16 lg:w-40"
-                                              src={x.courseImg}
-                                              alt=""
-                                            />
-                                          </div>
-                                          <div className="text-pink-600  flex lg:text-[16px] text-sm items-center flex-col lg:items-start justify-center font-bold font-VarelaRound">
-                                            <h1>Name:{x.name}</h1>
-                                            <h1>
-                                              Available: {x.availableseats} sits
-                                            </h1>
-                                            <h1>Price:{x.price} $</h1>
+          {isloading ? (
+            <>
+              <div className=" h-[470px] items-center w-full flex justify-center">
+                <div className="loader32 "></div>
+              </div>
+            </>
+          ) : (
+            <Swiper
+              spaceBetween={10}
+              breakpoints={breakpoint}
+              modulesbreakpoints={[Navigation]}
+              navigation={{
+                prevEl: navigationPrevRef.current,
+                nextEl: navigationNextRef.current,
+              }}
+              onSlideChange={(swiper) => {
+                setCurrentPage(swiper.activeIndex);
+              }}
+              onBeforeInit={(swiper) => {
+                swiper.params.navigation.prevEl = navigationPrevRef.current;
+                swiper.params.navigation.nextEl = navigationNextRef.current;
+              }}
+              className="mySwiper    h-[470px] w-[90%] mx-auto"
+            >
+              {closedModal ? (
+                <></>
+              ) : (
+                <>
+                  <dialog id="my_modal_1" className="modal backdrop-blur-sm">
+                    <div className="modal-box bg-white darkBg">
+                      <div className="flex items-center flex-col justify-center  min-h-[300px] lg:w-[460px]">
+                        {modal.length > 0 ? (
+                          <>
+                            {modalLoading ? (
+                              <>
+                                <div className="w-full transform duration-300  flex justify-center items-center z-50 ">
+                                  <div className="w-full  flex justify-center items-center z-50 ">
+                                    <div className="loader32 "></div>
+                                  </div>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <h1 className="text-xl font-VarelaRound uppercase theme-text mb-5 -mt-10">
+                                  Course List
+                                </h1>
+                                {modal.map((x) => (
+                                  <>
+                                    <div className="grid gap-x-2 gap-y-2   w-full transform duration-300  theme-color1 bg-opacity-5  my-1 rounded-[2rem] theme-text font-VarelaRound">
+                                      <div className="cardCollection">
+                                        <div className="cardCollectionimg">
+                                          <div className="object-cover  flex justify-center items-center">
+                                            <ImgLoad
+                                              roundedd={"rounded-[0.5rem]"}
+                                              imgs={x.courseImg}
+                                            ></ImgLoad>
                                           </div>
                                         </div>
-                                        <div className="rounded-3xl my-1  flex flex-col items-center gap-y-2 justify-center">
-                                          <div>
-                                            <input
-                                              onChange={() =>
-                                                handleCheck(event, x)
-                                              }
-                                              value={x._id}
-                                              type="checkbox"
-                                              className="checkbox checkbox-lg  checkbox-secondary"
-                                            />
+
+                                        <div className="cardCollectiontextBox">
+                                          <div className="cardCollectiontextContent">
+                                            <p className="cardCollectionh1">
+                                              {x.name}
+                                            </p>
+                                            <span className="cardCollectionspan">
+                                              <label className="cardCollectioncheckbox-container">
+                                                <input
+                                                  onChange={() =>
+                                                    handleCheck(event, x)
+                                                  }
+                                                  value={x._id}
+                                                  type="checkbox"
+                                                  className="cardCollectioncustom-checkbox"
+                                                />
+                                                <span className="cardCollectioncheckmark" />
+                                              </label>
+                                            </span>
                                           </div>
+                                          <p className="cardCollectionp">
+                                            Price:{x.price} $ &nbsp;&nbsp;&nbsp;
+                                            <span className="text-base">
+                                              seats left : {x.availableseats}
+                                            </span>
+                                          </p>
+                                          <div />
                                         </div>
                                       </div>
+                                    </div>
+                                  </>
+                                ))}
+                              </>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <h1 className="theme-text text-center text-sm font-VarelaRound font-semibold">
+                              No Class Is Added By Teacher Untill Now
+                            </h1>
+                          </>
+                        )}
+                      </div>
+                      <div className="modal-action flex items-center justify-between">
+                        <form method="dialog">
+                          {/* if there is a button in form, it will close the modal */}
+
+                          <button className=" ">
+                            <div className="cta ">
+                              <h1 className="span2 hover:text-white text-[#0b2447]">
+                                Close
+                              </h1>
+                            </div>
+                          </button>
+                        </form>
+                        <div>
+                          {user ? (
+                            <>
+                              {modal.length > 0 ? (
+                                <>
+                                  {checked.length > 0 && (
+                                    <>
+                                      <div
+                                        onClick={handleCart}
+                                        className="buttonshop"
+                                      >
+                                        <h1 className="transform duration-300 hover:text-white">
+                                          Add to Cart
+                                        </h1>
+                                      </div>
                                     </>
-                                  ))}
+                                  )}
                                 </>
+                              ) : (
+                                ""
                               )}
                             </>
                           ) : (
                             <>
-                              {" "}
-                              <h1 className="text-pink-600 text-center text-sm font-VarelaRound font-semibold">
-                                No Class Is Added By Teacher Untill Now
-                              </h1>
+                              <div className="AddedToCartcardactions">
+                                <Link
+                                  to="/Login"
+                                  className="AddedToCartcardhistory"
+                                >
+                                  Login To Order
+                                </Link>
+                              </div>
                             </>
                           )}
-                        </>
-                      )}
-                    </div>
-                    <div className="modal-action flex justify-between">
-                      <form method="dialog">
-                        {/* if there is a button in form, it will close the modal */}
-                        <button className="btn rounded-md bg-pink-600 text-white">
-                          Close
-                        </button>
-                      </form>
-                      <div>
-                        <button
-                          onClick={handleCart}
-                          className="btn text-pink-600 outline
-                         rounded-md outline-pink-600"
-                        >
-                          Add To Cart
-                        </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </dialog>
-              </>
-            )}
-            {courses.map((x, i) => (
-              <>
-                <SwiperSlide key={i} className="w-72 py-8 lg:ps-10 ">
-                  <div
-                    onClick={() => handleLoadData(x.email)}
-                    className=" flex justify-center"
-                  >
-                    <div className="card3">
-                      <div className="img">
-                        <img src={x.img} className="" alt="" />
-                      </div>
-                      <span>{x.name}</span>
-                      <p className="info">
-                        I’m Walter, a multidisciplinary designer who focuses on
-                        telling my clients’ stories visually.
-                      </p>
-                      <div className="flex items-center justify-center">
-                        <Rating style={{ maxWidth: 130 }} value={3} readOnly />{" "}
-                        (4.9)
-                      </div>
-                      <div
-                        onClick={() => {
-                          setTimeout(() => {
-                            document.getElementById("my_modal_1").showModal();
-                          }, 250);
+                  </dialog>
+                </>
+              )}
 
-                          setModalLoading(true);
-                          setTimeout(() => {
-                            setModalLoading(false);
-                          }, 1000);
-                        }}
-                        className="cta"
-                      >
-                        <h1 className="span2"></h1>
+              {courses.map((x, i) => (
+                <>
+                  <SwiperSlide key={i} className="w-80 lg:w-72 py-8 px-1">
+                    <div
+                      onClick={() => handleLoadData(x.email)}
+                      className=" flex justify-center"
+                    >
+                      <div className="card3 darkBg gap-y-2">
+                        <div className="img">
+                          <img
+                            loading="lazy"
+                            src={x.img}
+                            className="object-cover"
+                            alt=""
+                          />
+                        </div>
+                        <span>{x.name}</span>
+                        <p className="info xl:px-3">
+                          I’m Walter, a multidisciplinary designer who focuses
+                          on telling my clients’ stories visually.
+                        </p>
+                        <div className="flex items-center theme-text justify-center">
+                          <Rating
+                            style={{ maxWidth: 130 }}
+                            value={3}
+                            readOnly
+                          />{" "}
+                          (4.9)
+                        </div>
+                        <div
+                          onClick={() => {
+                            setTimeout(() => {
+                              document.getElementById("my_modal_1").showModal();
+                            }, 350);
+
+                            setModalLoading(true);
+                            setTimeout(() => {
+                              setModalLoading(false);
+                            }, 1000);
+                          }}
+                          className="w-[170px] my-3  mx-auto hover:text-white text-[#0b2447]"
+                        >
+                          <div className="cta ">
+                            <h1 className="span2 hover:text-white text-[#0b2447]">
+                              View Courses
+                            </h1>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              </>
-            ))}
-          </Swiper>
+                  </SwiperSlide>
+                </>
+              ))}
+            </Swiper>
+          )}
         </div>
 
         <div className="flex items-center justify-between w-full">
-          <div className="join ms-5 bg-white shadow-md shadow-pink-300">
-            <button ref={navigationPrevRef} className=" text-white">
-              <img
-                className="w-[50px] rotate-180"
-                src={arrow2}
-                alt="circled-chevron-right--v2"
-              />
-            </button>
-            <button className="join-item lg:hidden bg-white text-pink-600 font-bold uppercase w-[35px]">
-              {currentPage + 1}/{totalItemsPage}
-            </button>
-            <button ref={navigationNextRef} className=" text-white">
-              <img
-                className="w-[50px]"
-                src={arrow2}
-                alt="circled-chevron-right--v2"
-              />
-            </button>
-          </div>
           <div className="lg:me-10 ms-4 scale-90 me-3 flex justify-end">
-            <Link to="/AllTeachers" className="buttonView font-VarelaRound">
+            {" "}
+            <Link
+              to="/AllTeachers"
+              className="flex backdrop-blur lg:backdrop-blur-none lg:bg-opacity-100 lg:text-black bg-blue-400 bg-opacity-10 btn px-10 text-white font-VarelaRound"
+            >
               View All
               <svg className="iconView" viewBox="0 0 24 24" fill="currentColor">
                 <path

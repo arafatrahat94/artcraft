@@ -16,11 +16,12 @@
 .card4::before {
   content: "";
   position: absolute;
-  width: 250px;
-  background-image: linear-gradient(180deg, #0b2447, #0b2447);
-  height: 150%;
-  animation: rotBGimg 3s linear infinite;
+
+  background-image: linear-gradient(180deg, #0b2447, #2d8cf0);
+  opacity: 90%;
+  animation: rotBGimg 5s linear infinite;
   transition: all 0.2s linear;
+  @apply xl:w-[850px] w-[250px] h-[150%] xl:h-[40%];
 }
 
 @keyframes rotBGimg {
@@ -36,7 +37,8 @@
 .card4::after {
   content: "";
   position: absolute;
-  background: white;
+  /* background: white; */
   inset: 5px;
   border-radius: 15px;
+  @apply bg-white dark:bg-[#121212];
 }

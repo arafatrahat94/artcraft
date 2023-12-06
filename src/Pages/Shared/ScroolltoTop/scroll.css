@@ -1,61 +1,37 @@
-button {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
+/* <reset-style> ============================ */
+a {
   text-decoration: none;
-  background: transparent;
-  padding: 0;
-  font-size: inherit;
-  font-family: inherit;
+}
+/* <main-style> ============================ */
+.scroll-upBut {
+  /* position: fixed; */
+  right: 3rem;
+  bottom: -50%;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  background-color: #2d8cf0;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: bottom 0.4s, transform 0.4s;
 }
 
-button.learn-more {
-  /* width: 12rem; */
-  height: auto;
+.scroll-up:hover {
+  transform: translateY(-0.25rem);
 }
 
-button.learn-more .circleScroll {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: relative;
-  display: block;
-  margin: 0;
-
-  background: white;
-  border: 2px solid #0b2447;
-  box-shadow: -5px 5px 0 0 #2d8cf0;
-
-  @apply lg:w-[4rem] rounded-2xl lg:rounded-[1.325rem] w-[3rem] h-[3rem] lg:h-[4rem];
+/* Show scroll-up */
+._show-scroll {
+  bottom: 3rem;
 }
 
-button.learn-more .circleScroll .icon {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  background: #0b2447;
-}
-
-button.learn-more .circleScroll .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
-  width: 1.125rem;
-  height: 0.125rem;
-  background: none;
-}
-
-button.learn-more .circleScroll .icon.arrow::before {
-  position: absolute;
-  content: "";
-  top: -0.29rem;
-  right: 0.0625rem;
-  width: 0.825rem;
-  height: 0.825rem;
-  border-top: 0.125rem solid #0b2447;
-  border-right: 0.125rem solid #0b2447;
-  transform: rotate(45deg);
-  @apply right-[0.5rem] lg:right-[0.0625];
+@media (max-width: 1199.98px) {
+  .scroll-up {
+    right: 1rem;
+  }
 }

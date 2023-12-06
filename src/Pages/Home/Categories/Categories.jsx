@@ -29,6 +29,7 @@ const Categories = () => {
         <div className="cardCategory">
           <p onClick={goToWater} className="">
             <img
+              loading="lazy"
               className="w-full h-full object-cover  opacity-40 "
               src={water}
               alt=""
@@ -39,6 +40,7 @@ const Categories = () => {
           </p>
           <p onClick={goToacrylic}>
             <img
+              loading="lazy"
               className="w-full h-full object-cover  opacity-40 "
               src={acrylic}
               alt=""
@@ -47,6 +49,7 @@ const Categories = () => {
           </p>
           <p onClick={goToThree}>
             <img
+              loading="lazy"
               className="w-full h-full object-cover  opacity-40 "
               src={threed}
               alt=""

@@ -48,7 +48,7 @@ const PaymentGate = ({ paymentId, setPaymentId }) => {
         <CardElement
           className="
         rounded-2xl px-4
-         border h-16 mt-3 pt-[22px] border-pink-300 text-pink-600"
+         border h-16 mt-3 pt-[22px] border-blue-300 theme-text"
           options={{
             style: {
               base: {
@@ -68,7 +68,7 @@ const PaymentGate = ({ paymentId, setPaymentId }) => {
           <></>
         ) : (
           <button
-            className={`btn border border-pink-600 font-Montserrat text-pink-600 rounded mt-5 px-10 ${
+            className={`btn border border-blue-600 font-Montserrat dark:bg-[#121212] theme-text rounded mt-5 px-10 ${
               paymentLoading === true ? "btn-disabled" : ""
             }`}
             type="submit"

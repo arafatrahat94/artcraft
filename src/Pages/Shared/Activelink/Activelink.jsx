@@ -1,11 +1,25 @@
 import React, { Children } from "react";
 import "./activelink.css";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 const Activelink = ({ to, children }) => {
+  const { themeN } = useAuth();
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => (isActive ? "active1" : "inactive1")}
+      className={({ isActive }) =>
+        isActive
+          ? `${
+              themeN !== "true"
+                ? "darkthemetext font-RussoOne uppercase  flex items-center justify-center transform duration-300"
+                : "active1"
+            }`
+          : `${
+              themeN !== "false"
+                ? " font-RussoOne   flex items-center justify-center theme-text  dark:text-white   duration-300 transform"
+                : "font-RussoOne  theme-text duration-300 transform"
+            }`
+      }
     >
       {children}
     </NavLink>
