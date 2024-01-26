@@ -18,8 +18,8 @@ const Support = () => {
   return (
     <div className="lg:h-40 mb-14">
       <div className="grid mt-[250px] lg:mt-0 grid-cols-1 lg:grid-cols-3 h-full w-11/12 mx-auto rounded-2xl gap-y-5">
-        <div className="Burshcard-id567">
-          <div className="Burshcardprompt-id567">
+        <div className="Burshcard-id567 bg-white dark:bg-black">
+          <div className="Burshcardprompt-id567 ">
             <div className="Burshcardtoken-container">
               <img
                 loading="lazy"
@@ -31,16 +31,16 @@ const Support = () => {
               />
             </div>
             <div className="Burshcardblurry-splash theme-text" />
-            <p className="theme-text">
+            <p className="text-accen ">
               Best Quality Items
               <br />
-              <span className="Burshcardbold-567 theme-text">
+              <span className="Burshcardbold-567 text-accen">
                 Free For New Comers
               </span>{" "}
             </p>
           </div>
         </div>
-        <div className="Burshcard-id567">
+        <div className="Burshcard-id567 bg-white dark:bg-black">
           <div className="Burshcardprompt-id567">
             <div className="Burshcardtoken-container">
               <img
@@ -81,7 +81,7 @@ const Support = () => {
 
         <div className="-z-10 lg:z-10 flex gap-x-3 bg-i font-VarelaRound items-center flex-col rounded-tl-3xl absolute  right-2 lg:right-0 w-[250px] lg:w-[334px] rounded-br-3xl h-[300px] lg:h-[270px] rounded-md  gap-y-2 bg-opacity-20 top-[650px] lg:top-[520px]  justify-center theme-text font-semibold">
           {" "}
-          <div className="Burshcard-id5672">
+          <div className="Burshcard-id5672 ">
             <div className="Burshcardprompt-id5672">
               <h1 className="mt-10 Burshcardtoken-container">
                 <img

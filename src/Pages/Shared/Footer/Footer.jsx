@@ -28,7 +28,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-      <footer className="footer footer-center p-4 text-base font-VarelaRound font-bold">
+      <footer className="footer footer-center p-4 text-base font-VarelaRound font-bold dark:bg-black dark:text-white">
         <aside>
           <p>
             Copyright © 2023 - All right reserved by{" "}

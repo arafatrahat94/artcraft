@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
 }
 .Burshcard-id567 {
-  color: white;
+  /* color: white; */
   border-radius: 1rem;
   padding: 1rem;
   position: relative;
@@ -14,10 +14,10 @@
   transition: 300ms ease;
   animation: 10s thumb-thumb infinite;
   border: 2px solid #0b24472e;
-  @apply px-3 lg:mx-2 flex lg:h-[190px] h-[150px]  font-VarelaRound;
+  @apply px-3 lg:mx-2 flex lg:h-[190px] h-[150px] theme-text font-VarelaRound;
 }
 .Burshcard-id5672 {
-  color: white;
+  /* color: white; */
   border-radius: 1rem;
   padding: 1rem;
   position: relative;

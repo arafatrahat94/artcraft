@@ -37,7 +37,7 @@ const Home = () => {
       <BestCourse></BestCourse>
       <WhyChoseUs></WhyChoseUs>
       <OurBestTeacher></OurBestTeacher>
-      <Join></Join>
+      {/* <Join></Join> */}
 
       <Categories></Categories>
       <PhotoALbum></PhotoALbum>
